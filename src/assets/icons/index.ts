@@ -1,0 +1,10 @@
+export { Accessories } from './accessories';
+export { Cart } from './cart';
+export { Favourites } from './favourites';
+export { Laptop } from './laptop';
+export { Orders } from './orders';
+export { Phone } from './phone';
+export { Profile } from './profile';
+export { SmartWatch } from './smartWatch';
+export { Tablet } from './tablet';
+export { Television } from './television';

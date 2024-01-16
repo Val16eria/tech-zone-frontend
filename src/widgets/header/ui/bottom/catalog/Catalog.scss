@@ -1,0 +1,11 @@
+.catalog {
+	display: flex;
+	gap: 20px;
+
+	&__item {
+		display: flex;
+		gap: 12px;
+		padding: 12px;
+		align-items: center;
+	}
+};
