@@ -1,0 +1,2 @@
+export { HeaderContent } from './headerContent';
+

@@ -1,12 +1,18 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-synthesis: none;
+  background: var(--backgroung-white);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
+* {
   margin: 0;
-  display: flex;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p {
+  color: var(--dark-blue-text);
 }
