@@ -6,9 +6,7 @@ import './styles/index.css';
 
 const App: FC = () => {
   return (
-    <div>
-      <HeaderContent />
-    </div>
+    <HeaderContent />
   );
 };
 

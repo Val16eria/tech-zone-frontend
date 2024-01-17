@@ -10,7 +10,11 @@ const Catalog: FC = () => {
       {catalogItems.map((item) => (
         <div key={item.id} className='catalog__item'>
           {item.icon}
-          <p>{item.title}</p>
+          <p
+            className='catalog__item_title'
+          >
+            {item.title}
+          </p>
         </div>
       ))}
     </div>

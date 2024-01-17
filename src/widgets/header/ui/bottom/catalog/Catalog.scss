@@ -7,5 +7,16 @@
 		gap: 12px;
 		padding: 12px;
 		align-items: center;
+
+		&_title {
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 500;
+			line-height: 25.6px;
+
+			&:hover {
+				color: var(--accent-blue);
+			}
+		}
 	}
 };
