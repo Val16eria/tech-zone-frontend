@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { catalogItems } from '../../../lib/constants.tsx';
+import { catalogItems } from '../../../lib';
 
 import './Catalog.scss';
 
