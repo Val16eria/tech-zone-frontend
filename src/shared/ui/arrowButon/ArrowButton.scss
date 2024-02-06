@@ -1,0 +1,13 @@
+.arrow-button {
+	border: 1px solid var(--stroke-gray);
+	border-radius: 69px;
+	padding: 16.91px;
+
+	&__left_img {
+		transform: rotate(0deg);
+	};
+	&__right_img {
+		transform: rotate(180deg);
+	};
+};
+

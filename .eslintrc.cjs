@@ -2,12 +2,12 @@ module.exports = {
   root: true,
   env: {
     browser: true,
-    es2020: true,
+    es2020: true
   },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
+    'plugin:react-hooks/recommended'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
@@ -15,10 +15,12 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: true }
     ],
-    quotes: ['error', 'single'],
+    quotes: ["error", "single"],
     semi: ['error', 'always'],
-    indent: ['error', 2, { SwitchCase: 1 }],
-  },
-}
+    indent: ['error', 2, { SwitchCase: 1 }]
+  }
+};
+
+

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Badge, Link } from '@nextui-org/react';
 
-import { navbarItems } from '../../../lib/constants.tsx';
+import { navbarItems } from '../../../lib';
 
 import './Navbar.scss';
 
