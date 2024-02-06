@@ -1,0 +1,78 @@
+.footer {
+	padding: 60px 0 52px 0;
+	background: var(--footer-background);
+
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+
+		&_columns {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 160px;
+		};
+	};
+
+	&__columns {
+		&_column {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			align-items: start;
+		}
+	}
+
+	&__column {
+		&_title {
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+			color: var(--background-white);
+		}
+
+		&_items {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			align-items: start;
+		}
+
+		&_item {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 26px;
+			color: var(--background-white) !important;
+		}
+	}
+
+	&__divider {
+		margin: 40px 0 28px 0;
+		background: var(--dark-blue-text) !important;
+	}
+
+	&__rules {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&_warranty {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		&_txt {
+			font-weight: 400;
+			font-size: 14px;
+			letter-spacing: 0.01em;
+			color: var(--background-white) !important;
+		}
+
+		&_agreements {
+			display: flex;
+			gap: 90px;
+			align-items: center;
+		}
+	}
+};

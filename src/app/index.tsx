@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { HeaderContent } from '../widgets';
+import { HeaderContent, Footer } from '../widgets';
 import { Main } from '../pages';
 
 import './styles/index.css';
@@ -10,6 +10,7 @@ const App: FC = () => {
     <>
       <HeaderContent/>
       <Main/>
+      <Footer />
     </>
   );
 };

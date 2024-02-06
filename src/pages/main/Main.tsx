@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Carousel } from '../../widgets/carousel';
+import { Carousel } from '../../widgets';
 
 import './Main.scss';
 

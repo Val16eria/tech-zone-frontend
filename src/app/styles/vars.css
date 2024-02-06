@@ -4,8 +4,9 @@
 
 :root {
   --accent-blue: #006FEE;
-  --backgroung-white: #FDFDFD;
+  --background-white: #FDFDFD;
   --box-background: #F8F8F8;
   --dark-blue-text: #313A5C;
   --stroke-gray: rgba(39, 39, 39, 0.1);
+  --footer-background: #222639;
 }

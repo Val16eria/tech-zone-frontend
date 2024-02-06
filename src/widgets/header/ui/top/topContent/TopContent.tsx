@@ -9,7 +9,7 @@ import './TopContent.scss';
 const TopContent: FC = () => {
   return (
     <div className="top-content">
-      <Logo />
+      <Logo mode='light' />
       <Search />
       <Navbar />
     </div>

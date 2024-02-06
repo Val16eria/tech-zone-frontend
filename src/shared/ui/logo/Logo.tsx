@@ -3,10 +3,14 @@ import { Link } from '@nextui-org/react';
 
 import './Logo.scss';
 
-const Logo: FC = () => {
+interface ILogo {
+  mode: 'light' | 'dark';
+}
+
+const Logo: FC<ILogo> = ({ mode }) => {
   return (
     <Link href='/'>
-      <p className='logo'>TechZone</p>
+      <p className={`logo logo-${mode}`}>TechZone</p>
     </Link>
   );
 };
