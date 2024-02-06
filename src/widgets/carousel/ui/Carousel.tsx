@@ -17,8 +17,6 @@ const Carousel: FC = () => {
     setCurrentIndex(newIndex);
   };
 
-  setTimeout(() => goToNext(), 5000);
-
   return (
     <div className='carousel'>
       <ArrowButton direction='left' action={goToPrevious} />

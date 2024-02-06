@@ -1,36 +1,26 @@
 import { JSX } from 'react';
 
-interface ITypeOfNavbarItems {
-	type: 'orders'
-		| 'favourites'
-		| 'profile'
-		| 'cart'
+type TTypeOfNavbarItems = 'orders'
+	| 'favourites'
+	| 'profile'
+	| 'cart';
+
+type TTypeOfCatalogItems = 'television'
+	| 'laptop'
+	| 'tablet'
+	| 'phone'
+	| 'smart_watch'
+	| 'accessories';
+
+interface ISectionTypes {
+	type: TTypeOfNavbarItems | TTypeOfCatalogItems;
 }
 
-interface INavbarItems extends ITypeOfNavbarItems{
+interface ISectionItems extends ISectionTypes {
 	id: number;
 	icon: JSX.Element;
 	title: string;
 	path: string;
 }
 
-interface ITypeOfCatalogItems {
-	type: 'television'
-		| 'laptop'
-		| 'tablet'
-		| 'phone'
-		| 'smart_watch'
-		| 'accessories';
-}
-
-interface ICatalogItems extends ITypeOfCatalogItems{
-	id: number;
-	icon: JSX.Element;
-	title: string;
-}
-
-export type {
-  INavbarItems,
-  ICatalogItems,
-  ITypeOfCatalogItems
-};
+export type { ISectionItems };

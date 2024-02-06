@@ -1,4 +1,4 @@
-import { ICatalogItems, INavbarItems } from './types.ts';
+import { ISectionItems } from './types.ts';
 
 import {
   Accessories,
@@ -13,7 +13,7 @@ import {
   Television
 } from '../../../assets/icons';
 
-const navbarItems: INavbarItems[] = [
+const navbarItems: ISectionItems[] = [
   {
     id: 1,
     icon: <Orders />,
@@ -44,42 +44,48 @@ const navbarItems: INavbarItems[] = [
   },
 ];
 
-const catalogItems: ICatalogItems[] = [
+const catalogItems: ISectionItems[] = [
   {
     id: 1,
     icon: <Television />,
     type: 'television',
-    title: 'Телвизоры',
+    title: 'Телевизоры',
+    path: '/televisions'
   },
   {
     id: 2,
     icon: <Laptop />,
     type: 'laptop',
     title: 'Ноутбуки',
+    path: '/laptop'
   },
   {
     id: 3,
     icon: <Tablet />,
     type: 'tablet',
     title: 'Планшеты',
+    path: '/tablets'
   },
   {
     id: 4,
     icon: <Phone />,
     type: 'phone',
     title: 'Телефоны',
+    path: '/phones'
   },
   {
     id: 5,
     icon: <SmartWatch />,
     type: 'smart_watch',
-    title: 'Смарт-часы',
+    title: 'Смарт часы',
+    path: '/smart_watches'
   },
   {
     id: 6,
     icon: <Accessories />,
     type: 'accessories',
     title: 'Аксессуары',
+    path: '/accessories'
   },
 ];
 
