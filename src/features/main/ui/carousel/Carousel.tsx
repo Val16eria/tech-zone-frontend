@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 
-import { carouselItems } from '../lib';
-import { ArrowButton } from '../../../shared/ui';
+import { carouselItems } from '../../lib';
+import { ArrowButton } from '../../../../shared/ui';
 
 import './Carousel.scss';
 
