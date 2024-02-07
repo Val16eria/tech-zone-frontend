@@ -1,0 +1,31 @@
+.benefits {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	align-items: center;
+
+	&__card {
+		display: flex;
+		gap: 20px;
+		align-items: center;
+		padding: 40px 40px 40px 44px;
+		background: var(--box-background);
+		border-radius: 28px;
+		max-width: 400px;
+		width: 100%;
+
+		&_img {
+			padding: 24px;
+			border-radius: 24px;
+			background: var(--icon-background);
+		}
+
+		&_title {
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+			color: var(--accent-blue);
+		}
+	}
+}
