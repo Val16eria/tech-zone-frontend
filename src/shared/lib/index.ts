@@ -1,1 +1,1 @@
-export type { IBaseItems } from './types.ts';
+export type { IBaseItems, IProduct } from './types.ts';

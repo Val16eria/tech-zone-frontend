@@ -1,11 +1,11 @@
 import { IBenefitsItems, ICarouselItems } from './types.ts';
 
-import Sale1 from '../../../assets/sale1.png';
-import Sale2 from '../../../assets/sale2.png';
-import Sale3 from '../../../assets/sale3.png';
-import Delivery from '../../../assets/delivery.svg';
-import Exchange from '../../../assets/exchange.svg';
-import Guarantee from '../../../assets/guarantee.svg';
+import Sale1 from '../../../assets/images/sale1.png';
+import Sale2 from '../../../assets/images/sale2.png';
+import Sale3 from '../../../assets/images/sale3.png';
+import Delivery from '../../../assets/svg/delivery.svg';
+import Exchange from '../../../assets/svg/exchange.svg';
+import Guarantee from '../../../assets/svg/guarantee.svg';
 
 const carouselItems: ICarouselItems[] = [
   {

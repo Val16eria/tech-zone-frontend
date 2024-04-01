@@ -1,1 +1,1 @@
-export { carouselItems, benefitsItems } from './constants.tsx';
+export { carouselItems, benefitsItems } from './main.constants.tsx';

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { Image } from '@nextui-org/react';
 
 import { carouselItems } from '../../lib';
 import { ArrowButton } from '../../../../shared/ui';
@@ -20,7 +21,9 @@ const Carousel: FC = () => {
   return (
     <div className='carousel'>
       <ArrowButton direction='left' action={goToPrevious} />
-      <img src={carouselItems[currentIndex].image} alt='sale'/>
+      <div className='carousel__img'>
+        <Image src={carouselItems[currentIndex].image} alt='sale'/>
+      </div>
       <ArrowButton direction='right' action={goToNext}/>
     </div>
   );
