@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Arrow from '../../../assets/arrow.svg';
+import Arrow from '../../../assets/svg/arrow.svg';
 import './ArrowButton.scss';
 
 interface IArrowButton {

@@ -1,5 +1,9 @@
 .carousel {
 	display: flex;
-	justify-content: space-between;
+	gap: 20px;
 	align-items: center;
+
+	&__img {
+		width: 100%;
+	}
 };

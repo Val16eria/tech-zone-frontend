@@ -1,0 +1,17 @@
+.section {
+	gap: 24px;
+
+	&__title {
+		font-weight: 600;
+		font-size: 28px;
+		line-height: 42px;
+		color: var(--dark-blue-text);
+	}
+
+	&__list {
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 20px;
+	}
+}
