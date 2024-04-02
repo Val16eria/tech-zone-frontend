@@ -14,3 +14,9 @@
 		color: var(--background-white);
 	};
 }
+
+@media (max-width: 1024px) {
+ .logo {
+		font-size: 28px;
+	}
+}

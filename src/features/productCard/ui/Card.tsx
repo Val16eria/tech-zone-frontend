@@ -86,15 +86,18 @@ const Card: FC<ICard> = (
 							</div>
 						</Skeleton>
 						<Skeleton className='w-1/5 rounded-lg' isLoaded={isLoaded}>
-							<Button
-								isIconOnly
-								color='primary'
-								variant='light'
-								aria-label='like'
-								onClick={() => setLiked(!isLiked)}
-							>
-								<Favourite className='card__details_like' isLiked={isLiked} />
-							</Button>
+							<div className='card__details_btn'>
+								<Button
+									isIconOnly
+									disableAnimation={true}
+									color='primary'
+									variant='light'
+									aria-label='like'
+									onClick={() => setLiked(!isLiked)}
+								>
+									<Favourite className='card__details_btn-like' isLiked={isLiked} />
+								</Button>
+							</div>
 						</Skeleton>
 					</div>
 				</div>

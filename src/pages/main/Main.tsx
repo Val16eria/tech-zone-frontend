@@ -8,11 +8,11 @@ import './Main.scss';
 
 const Main: FC = () => {
   return (
-    <div className='main'>
+    <div className='main custom-container'>
       <div className='main__carousel'>
         <Carousel />
       </div>
-      <div className='flex flex-col custom-container gap-14'>
+      <div className='main__content flex-column'>
         <Section title='Новинки' product={productCardMock} />
         <Section title='Хиты продаж' product={productCardMock} />
         <Benefit/>

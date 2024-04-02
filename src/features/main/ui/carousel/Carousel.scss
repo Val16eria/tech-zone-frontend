@@ -1,9 +1,11 @@
 .carousel {
-	display: flex;
 	gap: 20px;
+	justify-content: center;
 	align-items: center;
-
-	&__img {
-		width: 100%;
-	}
 };
+
+@media (max-width: 768px) {
+	.carousel__btn {
+		display: none;
+	}
+}

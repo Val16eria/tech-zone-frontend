@@ -1,4 +1,8 @@
-import { FC, useState } from 'react';
+import {
+  FC,
+  useState,
+  useEffect
+} from 'react';
 import { Image } from '@nextui-org/react';
 
 import { carouselItems } from '../../lib';
@@ -18,13 +22,24 @@ const Carousel: FC = () => {
     setCurrentIndex(newIndex);
   };
 
+  useEffect(() => {
+    const interval = setInterval(goToNext, 3000);
+    return () => clearInterval(interval);
+  }, [currentIndex]);
+
   return (
-    <div className='carousel'>
-      <ArrowButton direction='left' action={goToPrevious} />
-      <div className='carousel__img'>
-        <Image src={carouselItems[currentIndex].image} alt='sale'/>
-      </div>
-      <ArrowButton direction='right' action={goToNext}/>
+    <div className='carousel flex-row'>
+      <ArrowButton
+        className='carousel__btn'
+        direction='left'
+        action={goToPrevious}
+      />
+      <Image src={carouselItems[currentIndex].image} alt='sale'/>
+      <ArrowButton
+        className='carousel__btn'
+        direction='right'
+        action={goToNext}
+      />
     </div>
   );
 };

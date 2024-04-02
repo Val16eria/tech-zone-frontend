@@ -19,6 +19,7 @@ const Footer: FC = () => {
                 {item.sections.map((section) => (
                   <Link
                     key={section.id}
+                    size='sm'
                     className='footer__column_item'
                     href={'path' in section ? section.path : undefined}
                   >

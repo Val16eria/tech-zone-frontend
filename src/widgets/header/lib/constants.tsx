@@ -5,7 +5,6 @@ import {
   Cart,
   Favourites,
   Laptop,
-  Orders,
   Phone,
   Profile,
   SmartWatch,
@@ -16,27 +15,20 @@ import {
 const navbarItems: ISectionItems[] = [
   {
     id: 1,
-    icon: <Orders />,
-    type: 'orders',
-    title: 'Заказы',
-    path: '/orders',
-  },
-  {
-    id: 2,
     icon: <Favourites />,
     type: 'favourites',
     title: 'Избранное',
     path: '/favorites',
   },
   {
-    id: 3,
+    id: 2,
     icon: <Profile />,
     type: 'profile',
     title: 'Профиль',
     path: '/profile',
   },
   {
-    id: 4,
+    id: 3,
     icon: <Cart />,
     type: 'cart',
     title: 'Корзина',

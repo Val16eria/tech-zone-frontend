@@ -2,3 +2,24 @@
   padding-left: 100px;
   padding-right: 100px;
 }
+
+@media (max-width: 1024px) {
+  .custom-container {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .custom-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
