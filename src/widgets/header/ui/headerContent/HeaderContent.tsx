@@ -10,7 +10,7 @@ const HeaderContent: FC = () => {
   return (
     <div className='header-content custom-container flex-column'>
       <TopHeader />
-      <Divider className='hidden md:flex header-content__divider' />
+      <Divider className='hidden md:flex divider' />
       <BottomHeader />
     </div>
   );

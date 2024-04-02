@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import {
-	Badge,
+	Badge, Divider,
 	Link,
 	Navbar,
 	NavbarBrand,
@@ -65,15 +65,19 @@ const TopHeader: FC = () => {
 				<div className='top-header__menu flex-column'>
 					{navbarItems.map((item) => (
 						<NavbarMenuItem key={item.id}>
-							<Link color='foreground' href={item.path}>
+							<Link className='top-header__menu-link' color='foreground' href={item.path}>
+								<span>{item.icon}</span>
 								<p className='top-header__menu-link_txt'>{item.title}</p>
 							</Link>
 						</NavbarMenuItem>
 					))}
 
+					<Divider className='divider'/>
+
 					{catalogItems.map((item) => (
 						<NavbarItem key={item.id}>
-							<Link color='foreground' href={item.path}>
+							<Link className='top-header__menu-link flex-row' color='foreground' href={item.path}>
+								<span>{item.icon}</span>
 								<p className='top-header__menu-link_txt'>{item.title}</p>
 							</Link>
 						</NavbarItem>

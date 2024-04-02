@@ -2,11 +2,6 @@
 	padding: 32px 0 8px 0;
 	background: var(--box-background);
 	box-shadow: 0 4px 12px 0 rgba(139, 139, 139, 0.15);
-
-	&__divider {
-		margin: 16px 0 8px 0;
-		background: var(--stroke-gray) !important;
-	}
 };
 
 @media (max-width: 1024px) {

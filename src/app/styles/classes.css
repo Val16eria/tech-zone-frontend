@@ -3,6 +3,11 @@
   padding-right: 100px;
 }
 
+.divider {
+  margin: 16px 0 8px 0;
+  background: var(--stroke-gray) !important;
+}
+
 @media (max-width: 1024px) {
   .custom-container {
     padding-left: 70px;
@@ -21,5 +26,9 @@
   .custom-container {
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  .divider {
+    margin: 8px 0 4px 0;
   }
 }

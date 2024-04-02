@@ -31,8 +31,6 @@
 
 @media (max-width: 786px) {
 	.section {
-		align-items: center;
-
 		&__title {
 			font-size: 20px;
 			line-height: 32px;
@@ -45,6 +43,8 @@
 
 @media (max-width: 280px) {
 	.section {
+		align-items: center;
+
 		&__list {
 			grid-template-columns: repeat(1, 1fr);
 		}
