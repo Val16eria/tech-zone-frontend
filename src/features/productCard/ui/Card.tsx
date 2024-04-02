@@ -8,6 +8,8 @@ import {
   Skeleton
 } from '@nextui-org/react';
 
+import { wordFormat } from '../../../shared/lib';
+
 import { Favourite } from '../../../assets/components/favourite';
 import StarIcon from '../../../assets/svg/start.svg';
 import ReviewsIcon from '../../../assets/svg/review.svg';
@@ -71,7 +73,9 @@ const Card: FC<ICard> = (
 									src={ReviewsIcon}
 									alt='review'
 								/>
-								<p className='card__outcome_txt card__outcome_reviews'>{reviews}</p>
+								<p className='card__outcome_txt card__outcome_reviews'>
+									{reviews} {wordFormat(reviews, 'отзыв', '', 'а', 'ов')}
+								</p>
 							</div>
 						</div>
 					</Skeleton>
@@ -80,21 +84,24 @@ const Card: FC<ICard> = (
 					</Skeleton>
 					<div className='card__product_details flex-row'>
 						<Skeleton className='w-4/5 rounded-lg' isLoaded={isLoaded}>
-							<div className='card__details_prices flex-row'>
+							<div className='card__details_prices'>
 								{discounted_price && <p className='card__prices_price'>{`${price} ₽`}</p>}
 								<p className='card__prices_discount-price'>{`${discounted_price || price} ₽`}</p>
 							</div>
 						</Skeleton>
 						<Skeleton className='w-1/5 rounded-lg' isLoaded={isLoaded}>
-							<Button
-								isIconOnly
-								color='primary'
-								variant='light'
-								aria-label='like'
-								onClick={() => setLiked(!isLiked)}
-							>
-								<Favourite className='card__details_like' isLiked={isLiked} />
-							</Button>
+							<div className='card__details_btn'>
+								<Button
+									isIconOnly
+									disableAnimation={true}
+									color='primary'
+									variant='light'
+									aria-label='like'
+									onClick={() => setLiked(!isLiked)}
+								>
+									<Favourite className='card__details_btn-like' isLiked={isLiked} />
+								</Button>
+							</div>
 						</Skeleton>
 					</div>
 				</div>

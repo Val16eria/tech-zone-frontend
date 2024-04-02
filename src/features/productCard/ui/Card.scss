@@ -4,10 +4,14 @@
 	height: 485px;
 	padding: 10px 15px;
 
-	&__body_img {
-		margin: 0 auto;
-		width: 200px;
-		height: 200px;
+	&__body {
+		margin: auto;
+
+		&_img {
+			margin: auto;
+			width: 200px;
+			height: 200px;
+		}
 	}
 
 	&__content {
@@ -66,6 +70,7 @@
 	}
 
 	&__details_prices {
+		display: flex;
 		width: fit-content;
 		text-align: start;
 		align-items: center;
@@ -94,95 +99,42 @@
 		color: #464455;
 	}
 
-	&__details_like {
+	&__details_btn {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__details_btn-like {
 		width: 32px;
 		height: 32px;
 	}
 }
 
-@media (max-width: 1024px) {
-	.card {
-		width: 260px;
-		height: 455px;
-
-		&__product_title {
-			font-size: 12px;
-			line-height: 20px;
-		}
-
-		&__prices_price {
-			font-size: 12px;
-			line-height: 20px;
-		}
-
-		&__prices_discount-price {
-			font-size: 16px;
-			line-height: 28px;
-		}
-	}
-}
-
-@media (max-width: 1024px) {
-	.card {
-		gap: 15px;
-
-		&__body {
-			padding: 6px;
-
-			&_img {
-				width: 180px;
-				height: 180px;
-			}
-		}
-
-		&__content {
-			padding: 6px;
-		}
-
-		&__outcome_txt {
-			font-size: 12px;
-		}
-
-		&__product_title {
-			font-size: 14px;
-			line-height: 24px;
-		}
-
-		&__prices_price {
-			font-size: 14px;
-			line-height: 24px;
-		}
-
-		&__prices_discount-price {
-			font-size: 16px;
-			line-height: 26px;
-		}
-
-		&__details_like {
-			width: 24px;
-			height: 24px;
-		}
-	}
-}
-
-@media (max-width: 768px) {
+@media (max-width: 1048px) {
 	.card {
 		gap: 10px;
-		width: 230px;
-		height: 345px;
+		width: 280px;
+		height: 355px;
+		padding: 5px;
 
 		&__body {
 			padding: 2px;
 
 			&_img {
-				width: 100px;
-				height: 100px;
+				width: 120px;
+				height: 120px;
 			}
 		}
 
 		&__content {
 			padding: 2px;
 		}
+	}
+}
+
+@media (max-width: 968px) {
+	.card {
+		width: 220px;
 
 		&__outcome_txt {
 			font-size: 10px;
@@ -205,23 +157,28 @@
 	}
 }
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
 	.card {
 		gap: 2px;
-		width: 200px;
+		width: 180px;
 		height: 305px;
 
 		&__body {
 			padding: 0;
 
-			&__img {
-				width: 80px;
-				height: 80px;
+			&_img {
+				width: 100px;
+				height: 100px;
 			}
 		}
 
 		&__content {
 			padding: 0;
+			gap: 6px;
+
+			&_product {
+				gap: 2px;
+			}
 		}
 
 		&__outcome_txt {
@@ -237,6 +194,11 @@
 			gap: 2px;
 		}
 
+		&__details_prices {
+			flex-direction: column;
+			gap: 0;
+		}
+
 		&__prices_price {
 			font-size: 10px;
 			line-height: 18px;
@@ -247,9 +209,26 @@
 			line-height: 20px;
 		}
 
-		&__details_like {
+		&__details_btn-like {
 			width: 20px;
 			height: 20px;
+		}
+	}
+}
+
+@media (max-width: 375px) {
+	.card {
+		gap: 0;
+		width: 150px;
+		height: 285px;
+
+		&__content {
+			gap: 2px;
+
+			&_btn button {
+				padding: 0;
+				height: 32px;
+			}
 		}
 	}
 }

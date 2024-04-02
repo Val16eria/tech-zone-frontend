@@ -12,6 +12,16 @@
   box-sizing: border-box;
 }
 
+nav {
+  padding: 0;
+  background-color: transparent !important;
+  justify-content: flex-start;
+}
+
+header {
+  padding: 0;
+}
+
 body {
   background-color: var(--background-white);
 }
