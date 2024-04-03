@@ -1,8 +1,7 @@
 module.exports = {
   root: true,
   env: {
-    browser: true,
-    es2020: true
+    browser: true
   },
   extends: [
     "eslint:recommended",
@@ -16,10 +15,6 @@ module.exports = {
     "react-refresh/only-export-components": [
       "warn",
       { allowConstantExport: true }
-    ],
-    quotes: ["error", "double"],
-    semi: ["error", "always"],
+    ]
   }
 };
-
-
