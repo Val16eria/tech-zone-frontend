@@ -1,1 +1,1 @@
-export { navbarItems, catalogItems } from './constants.tsx';
+export { navbarItems, catalogItems } from "./constants.tsx";

@@ -1,5 +1,5 @@
-import { ISectionItems } from '../../header/lib/types.ts';
-import { IBaseItems } from '../../../shared/lib';
+
+import { ISectionItems, IBaseItems } from "@shared/lib";
 
 interface IFooterItems {
 	id: number;

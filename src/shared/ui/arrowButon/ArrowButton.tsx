@@ -1,10 +1,10 @@
-import {FC, HTMLAttributes} from 'react';
+import { FC, HTMLAttributes } from "react";
 
-import Arrow from '../../../assets/svg/arrow.svg';
-import './ArrowButton.scss';
+import Arrow from "@assets/svg/arrow.svg";
+import "./ArrowButton.scss";
 
 interface IArrowButton extends HTMLAttributes<HTMLDivElement>{
-	direction: 'left' | 'right';
+	direction: "left" | "right";
 	action: () => void
 }
 

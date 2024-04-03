@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Link } from '@nextui-org/react';
+import { FC } from "react";
+import { Link } from "@nextui-org/react";
 
-import './Logo.scss';
+import "./Logo.scss";
 
 interface ILogo {
-  mode: 'light' | 'dark';
+  mode: "light" | "dark";
 }
 
 const Logo: FC<ILogo> = ({ mode }) => {

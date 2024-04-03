@@ -1,9 +1,11 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { HeaderContent, Footer } from '../widgets';
-import { Main } from '../pages';
+import { HeaderContent } from "@widgets/header";
+import { Footer } from "@widgets/footer";
+import { Main } from "@pages/main";
 
-import './styles/index.css';
+import "./styles/index.css";
+
 
 const App: FC = () => {
   return (

@@ -1,1 +1,1 @@
-export { SmartWatch } from './SmartWatch.tsx';
+export { SmartWatch } from "./SmartWatch.tsx";

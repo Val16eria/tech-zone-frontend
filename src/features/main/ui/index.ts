@@ -1,2 +1,2 @@
-export { Benefit } from './benefits';
-export { Carousel } from './carousel';
+export { Benefit } from "./benefits";
+export { Carousel } from "./carousel";

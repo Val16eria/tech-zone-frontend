@@ -1,1 +1,1 @@
-export { Laptop } from './Laptop.tsx';
+export { Laptop } from "./Laptop.tsx";

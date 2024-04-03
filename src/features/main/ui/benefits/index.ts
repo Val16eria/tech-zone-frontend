@@ -1,1 +1,1 @@
-export { Benefit } from './Benefit.tsx';
+export { Benefit } from "./Benefit.tsx";
