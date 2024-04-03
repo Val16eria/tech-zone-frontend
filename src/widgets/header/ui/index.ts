@@ -1,2 +1,1 @@
-export { HeaderContent } from './headerContent';
-
+export { Header } from "./Header.tsx";

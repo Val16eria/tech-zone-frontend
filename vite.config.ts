@@ -12,7 +12,7 @@ export default defineConfig({
       "@features": path.resolve(__dirname, "./src/features"),
       "@entities": path.resolve(__dirname, "./src/entities"),
       "@widgets": path.resolve(__dirname, "./src/widgets"),
-      "@routing": path.resolve(__dirname, "./src/routing"),
+      "@router": path.resolve(__dirname, "./src/router"),
     },
   },
   plugins: [react()],

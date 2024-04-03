@@ -1,0 +1,20 @@
+.not-found {
+	gap: 20px;
+	align-items: center;
+	text-align: center;
+	padding: 100px 0 60px 0;
+
+	&__title {
+		font-weight: 600;
+		font-size: 100px;
+		line-height: 150px;
+		color: var(--accent-blue);
+	}
+
+	&__description {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 30px;
+		color: var(--dark-blue-text);
+	}
+}
