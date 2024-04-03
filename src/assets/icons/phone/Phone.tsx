@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from "react";
 
 const Phone: FC = () => {
   return (

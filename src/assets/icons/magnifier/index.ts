@@ -1,1 +1,1 @@
-export { Magnifier } from './Magnifier.tsx';
+export { Magnifier } from "./Magnifier.tsx";

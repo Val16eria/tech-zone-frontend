@@ -1,4 +1,4 @@
-import { IBaseItems } from '../../../shared/lib';
+import { IBaseItems } from "@shared/lib";
 
 interface ICarouselItems {
 	id: number;

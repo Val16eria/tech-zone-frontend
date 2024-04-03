@@ -1,1 +1,1 @@
-export { Tablet } from './Tablet.tsx';
+export { Tablet } from "./Tablet.tsx";

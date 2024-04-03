@@ -1,1 +1,1 @@
-export { Accessories } from './Accessories.tsx';
+export { Accessories } from "./Accessories.tsx";

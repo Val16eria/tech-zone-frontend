@@ -1,32 +1,32 @@
-import { catalogItems, navbarItems } from '../../header/lib';
-import { IFooterItems } from './types.ts';
+import { catalogItems, navbarItems } from "../../header/lib";
+import { IFooterItems } from "./types.ts";
 
 const footerItems: IFooterItems[] = [
   {
     id: 1,
-    title: 'Магазины',
+    title: "Магазины",
 	  sections: catalogItems,
   },
   {
     id: 2,
-    title: 'Покупателям',
+    title: "Покупателям",
     sections: navbarItems,
   },
   {
     id: 3,
-    title: 'Контакты',
+    title: "Контакты",
 	  sections: [
       {
         id: 1,
-        title: 'г. Ростов-на-Дону, ул. Пушкина, 1',
+        title: "г. Ростов-на-Дону, ул. Пушкина, 1",
       },
 		  {
         id: 2,
-			  title: '8 (800) 500-26-12',
+			  title: "8 (800) 500-26-12",
 		  },
 		  {
         id: 3,
-			  title: 'hello@techzone.ru',
+			  title: "hello@techzone.ru",
 		  },
     ],
   }

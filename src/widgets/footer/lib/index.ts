@@ -1,1 +1,1 @@
-export { footerItems } from './constants.ts';
+export { footerItems } from "./constants.ts";

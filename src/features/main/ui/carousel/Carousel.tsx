@@ -2,13 +2,13 @@ import {
   FC,
   useState,
   useEffect
-} from 'react';
-import { Image } from '@nextui-org/react';
+} from "react";
+import { Image } from "@nextui-org/react";
 
-import { carouselItems } from '../../lib';
-import { ArrowButton } from '../../../../shared/ui';
+import { carouselItems } from "../../lib";
+import { ArrowButton } from "@shared/ui";
 
-import './Carousel.scss';
+import "./Carousel.scss";
 
 const Carousel: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -28,16 +28,16 @@ const Carousel: FC = () => {
   }, [currentIndex]);
 
   return (
-    <div className='carousel flex-row'>
+    <div className="carousel flex-row">
       <ArrowButton
-        className='carousel__btn'
-        direction='left'
+        className="carousel__btn"
+        direction="left"
         action={goToPrevious}
       />
-      <Image src={carouselItems[currentIndex].image} alt='sale'/>
+      <Image src={carouselItems[currentIndex].image} alt="sale" />
       <ArrowButton
-        className='carousel__btn'
-        direction='right'
+        className="carousel__btn"
+        direction="right"
         action={goToNext}
       />
     </div>

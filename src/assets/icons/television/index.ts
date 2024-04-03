@@ -1,1 +1,1 @@
-export { Television } from './Television.tsx';
+export { Television } from "./Television.tsx";

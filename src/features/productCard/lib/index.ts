@@ -1,1 +1,1 @@
-export { productCardMock } from './productCard.constants.ts';
+export { productCardMock } from "./productCard.constants.ts";

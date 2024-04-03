@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import { FC } from "react";
 
-import { Carousel, Benefit } from '../../features/main';
-import { Section } from '../../shared/ui/section';
-import { productCardMock } from '../../features/productCard/lib';
+import { Carousel, Benefit } from "@features/main";
+import { Section } from "@shared/ui";
+import { productCardMock } from "@features/productCard";
 
-import './Main.scss';
+import "./Main.scss";
 
 const Main: FC = () => {
   return (
