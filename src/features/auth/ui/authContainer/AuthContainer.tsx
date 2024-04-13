@@ -1,4 +1,8 @@
-import { FC, PropsWithChildren } from "react";
+import {
+	FC,
+	PropsWithChildren,
+	Ref
+} from "react";
 import {
 	Card,
 	CardBody,
@@ -6,19 +10,34 @@ import {
 	Input
 } from "@nextui-org/react";
 
+import { Error } from "@shared/ui";
+
 import "./AuthContainer.scss";
 
 interface IAuthContainer {
 	placeholder: string;
-	type: "email" | "code";
+	type: "auth" | "code";
+	errorTxt: string;
+	inputRef: Ref<HTMLInputElement>;
 }
 
 const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 	{
 		placeholder,
 		type,
+		errorTxt,
+		inputRef,
 		children
 	}) => {
+
+	const getAuthType = () => {
+		if (localStorage.getItem("email")) {
+			return <p className="auth-container__body_txt">Почта получателя: <b>{localStorage.getItem("email")}</b></p>
+		} else {
+			return <p className="auth-container__body_txt">Номер получателя: <b>{localStorage.getItem("phone")}</b></p>
+		}
+	}
+
 	return (
 		<Card className="auth-container flex-column" shadow="sm">
 			<CardHeader className="auth-container__header">
@@ -27,17 +46,17 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 			<CardBody className="auth-container__body flex-column">
 				<div className="auth-container__body_action flex-column">
 					{
-						type === "code" &&
-            <p className="auth-container__body_txt">Почта получателя:
-              <b>{localStorage.getItem("user-email")}</b>
-            </p>
+						type === "code" && getAuthType()
 					}
 					<Input
 						className="auth-container__body_input"
 						variant="bordered"
-						color="primary"
 						placeholder={placeholder}
+						color="primary"
+						isInvalid={!!errorTxt}
+						ref={inputRef}
 					/>
+					{errorTxt && <Error text={errorTxt} />}
 				</div>
 				{children}
 			</CardBody>

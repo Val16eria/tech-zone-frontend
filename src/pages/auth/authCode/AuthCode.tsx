@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {FC, useRef} from "react";
 import { Button } from "@nextui-org/react";
 
 import { AuthContainer } from "@features/auth";
@@ -6,8 +6,15 @@ import { AuthContainer } from "@features/auth";
 import "./AuthCode.scss";
 
 const AuthCode: FC = () => {
+	const inputRef = useRef<HTMLInputElement>(null);
+
 	return (
-		<AuthContainer type="code" placeholder="Код из почты">
+		<AuthContainer
+			errorTxt=""
+			type="code"
+			placeholder="Код"
+			inputRef={inputRef}
+		>
 			<Button
 				color="primary"
 				variant="light"

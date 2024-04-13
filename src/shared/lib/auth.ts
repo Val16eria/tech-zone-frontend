@@ -2,4 +2,8 @@ const isAuth = () => {
 	return !!localStorage.getItem("isAuth");
 };
 
-export { isAuth };
+const logout = () => {
+	localStorage.clear();
+}
+
+export { isAuth, logout };
