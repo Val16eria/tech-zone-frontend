@@ -1,0 +1,86 @@
+.auth-container {
+	padding: 40px 56px;
+	width: 559px;
+	margin: 80px auto;
+
+	&__header {
+		justify-content: center !important;
+
+		&_title {
+			font-weight: 600;
+			font-size: 28px;
+			line-height: 42px;
+			color: var(--dark-blue-text);
+		}
+	}
+
+	&__body {
+		align-items: flex-start;
+		gap: 16px;
+
+		&_action {
+			width: 100%;
+			gap: 12px;
+		}
+
+		&_txt {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 26px;
+			color: var(--dark-blue-text);
+		}
+
+		&_input {
+			width: 100%;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.auth-container {
+		padding: 36px 48px;
+		width: 500px;
+		&__header {
+			&_title {
+				font-size: 24px;
+				line-height: 36px;
+			}
+		}
+
+		&__body {
+			&_txt {
+				font-size: 14px;
+				line-height: 24px;
+			}
+		}
+	}
+}
+
+
+@media (max-width: 640px) {
+	.auth-container {
+		padding: 14px 20px;
+		width: 300px;
+
+		&__header {
+			&_title {
+				font-size: 20px;
+				line-height: 32px;
+			}
+		}
+
+		&__body {
+			&_txt {
+				font-size: 12px;
+				line-height: 20px;
+			}
+		}
+	}
+}
+
+@media (max-width: 280px) {
+	.auth-container {
+		padding: 10px 14px;
+		width: 250px;
+	}
+}

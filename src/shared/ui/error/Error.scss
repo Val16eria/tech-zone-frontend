@@ -1,0 +1,20 @@
+.error {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 26px;
+	color: var(--danger);
+}
+
+@media (max-width: 768px) {
+	.error {
+		font-size: 14px;
+		line-height: 24px;
+	}
+}
+
+@media (max-width: 640px) {
+	.error {
+		font-size: 12px;
+		line-height: 20px;
+	}
+}

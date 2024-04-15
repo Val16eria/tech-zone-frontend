@@ -21,4 +21,4 @@ const Main: FC = () => {
   );
 };
 
-export {Main};
+export { Main };
