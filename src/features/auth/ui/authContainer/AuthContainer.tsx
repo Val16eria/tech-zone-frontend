@@ -1,7 +1,8 @@
 import {
 	FC,
 	PropsWithChildren,
-	Ref
+	Ref,
+	useEffect
 } from "react";
 import {
 	Card,
@@ -13,6 +14,8 @@ import {
 import { Error } from "@shared/ui";
 
 import "./AuthContainer.scss";
+import {isAuth} from "@shared/lib";
+import {useNavigate} from "react-router-dom";
 
 interface IAuthContainer {
 	placeholder: string;
@@ -31,6 +34,13 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 		checkInputValue,
 		children
 	}) => {
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (isAuth()) {
+			navigate("/");
+		}
+	})
 
 	const getAuthType = () => {
 		if (localStorage.getItem("email")) {
