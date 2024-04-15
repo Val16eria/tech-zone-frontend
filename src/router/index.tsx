@@ -9,6 +9,7 @@ import { Main } from "@pages/main";
 import { Policy } from "@pages/policy";
 import { NotFound } from "@pages/notFound";
 import { Auth, AuthCode } from "@pages/auth";
+import { isStatusAuthCode } from "@shared/lib";
 
 const Router: FC = () => {
 	const { pathname } = useLocation();
@@ -19,10 +20,9 @@ const Router: FC = () => {
 
 	return (
 		<Routes>
+			<Route path="/auth" element={isStatusAuthCode() ? <AuthCode /> : <Auth />} />
 			<Route path="/" element={<Main />} />
 			<Route path="/policy" element={<Policy />} />
-			<Route path="/auth" element={<Auth />} />
-			<Route path="/auth/code" element={<AuthCode />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	);

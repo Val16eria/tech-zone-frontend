@@ -1,57 +1,67 @@
-import { FC, useRef, useState } from "react";
+import {
+	FC,
+	useRef,
+	useState
+} from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Link } from "@nextui-org/react";
 
 import { AuthContainer } from "@features/auth";
+import { setStatusAuthCode, setTypeAuth } from "@shared/lib";
 
 import "./Auth.scss";
 
 const Auth: FC = () => {
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 	const [error, setError] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const redirect = () => {
+	const changeInputValue = () => {
 		setError("");
-		navigate("/auth/code");
 	}
 
-	const getCode = () => {
-		const value = inputRef.current?.value;
-
+	const checkInputValue = () => {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		const phoneRegex = /^\+?(\d{1,3})?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+		const inputValue = inputRef.current?.value;
 
-		if (value) {
-			if (emailRegex.test(value)) {
-				localStorage.setItem("email", value);
-				redirect();
+		if (inputValue) {
+			if (emailRegex.test(inputValue)) {
+				setError("");
+				getCode("email", inputValue);
 			}
-			else if (phoneRegex.test(value)) {
-				localStorage.setItem("phone", value);
-				redirect();
+			else if (phoneRegex.test(inputValue)) {
+				setError("");
+				getCode("phone", inputValue);
 			} else {
 				setError("Неправильный формат вводимых данных");
 			}
 		} else {
-			setError("Вы не ввели данные в поле");
+			setError("");
 		}
+	}
+
+	const getCode = (inputType: string, inputValue: string) => {
+		setStatusAuthCode();
+		setTypeAuth(inputType, inputValue);
+		navigate("/auth");
 	}
 
 	return (
 		<AuthContainer
 			placeholder="Email или номер телефона"
 			type="auth"
-			errorTxt={error}
+			error={error}
 			inputRef={inputRef}
+			checkInputValue={changeInputValue}
 		>
 			<Button
 				type="submit"
 				color="primary"
 				size="md"
 				fullWidth={true}
-				onClick={getCode}
+				onClick={checkInputValue}
 			>
 				Получить код
 			</Button>

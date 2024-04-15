@@ -17,16 +17,18 @@ import "./AuthContainer.scss";
 interface IAuthContainer {
 	placeholder: string;
 	type: "auth" | "code";
-	errorTxt: string;
+	error: string;
 	inputRef: Ref<HTMLInputElement>;
+	checkInputValue: () => void;
 }
 
 const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 	{
 		placeholder,
 		type,
-		errorTxt,
+		error,
 		inputRef,
+		checkInputValue,
 		children
 	}) => {
 
@@ -53,10 +55,12 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 						variant="bordered"
 						placeholder={placeholder}
 						color="primary"
-						isInvalid={!!errorTxt}
+						type={type === "auth" ? "text" : "number"}
+						isInvalid={!!error}
 						ref={inputRef}
+						onChange={checkInputValue}
 					/>
-					{errorTxt && <Error text={errorTxt} />}
+					{error && <Error text={error} />}
 				</div>
 				{children}
 			</CardBody>

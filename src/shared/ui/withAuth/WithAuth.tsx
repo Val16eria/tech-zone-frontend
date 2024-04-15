@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AuthEmail } from "@pages/auth";
+import { Auth } from "@pages/auth";
 import { isAuth } from "@shared/lib";
 
 const WithAuth = (WrappedComponent: FC) => {
@@ -14,7 +14,7 @@ const WithAuth = (WrappedComponent: FC) => {
 			}
 		}, [navigate]);
 
-		return isAuth() ? <WrappedComponent {...props} /> : <AuthEmail />;
+		return isAuth() ? <WrappedComponent {...props} /> : <Auth />;
 	};
 
 	return WithAuth;
