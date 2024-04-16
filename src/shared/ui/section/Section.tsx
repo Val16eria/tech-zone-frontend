@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { Card } from "@features/productCard";
+import { ProductCard } from "@shared/ui";
 import { IProduct } from "../../lib";
 
 import "./Section.scss";
@@ -16,7 +16,7 @@ const Section: FC<ISection> = ({ title, product }) => {
       {title && <p className="section__title">{title}</p>}
       <div className="section__list">
         {product.map((card) => (
-          <Card key={card.id} {...card} />
+          <ProductCard key={card.id} {...card} />
         ))}
       </div>
     </div>

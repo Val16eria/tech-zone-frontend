@@ -47,9 +47,9 @@ const catalogItems: ISectionItems[] = [
   {
     id: 2,
     icon: <Laptop />,
-    type: "laptop",
+    type: "laptops",
     title: "Ноутбуки",
-    path: "/laptop"
+    path: "/laptops"
   },
   {
     id: 3,

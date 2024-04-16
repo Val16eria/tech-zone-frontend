@@ -1,4 +1,4 @@
-.card {
+.product-card {
 	gap: 24px;
 	width: 295px;
 	height: 485px;
@@ -111,7 +111,7 @@
 }
 
 @media (max-width: 1048px) {
-	.card {
+	.product-card {
 		gap: 10px;
 		width: 280px;
 		height: 355px;
@@ -133,7 +133,7 @@
 }
 
 @media (max-width: 968px) {
-	.card {
+	.product-card {
 		width: 220px;
 
 		&__outcome_txt {
@@ -158,7 +158,7 @@
 }
 
 @media (max-width: 680px) {
-	.card {
+	.product-card {
 		gap: 2px;
 		width: 180px;
 		height: 305px;
@@ -217,7 +217,7 @@
 }
 
 @media (max-width: 375px) {
-	.card {
+	.product-card {
 		gap: 0;
 		width: 150px;
 		height: 285px;

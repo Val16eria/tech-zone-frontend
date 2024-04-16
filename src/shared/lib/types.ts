@@ -21,7 +21,7 @@ type TTypeOfNavbarItems = "orders"
 	| "cart";
 
 type TTypeOfCatalogItems = "television"
-	| "laptop"
+	| "laptops"
 	| "tablet"
 	| "phone"
 	| "smart_watch"
@@ -38,4 +38,9 @@ interface ISectionItems extends ISectionTypes {
 	path: string;
 }
 
-export type { IBaseItems, IProduct, ISectionItems };
+export type {
+	IBaseItems,
+	IProduct,
+	TTypeOfCatalogItems,
+	ISectionItems
+};
