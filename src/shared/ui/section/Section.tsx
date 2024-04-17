@@ -7,20 +7,29 @@ import "./Section.scss";
 
 interface ISection {
 	title?: string;
-	product: IBaseProduct[];
+	products: IBaseProduct[];
 }
 
-const Section: FC<ISection> = ({ title, product }) => {
-  return (
-    <div className="section flex-column">
-      {title && <p className="section__title">{title}</p>}
-      <div className="section__list">
-        {product.map((card) => (
-          <ProductCard key={card.id} {...card} />
-        ))}
-      </div>
-    </div>
-  );
+const Section: FC<ISection> = ({ title, products }) => {
+	return (
+		<div className="section flex-column">
+			{title && <p className="section__title">{title}</p>}
+			<div className="section__list">
+				{products.map((product) => (
+					<ProductCard
+						key={product.id}
+						id={product.id}
+						images={[]}
+						estimation={23}
+						reviews={56}
+						name={product.name}
+						price={product.price}
+						discounted_price="78999"
+					/>
+				))}
+			</div>
+		</div>
+	);
 };
 
 export { Section };
