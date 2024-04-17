@@ -15,5 +15,10 @@ export default defineConfig({
       "@router": path.resolve(__dirname, "./src/router"),
     },
   },
-  plugins: [react()],
+  server: {
+    port: 5174,
+  },
+  plugins: [
+    react(),
+  ],
 });

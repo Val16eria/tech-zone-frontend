@@ -3,16 +3,6 @@ interface IBaseItems {
 	title: string;
 }
 
-interface IProduct {
-	id: number;
-	image: string;
-	estimation: string;
-	reviews: number;
-	title: string;
-	price: string;
-	discounted_price: string | null;
-}
-
 import { JSX } from "react";
 
 type TTypeOfNavbarItems = "orders"
@@ -20,11 +10,11 @@ type TTypeOfNavbarItems = "orders"
 	| "profile"
 	| "cart";
 
-type TTypeOfCatalogItems = "television"
-	| "laptop"
-	| "tablet"
-	| "phone"
-	| "smart_watch"
+type TTypeOfCatalogItems = "televisions"
+	| "laptops"
+	| "tablets"
+	| "phones"
+	| "smart_watches"
 	| "accessories";
 
 interface ISectionTypes {
@@ -38,4 +28,8 @@ interface ISectionItems extends ISectionTypes {
 	path: string;
 }
 
-export type { IBaseItems, IProduct, ISectionItems };
+export type {
+	IBaseItems,
+	TTypeOfCatalogItems,
+	ISectionItems
+};

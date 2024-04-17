@@ -8,7 +8,7 @@ import "./Footer.scss";
 
 const Footer: FC = () => {
   return (
-    <div className="footer custom-container">
+    <footer className="footer custom-container">
       <div className="footer__info">
         <Logo mode="dark" />
         <div className="footer__info_columns">
@@ -50,7 +50,7 @@ const Footer: FC = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
