@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Card as CardContainer,
+  Card,
   CardBody,
   CardFooter,
   Image,
@@ -48,7 +48,7 @@ const ProductCard: FC<IProductCard> = (
 	}
 
   return (
-		<CardContainer
+		<Card
 			className="product-card flex-column"
 			isPressable={false}
 			shadow="sm"
@@ -116,7 +116,7 @@ const ProductCard: FC<IProductCard> = (
 					</Button>
 				</div>
 			</CardFooter>
-		</CardContainer>
+		</Card>
   );
 };
 
