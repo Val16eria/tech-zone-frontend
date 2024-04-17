@@ -1,3 +1,4 @@
-export type { IBaseItems, IProduct } from "./lib";
-export { wordFormat } from "./lib";
-export { ArrowButton, Logo, Section } from "./ui";
+export * from "./api";
+export * from "./hoc";
+export * from "./lib";
+export * from "./ui";

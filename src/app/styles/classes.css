@@ -3,6 +3,10 @@
   padding-right: 100px;
 }
 
+.remark-container {
+  padding: 100px 0;
+}
+
 .divider {
   margin: 16px 0 8px 0;
   background: var(--stroke-gray) !important;

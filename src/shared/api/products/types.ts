@@ -1,33 +1,43 @@
-interface ILaptops {
+interface IBaseProduct {
 	id: number;
+	images: string[];
+	name: string;
+	price: string;
+	discounted_price: string | null;
+	reviews: number;
+	estimation: number;
+}
+
+interface IProduct extends IBaseProduct {
+	description: string;
+	length: number;
+	width: number;
+	weight: number;
 	date_created: string;
+	date_release: string;
 	screen_type: string;
 	screen_diagonal: string;
 	screen_resolution: string;
 	screen_format: string;
 	model: string;
 	operating_system: string;
+	material: string;
 	matrix_frequency: number;
 	matrix_type: string;
 	matrix_brightness: string;
 	matrix_contrast: string;
+	memory: number;
+	memory_ram: number;
 	sound_technology: string;
 	headphone_output: true;
-	name: string;
 	color_main: string;
 	color_other: string;
-	material: string;
-	date_release: string;
-	memory_ram: number;
-	memory: number;
-	length: number;
-	width: number;
-	weight: number;
-	description: string;
-	price: number;
 	id_provider: number;
 	is_active: boolean;
 	quantity: number;
+}
+
+interface ILaptops extends IProduct {
 	consumption: number;
 	keyboard_layout: string;
 	keyboard_backlight: string;
@@ -54,4 +64,83 @@ interface ILaptopsItems {
 	items: ILaptops[];
 }
 
-export type { ILaptops, ILaptopsItems };
+interface ITablets extends IProduct {
+	number_cameras: number;
+	camera_quality: string;
+	video_format: string;
+	optical_stabilization: boolean;
+	front_camera_quality: string;
+	pixel_density: number;
+	degree_protection: string;
+	processor_model: string;
+	processor_frequency: number;
+	number_cores: number;
+	support_lte: boolean;
+	sim_card_format: string;
+	accumulator_type: string;
+	accumulator_capacity: number;
+	fast_charge: boolean;
+}
+
+interface ITabletsItems {
+	items: ITablets[];
+}
+
+interface IPhones extends IProduct {
+	number_cameras: number;
+	camera_quality: string;
+	video_format: string;
+	optical_stabilization: boolean;
+	front_camera_quality: string;
+	operating_system: string;
+	support_lte: boolean;
+	sim_card_format: string;
+	pixel_density: number;
+	degree_protection: string;
+	processor_model: string;
+	processor_frequency: number;
+	number_cores: number;
+	accumulator_type: string;
+	accumulator_capacity: number;
+	fast_charge: boolean;
+}
+
+interface IPhonesItems extends IProduct {
+	items: IPhones[];
+}
+
+interface ISmartWatches extends IProduct {
+	material_belt: string;
+	pixel_density: number;
+	degree_protection: string;
+	accumulator_type: string;
+	accumulator_capacity: number;
+	fast_charge: boolean;
+}
+
+interface ISmartWatchesItems extends ISmartWatches {
+	items: ISmartWatches[];
+}
+
+interface IAccessories extends IProduct {
+	color: string;
+	degree_protection: string;
+}
+
+interface IAccessoriesItems extends IAccessories {
+	items: IAccessories[];
+}
+
+export type {
+	IBaseProduct,
+	ILaptops,
+	ILaptopsItems,
+	ITablets,
+	ITabletsItems,
+	IPhones,
+	IPhonesItems,
+	ISmartWatches,
+	ISmartWatchesItems,
+	IAccessories,
+	IAccessoriesItems
+};

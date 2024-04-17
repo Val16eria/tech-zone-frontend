@@ -4,17 +4,17 @@ import { observer } from "mobx-react-lite";
 import { Catalog } from "@features/catalog/ui";
 import CatalogModel from "@features/catalog/model";
 
-const Laptop: FC = observer(() => {
+const SmartWatches: FC = observer(() => {
 
 	useEffect(() => {
 		if (!CatalogModel.loading) {
-			CatalogModel.getLaptops();
+			CatalogModel.getSmartWatches();
 		}
 	}, []);
 
 	return (
-		<Catalog category="Ноутбуки" products={CatalogModel.laptops} />
+		<Catalog category="Смарт-часы" products={CatalogModel.smartWatches} />
 	);
 });
 
-export { Laptop };
+export { SmartWatches };

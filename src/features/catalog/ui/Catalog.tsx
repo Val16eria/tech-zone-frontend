@@ -1,25 +1,23 @@
 import { FC } from "react";
-import {
-	BreadcrumbItem,
-	Breadcrumbs,
-	Spinner
-} from "@nextui-org/react";
+import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
 import CatalogModel from "../model";
-import { ILaptops } from "@shared/api";
-import { ProductCard } from "@shared/ui";
+import { IBaseProduct } from "@shared/api";
+import { ProductCard, Loader } from "@shared/ui";
 import { wordFormat } from "@shared/lib";
 
 import "./Catalog.scss";
 
 interface ICatalog {
 	category: string;
-	products: ILaptops[];
+	products: IBaseProduct[];
 }
 
 const Catalog: FC<ICatalog> = ({ category, products }) => {
-	if (CatalogModel.loading) {
-		return <Spinner />
+	if (CatalogModel.loading || products.length === 0) {
+		return (
+			<Loader />
+		)
 	}
 
 	return (
@@ -42,11 +40,12 @@ const Catalog: FC<ICatalog> = ({ category, products }) => {
 						{products.map((product) =>
 							<ProductCard
 								key={product.id}
-								image=""
-								estimation="23"
+								id={product.id}
+								images={[]}
+								estimation={23}
 								reviews={56}
-								title={product.name}
-								price="129000"
+								name={product.name}
+								price={product.price}
 								discounted_price="78999"
 							/>
 						)}

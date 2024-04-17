@@ -1,2 +1,15 @@
-export { getAllLaptops } from "./products";
-export type { ILaptops } from "./products";
+export {
+	getAllLaptops,
+	getAllTablets,
+	getAllPhones,
+	getAllSmartWatches,
+	getAllAccessories
+} from "./products";
+export type {
+	IBaseProduct,
+	ILaptops,
+	ITablets,
+	IPhones,
+	ISmartWatches,
+	IAccessories
+} from "./products";

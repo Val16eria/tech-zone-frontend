@@ -5,12 +5,20 @@
 	padding: 10px 15px;
 
 	&__body {
-		margin: auto;
+		justify-content: center;
+		align-items: center;
 
 		&_img {
-			margin: auto;
+			display: flex;
+			justify-content: inherit;
+			align-items: inherit;
 			width: 200px;
 			height: 200px;
+		}
+
+		&_default-img {
+			background: #e7e7e7;
+			border-radius: 15px;
 		}
 	}
 
@@ -19,6 +27,7 @@
 
 		&_product {
 			gap: 8px;
+			width: 100%;
 		}
 
 		&_btn {

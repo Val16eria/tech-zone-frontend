@@ -1,13 +1,13 @@
 import { FC } from "react";
 
+import { IBaseProduct } from "@shared/api";
 import { ProductCard } from "@shared/ui";
-import { IProduct } from "../../lib";
 
 import "./Section.scss";
 
 interface ISection {
 	title?: string;
-	product: IProduct[];
+	product: IBaseProduct[];
 }
 
 const Section: FC<ISection> = ({ title, product }) => {

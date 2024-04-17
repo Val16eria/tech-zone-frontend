@@ -1,2 +1,15 @@
-export { getAllLaptops } from "./resources.ts";
-export type { ILaptops, ILaptopsItems } from "./types.ts";
+export {
+	getAllLaptops,
+	getAllTablets,
+	getAllPhones,
+	getAllSmartWatches,
+	getAllAccessories
+} from "./resources.ts";
+export type {
+	IBaseProduct,
+	ILaptops,
+	ITablets,
+	IPhones,
+	ISmartWatches,
+	IAccessories,
+} from "./types.ts";

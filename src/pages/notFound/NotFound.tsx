@@ -8,7 +8,7 @@ const NotFound: FC = () => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="not-found flex-column custom-container">
+		<div className="not-found flex-column custom-container remark-container">
 			<div>
 				<p className="not-found__title">404</p>
 				<p className="not-found__description">Страницы с таким адресом не существует</p>

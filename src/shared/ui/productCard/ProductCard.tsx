@@ -13,14 +13,15 @@ import { isAuth, wordFormat } from "@shared/lib";
 import { Favourite } from "@assets/components";
 import StarIcon from "@assets/svg/start.svg";
 import ReviewsIcon from "@assets/svg/review.svg";
+import DefaultImage from "@assets/svg/defaultImage.svg";
 import "./ProductCard.scss";
 
 interface IProductCard {
 	id: number;
-	image: string;
-	estimation: string;
+	images: string[];
+	estimation: number;
 	reviews: number;
-	title: string;
+	name: string;
 	price: string;
 	discounted_price: string | null;
 }
@@ -28,10 +29,10 @@ interface IProductCard {
 const ProductCard: FC<IProductCard> = (
 	{
 		id,
-		image,
+		images,
 		estimation,
 		reviews,
-		title,
+		name,
 		price,
 		discounted_price
 	}) => {
@@ -53,15 +54,19 @@ const ProductCard: FC<IProductCard> = (
 			shadow="sm"
 		>
 			<CardBody className="product-card__body">
-				<div className="product-card__body_img">
-					<Image src={image} alt={title} />
+				<div className={`product-card__body_img ${!images.length && "product-card__body_default-img"}`}>
+					<Image
+						src={images.length ? images[0] : DefaultImage}
+						radius="none"
+						alt={name}
+					/>
 				</div>
 			</CardBody>
 			<CardFooter className="product-card__content flex-column">
 				<div className="product-card__content_product flex-column">
 					<div className="product-card__product_outcome flex-row">
 						<div className="product-card__outcome_container flex-row">
-							<p className="product-card__outcome_txt card__outcome_estimation">{estimation}</p>
+							<p className="product-card__outcome_txt product-card__outcome_estimation">{estimation}</p>
 							<Image
 								width={13}
 								height={13}
@@ -81,7 +86,7 @@ const ProductCard: FC<IProductCard> = (
 							</p>
 						</div>
 					</div>
-					<p className="product-card__product_title">{title}</p>
+					<p className="product-card__product_title">{name}</p>
 					<div className="product-card__product_details flex-row">
 						<div className="product-card__details_prices">
 							{discounted_price && <p className="product-card__prices_price">{`${price} ₽`}</p>}

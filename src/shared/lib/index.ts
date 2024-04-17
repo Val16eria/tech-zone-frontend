@@ -1,7 +1,6 @@
 export type {
 	IBaseItems,
 	TTypeOfCatalogItems,
-	IProduct,
 	ISectionItems
 } from "./types.ts";
 export {

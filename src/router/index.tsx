@@ -10,7 +10,13 @@ import { Policy } from "@pages/policy";
 import { NotFound } from "@pages/notFound";
 import { Auth, AuthCode } from "@pages/auth";
 import { isStatusAuthCode } from "@shared/lib";
-import { Laptop } from "@pages/catalog";
+import {
+	Laptops,
+	Phones,
+	SmartWatches,
+	Tablets,
+	Accessories
+} from "@pages/catalog";
 
 const Router: FC = () => {
 	const { pathname } = useLocation();
@@ -23,7 +29,11 @@ const Router: FC = () => {
 		<Routes>
 			<Route path="/auth" element={isStatusAuthCode() ? <AuthCode /> : <Auth />} />
 			<Route path="/" element={<Main />} />
-			<Route path="/laptops" element={<Laptop />} />
+			<Route path="/laptops" element={<Laptops />} />
+			<Route path="/tablets" element={<Tablets />} />
+			<Route path="/phones" element={<Phones />} />
+			<Route path="/smart_watches" element={<SmartWatches />} />
+			<Route path="/accessories" element={<Accessories />} />
 			<Route path="/policy" element={<Policy />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>

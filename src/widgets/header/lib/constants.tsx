@@ -40,7 +40,7 @@ const catalogItems: ISectionItems[] = [
   {
     id: 1,
     icon: <Television />,
-    type: "television",
+    type: "televisions",
     title: "Телевизоры",
     path: "/televisions"
   },
@@ -54,21 +54,21 @@ const catalogItems: ISectionItems[] = [
   {
     id: 3,
     icon: <Tablet />,
-    type: "tablet",
+    type: "tablets",
     title: "Планшеты",
     path: "/tablets"
   },
   {
     id: 4,
     icon: <Phone />,
-    type: "phone",
+    type: "phones",
     title: "Телефоны",
     path: "/phones"
   },
   {
     id: 5,
     icon: <SmartWatch />,
-    type: "smart_watch",
+    type: "smart_watches",
     title: "Смарт часы",
     path: "/smart_watches"
   },
