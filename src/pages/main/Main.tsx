@@ -12,8 +12,8 @@ const Main: FC = () => {
         <Carousel />
       </div>
       <div className="main__content flex-column">
-        <Section title="Новинки" products={[]} />
-        <Section title="Хиты продаж" products={[]} />
+        <Section title="Новинки" isShow={false} products={[]} />
+        <Section title="Хиты продаж" isShow={false} products={[]} />
         <Benefit/>
       </div>
     </div>

@@ -1,0 +1,27 @@
+.filter {
+	flex: 1;
+	gap: 20px;
+
+	&__price {
+		gap: 16px;
+
+		&_options {
+			gap: 12px
+		}
+	}
+
+	&__options {
+		&_slider {
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		&_slider-input {
+			width: 140px !important;
+		}
+	}
+
+	&__actions {
+		gap: 12px;
+	}
+}

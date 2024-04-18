@@ -15,6 +15,7 @@
 		width: 100%;
 
 		&_img {
+			max-width: none;
 			padding: 24px;
 			border-radius: 24px;
 			background: var(--icon-background);

@@ -10,8 +10,9 @@ import {
 
 import { isAuth, wordFormat } from "@shared/lib";
 
-import { Favourite } from "@assets/components";
-import StarIcon from "@assets/svg/start.svg";
+import FavouriteIcon from "@assets/svg/favourite-icon.svg";
+import FavouriteFullIcon from "@assets/svg/favourite-full-icon.svg";
+import StarIcon from "@assets/svg/star.svg";
 import ReviewsIcon from "@assets/svg/review.svg";
 import DefaultImage from "@assets/svg/defaultImage.svg";
 import "./ProductCard.scss";
@@ -71,7 +72,7 @@ const ProductCard: FC<IProductCard> = (
 								width={13}
 								height={13}
 								src={StarIcon}
-								alt='star'
+								alt="star"
 							/>
 						</div>
 						<div className="product-card__outcome_container flex-row">
@@ -101,7 +102,19 @@ const ProductCard: FC<IProductCard> = (
 								aria-label="like"
 								onClick={handleLike}
 							>
-								<Favourite className="product-card__details_btn-like" isLiked={isLiked} />
+								{isLiked ? (
+									<Image
+										className="product-card__details_btn-like"
+										src={FavouriteFullIcon}
+										alt="favourite"
+									/>
+								) : (
+									<Image
+										className="product-card__details_btn-like"
+										src={FavouriteIcon}
+										alt="favourite"
+									/>
+								)}
 							</Button>
 						</div>
 					</div>

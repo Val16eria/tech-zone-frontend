@@ -1,6 +1,9 @@
 import { FC, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
-	Badge, Divider,
+	Badge,
+	Divider,
+	Image,
 	Link,
 	Navbar,
 	NavbarBrand,
@@ -18,6 +21,7 @@ import { Logo } from "@shared/ui";
 import "./TopHeader.scss";
 
 const TopHeader: FC = () => {
+	const { pathname } = useLocation();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	return (
@@ -47,11 +51,25 @@ const TopHeader: FC = () => {
 								{
 									item.type === "cart" || item.type === "favourites" ?
 										<Badge content="5" color="primary" size="md">
-											{item.icon}
+											<Image
+												radius="none"
+												width={24}
+												height={24}
+												src={item.icon}
+												alt={item.title}
+											/>
 										</Badge> :
-										<span>{item.icon}</span>
+										<Image
+											radius="none"
+											width={24}
+											height={24}
+											src={item.icon}
+											alt={item.title}
+										/>
 								}
-								<p className="top-header__link_txt">{item.title}</p>
+								<p className={`top-header__link_txt ${item.path === pathname && "isActive"}`}>
+									{item.title}
+								</p>
 							</Link>
 						</NavbarItem>
 					))}
@@ -62,13 +80,26 @@ const TopHeader: FC = () => {
 				aria-label={isMenuOpen ? "Close menu" : "Open menu"}
 				className="md:hidden"
 			/>
+
 			<NavbarMenu>
 				<div className="top-header__menu flex-column">
 					{navbarItems.map((item) => (
 						<NavbarMenuItem key={item.id}>
-							<Link className="top-header__menu-link" color="foreground" href={item.path}>
-								<span>{item.icon}</span>
-								<p className="top-header__menu-link_txt">{item.title}</p>
+							<Link
+								className="top-header__menu-link"
+								color="foreground"
+								href={item.path}
+							>
+								<Image
+									radius="none"
+									width={24}
+									height={24}
+									src={item.icon}
+									alt={item.title}
+								/>
+								<p className={`top-header__menu-link_txt ${item.path === pathname && "isActive"} `}>
+									{item.title}
+								</p>
 							</Link>
 						</NavbarMenuItem>
 					))}
@@ -77,9 +108,21 @@ const TopHeader: FC = () => {
 
 					{catalogItems.map((item) => (
 						<NavbarItem key={item.id}>
-							<Link className="top-header__menu-link flex-row" color="foreground" href={item.path}>
-								<span>{item.icon}</span>
-								<p className="top-header__menu-link_txt">{item.title}</p>
+							<Link
+								className="top-header__menu-link flex-row"
+								color="foreground"
+								href={item.path}
+							>
+								<Image
+									radius="none"
+									width={24}
+									height={24}
+									src={item.icon}
+									alt={item.title}
+								/>
+								<p className={`top-header__menu-link_txt ${item.path === pathname && "isActive"}`}>
+									{item.title}
+								</p>
 							</Link>
 						</NavbarItem>
 					))}
