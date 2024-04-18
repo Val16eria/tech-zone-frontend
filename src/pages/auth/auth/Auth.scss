@@ -1,0 +1,17 @@
+.auth {
+	&__txt {
+		font-weight: 500;
+		font-size: 14px;
+		line-height: 21px;
+		color: var(--dark-blue-text);
+	}
+}
+
+@media (max-width: 768px) {
+	.auth {
+		&__txt {
+			font-size: 12px;
+			line-height: 18px;
+		}
+	}
+}

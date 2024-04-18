@@ -1,0 +1,22 @@
+.logo {
+	font-size: 31.839px;
+	font-family: "Unbounded", sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+	letter-spacing: -0.318px;
+
+	&-light {
+		color: var(--accent-blue);
+	};
+
+	&-dark {
+		color: var(--background-white);
+	};
+}
+
+@media (max-width: 1024px) {
+ .logo {
+		font-size: 28px;
+	}
+}

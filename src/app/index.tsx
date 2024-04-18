@@ -1,10 +1,22 @@
-import { FC } from 'react';
+import { FC } from "react";
+import { useNavigate} from "react-router-dom";
+import { NextUIProvider } from "@nextui-org/react";
+
+import { Header } from "@widgets/header";
+import { Router } from "@router/index.tsx";
+import { Footer } from "@widgets/footer";
+
+import "./styles/index.css";
 
 const App: FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <p>diploma</p>
-    </div>
+    <NextUIProvider navigate={navigate}>
+      <Header/>
+      <Router />
+      <Footer />
+    </NextUIProvider>
   );
 };
 

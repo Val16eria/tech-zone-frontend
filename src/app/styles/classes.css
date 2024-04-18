@@ -1,0 +1,42 @@
+.custom-container {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.remark-container {
+  padding: 100px 0;
+}
+
+.divider {
+  margin: 16px 0 8px 0;
+  background: var(--stroke-gray) !important;
+}
+
+.isActive {
+  color: var(--accent-blue);
+}
+
+@media (max-width: 1024px) {
+  .custom-container {
+    padding-left: 70px;
+    padding-right: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-container {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .custom-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .divider {
+    margin: 8px 0 4px 0;
+  }
+}

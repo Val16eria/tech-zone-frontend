@@ -1,0 +1,50 @@
+.policy {
+	gap: 28px;
+	padding: 40px 0 60px 0;
+
+	&__title {
+		font-weight: 600;
+		font-size: 28px;
+		line-height: 42px;
+		color: #464455;
+	}
+
+	&__content {
+		margin-top: 12px;
+		counter-reset: section;
+		list-style-type: none;
+
+		&_points {
+			gap: 28px;
+		}
+
+		&_sub-points {
+			gap: 8px
+		}
+	}
+
+	&__points {
+		&_point::before {
+			counter-increment: section;
+			content: counters(section, ".") ". ";
+		}
+
+		&_list::before {
+			content: "— ";
+		}
+
+		&_point-title {
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+			color: var(--dark-blue-text);
+		}
+
+		&_point-txt {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 26px;
+			color: var(--dark-blue-text);
+		}
+	}
+}
