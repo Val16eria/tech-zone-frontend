@@ -4,6 +4,8 @@ import { observer } from "mobx-react-lite";
 import { Catalog } from "@features/catalog/ui";
 import CatalogModel from "@features/catalog/model";
 
+import PhoneIcon from "@assets/svg/smartphone-icon.svg";
+
 const Phones: FC = observer(() => {
 
 	useEffect(() => {
@@ -13,7 +15,11 @@ const Phones: FC = observer(() => {
 	}, []);
 
 	return (
-		<Catalog category="Смартфоны" products={CatalogModel.phones} />
+		<Catalog
+			title="Смартфоны"
+			icon={PhoneIcon}
+			products={CatalogModel.phones}
+		/>
 	);
 });
 

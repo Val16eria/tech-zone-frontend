@@ -4,6 +4,8 @@ import { observer } from "mobx-react-lite";
 import { Catalog } from "@features/catalog/ui";
 import CatalogModel from "@features/catalog/model";
 
+import SmartWatchIcon from "@assets/svg/watch-icon.svg";
+
 const SmartWatches: FC = observer(() => {
 
 	useEffect(() => {
@@ -13,7 +15,11 @@ const SmartWatches: FC = observer(() => {
 	}, []);
 
 	return (
-		<Catalog category="Смарт-часы" products={CatalogModel.smartWatches} />
+		<Catalog
+			title="Смарт-часы"
+			icon={SmartWatchIcon}
+			products={CatalogModel.smartWatches}
+		/>
 	);
 });
 

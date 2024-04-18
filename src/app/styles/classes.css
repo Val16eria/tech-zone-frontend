@@ -12,6 +12,10 @@
   background: var(--stroke-gray) !important;
 }
 
+.isActive {
+  color: var(--accent-blue);
+}
+
 @media (max-width: 1024px) {
   .custom-container {
     padding-left: 70px;

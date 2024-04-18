@@ -3,14 +3,14 @@ interface IBaseItems {
 	title: string;
 }
 
-import { JSX } from "react";
-
-type TTypeOfNavbarItems = "orders"
+type TTypeOfNavbarItems =
+	"orders"
 	| "favourites"
 	| "profile"
 	| "cart";
 
-type TTypeOfCatalogItems = "televisions"
+type TTypeOfCatalogItems =
+	"televisions"
 	| "laptops"
 	| "tablets"
 	| "phones"
@@ -23,12 +23,13 @@ interface ISectionTypes {
 
 interface ISectionItems extends ISectionTypes {
 	id: number;
-	icon: JSX.Element;
+	icon: string;
 	title: string;
 	path: string;
 }
 
 export type {
+	TTypeOfNavbarItems,
 	IBaseItems,
 	TTypeOfCatalogItems,
 	ISectionItems

@@ -1,4 +1,5 @@
 export type {
+	TTypeOfNavbarItems,
 	IBaseItems,
 	TTypeOfCatalogItems,
 	ISectionItems
