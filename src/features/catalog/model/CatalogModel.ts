@@ -10,48 +10,44 @@ import {
 	getAllPhones,
 	getAllSmartWatches,
 	getAllAccessories,
-	ILaptops,
-	ITablets,
-	IPhones,
-	ISmartWatches,
-	IAccessories
+	IBaseProduct
 } from "@shared/api";
 
 class CatalogModel {
 	private _loading: boolean = false;
-	private _laptops: ILaptops[] = [];
-	private _tablets: ITablets[] = [];
-	private _phones: IPhones[] = [];
-	private _smartWatches: ISmartWatches[] = [];
-	private _accessories: IAccessories[] = [];
+	private _laptops: IBaseProduct[] = [];
+	private _tablets: IBaseProduct[] = [];
+	private _phones: IBaseProduct[] = [];
+	private _smartWatches: IBaseProduct[] = [];
+	private _accessories: IBaseProduct[] = [];
 	private _error: string | null = null;
 
 	get loading(): boolean {
 		return this._loading;
 	}
 
-	get error(): string | null {
-		return this._error;
-	}
-
-	get laptops(): ILaptops[] {
+	get laptops(): IBaseProduct[] {
 		return toJS(this._laptops);
 	}
 
-	get tablets(): ITablets[] {
-		return toJS(this._tablets);
-	}
-
-	get phones(): IPhones[] {
+	get phones(): IBaseProduct[] {
 		return toJS(this._phones);
 	}
 
-	get smartWatches(): ISmartWatches[] {
+	get tablets(): IBaseProduct[] {
+		return toJS(this._tablets);
+	}
+
+	get smartWatches(): IBaseProduct[] {
 		return toJS(this._smartWatches);
 	}
 
-	get accessories(): IAccessories[] {
+	get accessories(): IBaseProduct[] {
 		return toJS(this._accessories);
+	}
+
+	get error(): string | null {
+		return this._error;
 	}
 
 	constructor() {

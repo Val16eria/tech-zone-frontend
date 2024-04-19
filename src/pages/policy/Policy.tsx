@@ -5,7 +5,7 @@ import "./Policy.scss";
 
 const Policy: FC = () => {
 	return (
-		<div className="policy flex-column custom-container">
+		<div className="policy flex-column">
 			<h1 className="policy__title">Политика в отношении обработки персональных данных</h1>
 			<ol className="policy__content policy__content_points flex-column">
 				<li className="policy__points_point policy__points_point-title">

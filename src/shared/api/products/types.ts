@@ -1,11 +1,21 @@
+interface IPhotos {
+	id: number;
+	url: string;
+}
+
 interface IBaseProduct {
 	id: number;
-	images: string[];
+	photos: IPhotos[];
 	name: string;
-	price: string;
-	discounted_price: string | null;
-	reviews: number;
-	estimation: number;
+	price: number;
+	discount: number;
+	reviews_count: number;
+	average_rating: number | null;
+	is_favourite: boolean;
+}
+
+interface IBaseProductItems {
+	items: IBaseProduct[];
 }
 
 interface IProduct extends IBaseProduct {
@@ -132,7 +142,9 @@ interface IAccessoriesItems extends IAccessories {
 }
 
 export type {
+	IPhotos,
 	IBaseProduct,
+	IBaseProductItems,
 	ILaptops,
 	ILaptopsItems,
 	ITablets,

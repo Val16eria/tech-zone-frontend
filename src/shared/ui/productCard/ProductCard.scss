@@ -7,6 +7,7 @@
 	&__body {
 		justify-content: center;
 		align-items: center;
+		overflow-y: hidden !important;
 
 		&_img {
 			display: flex;
@@ -225,7 +226,7 @@
 	}
 }
 
-@media (max-width: 375px) {
+@media (max-width: 390px) {
 	.product-card {
 		gap: 0;
 		width: 150px;

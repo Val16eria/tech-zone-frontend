@@ -6,6 +6,7 @@ export {
 	getAllAccessories
 } from "./products";
 export type {
+	IPhotos,
 	IBaseProduct,
 	ILaptops,
 	ITablets,

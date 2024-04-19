@@ -14,7 +14,9 @@ const App: FC = () => {
   return (
     <NextUIProvider navigate={navigate}>
       <Header/>
-      <Router />
+      <div className="custom-container">
+        <Router />
+      </div>
       <Footer />
     </NextUIProvider>
   );
