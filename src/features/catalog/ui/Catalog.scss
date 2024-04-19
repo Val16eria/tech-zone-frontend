@@ -24,17 +24,67 @@
 	}
 
 	&__content {
+		display: grid;
+		grid-template-columns: 1fr 3fr;
 		gap: 20px;
-		align-items: flex-start;
+
+		&_products {
+			height: fit-content;
+			display: grid;
+			grid-gap: 20px;
+		}
+
+		&_filter-modal {
+			display: none;
+		}
+	}
+
+	&__products {
+		&_sort-container {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+		}
 
 		&_sort {
-			flex: 3;
-			gap: 16px;
+			gap: 10px;
+			align-items: center;
+			grid-column-start: 3;
+		}
+
+		&_filter-modal {
+			grid-column-start: 2;
 		}
 
 		&_list {
-			flex-wrap: wrap;
-			gap: 20px;
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			grid-gap: 20px;
+		}
+	}
+}
+
+@media (max-width: 1024px) {
+	.catalog {
+		&__content {
+			display: block;
+
+			&_filter {
+				display: none;
+			}
+
+			&_filter-modal {
+				display: block;
+			}
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.catalog {
+			&__products {
+				&_list {
+					grid-template-columns: repeat(2, 1fr);
+				}
 		}
 	}
 }

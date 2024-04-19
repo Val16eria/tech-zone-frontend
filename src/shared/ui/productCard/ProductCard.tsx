@@ -71,7 +71,7 @@ const ProductCard: FC<IProductCard> = (
 			shadow="sm"
 		>
 			<CardBody className="product-card__body">
-				<div className={`product-card__body_img ${!photos.length && "product-card__body_default-img"}`}>
+				<div className={`${!photos.length && "product-card__body_default-img"}`}>
 					<Image
 						src={photos.length ? photos[0].url : DefaultImage}
 						radius="none"
