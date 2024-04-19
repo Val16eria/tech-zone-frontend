@@ -7,7 +7,7 @@ import {
 	CheckboxGroup,
 	Input,
 	Slider
-} from '@nextui-org/react';
+} from "@nextui-org/react";
 
 import "./Filter.scss";
 

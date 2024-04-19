@@ -11,7 +11,7 @@ interface IEmpty {
 
 const Empty: FC<IEmpty> = ({ icon, title, description }) => {
 	return (
-		<div className="empty flex-column remark-container custom-container">
+		<div className="empty flex-column remark-container">
 			<Image className="empty__img" src={icon} alt={title} />
 			<div className="empty__description flex-column">
 				<p className="empty__description_title">{title}</p>

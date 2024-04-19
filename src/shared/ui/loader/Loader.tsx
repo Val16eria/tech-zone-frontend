@@ -5,7 +5,7 @@ import "./Loader.scss";
 
 const Loader: FC = () => {
 	return (
-		<div className="loader remark-container custom-container">
+		<div className="loader remark-container">
 			<Spinner size="lg" />
 		</div>
 	)
