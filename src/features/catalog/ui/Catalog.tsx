@@ -7,7 +7,7 @@ import { Sort } from "./sort";
 import { IBaseProduct } from "@shared/api";
 import {
 	Empty,
-	Loader,
+	Loader, Modal,
 	ProductCard
 } from "@shared/ui";
 import { wordFormat } from "@shared/lib";
@@ -48,17 +48,32 @@ const Catalog: FC<ICatalog> = (
 							{products.length} {wordFormat(products.length, "товар", "", "а", "ов")}
 						</p>
 					</div>
-					<div className="catalog__content flex-row">
-						<Filter />
-						<div className="catalog__content_sort flex-column">
-							<Sort />
-							<div className="catalog__content_list flex-row">
+
+					<div className="catalog__content">
+						<div className="catalog__content_filter">
+							<Filter/>
+						</div>
+
+						<div className="catalog__content_products">
+							<div className="catalog__products_sort-container">
+								<div className="catalog__products_sort flex-row">
+									<div className="catalog__content_filter-modal">
+										<Modal buttonTxt="Фильтр">
+											<Filter />
+										</Modal>
+									</div>
+									<Sort />
+								</div>
+							</div>
+
+							<div className="catalog__products_list">
 								{products.map((product) =>
 									<ProductCard key={product.id} {...product} />
 								)}
 							</div>
 						</div>
 					</div>
+
 				</div>
 			) : (
 				<Empty

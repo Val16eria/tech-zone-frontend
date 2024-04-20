@@ -8,9 +8,9 @@ import "./Header.scss";
 
 const Header: FC = () => {
   return (
-    <header className='header custom-container flex-column'>
+    <header className="header custom-container flex-column">
       <TopHeader />
-      <Divider className='hidden md:flex divider' />
+      <Divider className="hidden md:flex divider" />
       <BottomHeader />
     </header>
   );
