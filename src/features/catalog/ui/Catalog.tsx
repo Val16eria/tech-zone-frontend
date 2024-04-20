@@ -59,10 +59,10 @@ const Catalog: FC<ICatalog> = (
 								<div className="catalog__products_sort flex-row">
 									<div className="catalog__content_filter-modal">
 										<Modal buttonTxt="Фильтр">
-											<Filter/>
+											<Filter />
 										</Modal>
 									</div>
-									<Sort/>
+									<Sort />
 								</div>
 							</div>
 

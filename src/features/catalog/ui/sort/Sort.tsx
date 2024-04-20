@@ -25,6 +25,7 @@ const Sort: FC = () => {
 	return (
 		<Select
 			size="sm"
+			color="primary"
 			aria-label="sort"
 			variant="bordered"
 			selectedKeys={[value]}
