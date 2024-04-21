@@ -20,4 +20,14 @@ const authentication = async (dto: IAuthentication): Promise<ITokens> => {
 	return response.data;
 };
 
-export { sendAuthentication, authentication };
+const validToken = async (dto: ITokens): Promise<ITokens> => {
+	const response =
+		await api.post<ITokens, AxiosResponse<ITokens>>("/users/valid-token", {...dto});
+	return response.data;
+};
+
+export {
+	sendAuthentication,
+	authentication,
+	validToken
+};

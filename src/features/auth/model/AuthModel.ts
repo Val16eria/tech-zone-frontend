@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { makeAutoObservable, runInAction } from "mobx";
 
 import { sendAuthentication, authentication } from "@shared/api";
-import { IError } from "@shared/lib";
+import { IError, setTokensCookie } from "@shared/lib";
 
 class AuthModel {
 	private _loading: boolean = false;
@@ -42,7 +42,9 @@ class AuthModel {
 	async authentication(identifier: string, code: number) {
 		try {
 			this._loading = true;
-			await authentication({identifier, code});
+			const response = await authentication({identifier, code});
+			setTokensCookie(response.token_access, response.token_refresh);
+
 			runInAction(() => {
 				this._loading = false;
 				this._error = null;
