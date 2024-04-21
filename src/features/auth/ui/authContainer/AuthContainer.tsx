@@ -4,6 +4,7 @@ import {
 	Ref,
 	useEffect
 } from "react";
+import { useNavigate } from "react-router-dom";
 import {
 	Card,
 	CardBody,
@@ -12,10 +13,9 @@ import {
 } from "@nextui-org/react";
 
 import { Error } from "@shared/ui";
+import { getTypeAuth, isAuth } from "@shared/lib";
 
 import "./AuthContainer.scss";
-import {isAuth} from "@shared/lib";
-import {useNavigate} from "react-router-dom";
 
 interface IAuthContainer {
 	placeholder: string;
@@ -42,11 +42,9 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 		}
 	})
 
-	const getAuthType = () => {
-		if (localStorage.getItem("email")) {
-			return <p className="auth-container__body_txt">Почта получателя: <b>{localStorage.getItem("email")}</b></p>
-		} else {
-			return <p className="auth-container__body_txt">Номер получателя: <b>{localStorage.getItem("phone")}</b></p>
+	const getAuthEmail = () => {
+		if (getTypeAuth()) {
+			return <p className="auth-container__body_txt">Почта получателя: <b>{getTypeAuth()}</b></p>
 		}
 	}
 
@@ -58,7 +56,7 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 			<CardBody className="auth-container__body flex-column">
 				<div className="auth-container__body_action flex-column">
 					{
-						type === "code" && getAuthType()
+						type === "code" && getAuthEmail()
 					}
 					<Input
 						className="auth-container__body_input"
@@ -66,6 +64,7 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 						placeholder={placeholder}
 						color="primary"
 						type={type === "auth" ? "text" : "number"}
+						inputMode={type === "auth" ? "email" : "numeric"}
 						isInvalid={!!error}
 						ref={inputRef}
 						onChange={checkInputValue}

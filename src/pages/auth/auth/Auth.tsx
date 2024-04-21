@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { Button, Link } from "@nextui-org/react";
 
 import { AuthContainer } from "@features/auth";
+import AuthModel from "@features/auth/model";
 import { setStatusAuthCode, setTypeAuth } from "@shared/lib";
+import { Loader } from "@shared/ui";
 
 import "./Auth.scss";
 
@@ -19,21 +21,32 @@ const Auth: FC = () => {
 
 	const changeInputValue = () => {
 		setError("");
+	};
+
+	if (AuthModel.loading) {
+		return <Loader />;
+	}
+
+	const getCode = (inputValue: string) => {
+		AuthModel.sendAuthenticationCode(inputValue)
+			.then(() => {
+				if (!AuthModel.error) {
+					setStatusAuthCode();
+					setTypeAuth(inputValue);
+					navigate("/auth");
+				}
+			})
+			.catch((error) => setError(error));
 	}
 
 	const checkInputValue = () => {
 		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-		const phoneRegex = /^\+?(\d{1,3})?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 		const inputValue = inputRef.current?.value;
 
 		if (inputValue) {
 			if (emailRegex.test(inputValue)) {
 				setError("");
-				getCode("email", inputValue);
-			}
-			else if (phoneRegex.test(inputValue)) {
-				setError("");
-				getCode("phone", inputValue);
+				getCode(inputValue);
 			} else {
 				setError("Неправильный формат вводимых данных");
 			}
@@ -42,15 +55,9 @@ const Auth: FC = () => {
 		}
 	}
 
-	const getCode = (inputType: string, inputValue: string) => {
-		setStatusAuthCode();
-		setTypeAuth(inputType, inputValue);
-		navigate("/auth");
-	}
-
 	return (
 		<AuthContainer
-			placeholder="Email или номер телефона"
+			placeholder="Email"
 			type="auth"
 			error={error}
 			inputRef={inputRef}

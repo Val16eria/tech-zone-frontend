@@ -3,8 +3,9 @@ export {
 	getAllTablets,
 	getAllPhones,
 	getAllSmartWatches,
-	getAllAccessories
+	getAllAccessories,
 } from "./products";
+export { sendAuthentication, authentication } from "./auth";
 export type {
 	IPhotos,
 	IBaseProduct,

@@ -1,4 +1,8 @@
-import { ChangeEvent, FC, useState } from "react";
+import {
+	FC,
+	useState,
+	ChangeEvent
+} from "react";
 import { Select, SelectItem } from "@nextui-org/react";
 
 import "./Sort.scss";

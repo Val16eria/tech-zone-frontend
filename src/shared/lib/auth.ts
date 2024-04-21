@@ -2,8 +2,12 @@ const setAuth = () => {
 	localStorage.setItem("isAuth", "true");
 };
 
-const setTypeAuth = (type: string, value: string) => {
-	localStorage.setItem(type, value);
+const setTypeAuth = (value: string) => {
+	localStorage.setItem("email", value);
+};
+
+const getTypeAuth = () => {
+	return localStorage.getItem("email");
 };
 
 const isAuth = () => {
@@ -29,6 +33,7 @@ const logout = () => {
 export {
 	setAuth,
 	setTypeAuth,
+	getTypeAuth,
 	isAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,
