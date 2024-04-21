@@ -1,12 +1,13 @@
 import {
-	FC,
+	FC, KeyboardEvent,
 	useRef,
 	useState
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@nextui-org/react";
 
-import { AuthContainer } from "@features/auth";
+import { AuthContainer } from "@features/auth/ui";
+import { codeRegex, numberRegex } from "@features/auth/lib";
 import AuthModel from "@features/auth/model";
 import {
 	setAuth,
@@ -27,9 +28,8 @@ const AuthCode: FC = () => {
 	}
 
 	const checkInputValue = () => {
-		const maxLength = 6;
-		const codeRegex = /^\d{6}$/;
 		const inputValue = inputRef.current?.value;
+		const maxLength = inputRef.current?.maxLength;
 
 		if (inputValue && inputValue.length === maxLength) {
 			if (codeRegex.test(inputValue)) {
@@ -56,6 +56,20 @@ const AuthCode: FC = () => {
 		}
 	}
 
+	const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+		const key = event.key;
+		const isNumeric = numberRegex.test(key);
+		const isBackspaceOrDelete = key === "Backspace" || key === "Delete";
+
+		if (!isNumeric && !isBackspaceOrDelete) {
+			event.preventDefault();
+		}
+
+		if ((event.currentTarget.value.length >= 6) && !isBackspaceOrDelete) {
+			event.preventDefault();
+		}
+	};
+
 	return (
 		<AuthContainer
 			error={error}
@@ -63,6 +77,7 @@ const AuthCode: FC = () => {
 			placeholder="Код"
 			inputRef={inputRef}
 			checkInputValue={checkInputValue}
+			handleKeyDown={handleKeyDown}
 		>
 			<Button
 				color="primary"

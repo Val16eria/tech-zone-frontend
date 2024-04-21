@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Link } from "@nextui-org/react";
 
-import { AuthContainer } from "@features/auth";
+import { AuthContainer } from "@features/auth/ui";
+import { emailRegex } from "@features/auth/lib";
 import AuthModel from "@features/auth/model";
 import { setStatusAuthCode, setTypeAuth } from "@shared/lib";
 import { Loader } from "@shared/ui";
@@ -30,7 +31,9 @@ const Auth: FC = () => {
 	const getCode = (inputValue: string) => {
 		AuthModel.sendAuthenticationCode(inputValue)
 			.then(() => {
-				if (!AuthModel.error) {
+				if (AuthModel.error) {
+					setError(AuthModel.error);
+				} else {
 					setStatusAuthCode();
 					setTypeAuth(inputValue);
 					navigate("/auth");
@@ -40,7 +43,6 @@ const Auth: FC = () => {
 	}
 
 	const checkInputValue = () => {
-		const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 		const inputValue = inputRef.current?.value;
 
 		if (inputValue) {
@@ -64,10 +66,10 @@ const Auth: FC = () => {
 			checkInputValue={changeInputValue}
 		>
 			<Button
-				type="submit"
 				color="primary"
 				size="md"
 				fullWidth={true}
+				isDisabled={inputRef.current?.value === ""}
 				onClick={checkInputValue}
 			>
 				Получить код

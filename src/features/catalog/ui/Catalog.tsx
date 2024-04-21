@@ -74,7 +74,6 @@ const Catalog: FC<ICatalog> = (
 							</div>
 						</div>
 					</div>
-
 				</div>
 			) : (
 				<Empty

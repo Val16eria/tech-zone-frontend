@@ -118,6 +118,7 @@ class CatalogModel {
 			runInAction(() => {
 				this._smartWatches = response.items;
 				this._loading = false;
+				this._error = null;
 			})
 		} catch (error: unknown) {
 			this._loading = false;
@@ -137,6 +138,7 @@ class CatalogModel {
 			runInAction(() => {
 				this._accessories = response.items;
 				this._loading = false;
+				this._error = null;
 			})
 		} catch (error: unknown) {
 			this._loading = false;

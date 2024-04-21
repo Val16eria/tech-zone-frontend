@@ -1,4 +1,5 @@
 import {
+	KeyboardEvent,
 	FC,
 	PropsWithChildren,
 	Ref,
@@ -23,6 +24,7 @@ interface IAuthContainer {
 	error: string;
 	inputRef: Ref<HTMLInputElement>;
 	checkInputValue: () => void;
+	handleKeyDown?: (event: KeyboardEvent<HTMLInputElement>) => void
 }
 
 const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
@@ -32,6 +34,7 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 		error,
 		inputRef,
 		checkInputValue,
+		handleKeyDown,
 		children
 	}) => {
 	const navigate = useNavigate();
@@ -53,25 +56,28 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 			<CardHeader className="auth-container__header">
 				<h1 className="auth-container__header_title">Войти или зарегистрироваться</h1>
 			</CardHeader>
-			<CardBody className="auth-container__body flex-column">
-				<div className="auth-container__body_action flex-column">
-					{
-						type === "code" && getAuthEmail()
-					}
-					<Input
-						className="auth-container__body_input"
-						variant="bordered"
-						placeholder={placeholder}
-						color="primary"
-						type={type === "auth" ? "text" : "number"}
-						inputMode={type === "auth" ? "email" : "numeric"}
-						isInvalid={!!error}
-						ref={inputRef}
-						onChange={checkInputValue}
-					/>
-					{error && <Error text={error} />}
-				</div>
-				{children}
+			<CardBody>
+				<form className="auth-container__body flex-column">
+					<div className="auth-container__body_action flex-column">
+						{
+							type === "code" && getAuthEmail()
+						}
+						<Input
+							className="auth-container__body_input"
+							variant="bordered"
+							placeholder={placeholder}
+							color="primary"
+							type="text"
+							maxLength={type === "code" ? 6 : undefined}
+							isInvalid={!!error}
+							ref={inputRef}
+							onChange={checkInputValue}
+							onKeyDown={handleKeyDown}
+						/>
+						{error && <Error text={error} />}
+					</div>
+					{children}
+				</form>
 			</CardBody>
 		</Card>
 	);
