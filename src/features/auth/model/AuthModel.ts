@@ -27,13 +27,14 @@ class AuthModel {
 			await sendAuthentication({email});
 			runInAction(() => {
 				this._loading = false;
+				this._error = null;
 			});
 		} catch (err: unknown) {
 			this._loading = false;
-			const error = (err as AxiosError)?.response?.data as IError;
+			const error = (err as AxiosError)?.response?.statusText as string;
 
 			runInAction(() => {
-				this._error = error.detail;
+				this._error = error;
 			});
 		}
 	}
@@ -44,6 +45,7 @@ class AuthModel {
 			await authentication({identifier, code});
 			runInAction(() => {
 				this._loading = false;
+				this._error = null;
 			});
 		} catch (err: unknown) {
 			this._loading = false;
