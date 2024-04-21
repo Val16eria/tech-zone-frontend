@@ -7,7 +7,8 @@ import { Sort } from "./sort";
 import { IBaseProduct } from "@shared/api";
 import {
 	Empty,
-	Loader, Modal,
+	Loader,
+	Modal,
 	ProductCard
 } from "@shared/ui";
 import { wordFormat } from "@shared/lib";

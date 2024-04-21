@@ -1,4 +1,5 @@
 export type {
+	IError,
 	TTypeOfNavbarItems,
 	IBaseItems,
 	TTypeOfCatalogItems,
@@ -7,6 +8,7 @@ export type {
 export {
 	setAuth,
 	setTypeAuth,
+	getTypeAuth,
 	isAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,

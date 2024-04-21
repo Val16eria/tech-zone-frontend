@@ -1,3 +1,7 @@
+interface IError {
+	detail: string;
+}
+
 interface IBaseItems {
 	id: number;
 	title: string;
@@ -29,6 +33,7 @@ interface ISectionItems extends ISectionTypes {
 }
 
 export type {
+	IError,
 	TTypeOfNavbarItems,
 	IBaseItems,
 	TTypeOfCatalogItems,
