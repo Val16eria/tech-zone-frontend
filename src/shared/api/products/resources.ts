@@ -1,41 +1,35 @@
 import { AxiosResponse } from "axios";
 
 import { api } from "../apiAxios.ts";
-import {
-	IAccessoriesItems,
-	ILaptopsItems,
-	IPhonesItems,
-	ISmartWatchesItems,
-	ITabletsItems
-} from "./types.ts";
+import { IBaseProductItems } from "./types.ts";
 
-const getAllLaptops = async (): Promise<ILaptopsItems> => {
+const getAllLaptops = async (): Promise<IBaseProductItems> => {
 	const response =
-		await api.get<ILaptopsItems, AxiosResponse<ILaptopsItems>>("/laptops");
+		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/laptops");
 	return response.data;
 };
 
-const getAllTablets = async (): Promise<ITabletsItems> => {
+const getAllTablets = async (): Promise<IBaseProductItems> => {
 	const response =
-		await api.get<ITabletsItems, AxiosResponse<ITabletsItems>>("/tablets");
+		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/tablets");
 	return response.data;
 };
 
-const getAllPhones = async (): Promise<IPhonesItems> => {
+const getAllPhones = async (): Promise<IBaseProductItems> => {
 	const response =
-		await api.get<IPhonesItems, AxiosResponse<IPhonesItems>>("/smartphones");
+		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/smartphones");
 	return response.data;
 };
 
-const getAllSmartWatches = async (): Promise<ISmartWatchesItems> => {
+const getAllSmartWatches = async (): Promise<IBaseProductItems> => {
 	const response =
-		await api.get<ISmartWatchesItems, AxiosResponse<ISmartWatchesItems>>("/smartwatches");
+		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/smartwatches");
 	return response.data;
 };
 
-const getAllAccessories = async (): Promise<IAccessoriesItems> => {
+const getAllAccessories = async (): Promise<IBaseProductItems> => {
 	const response =
-		await api.get<IAccessoriesItems, AxiosResponse<IAccessoriesItems>>("/accessories");
+		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/accessories");
 	return response.data;
 };
 

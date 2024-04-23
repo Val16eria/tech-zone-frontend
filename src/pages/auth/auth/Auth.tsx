@@ -4,7 +4,7 @@ import {
 	useState
 } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { observer } from "mobx-react-lite";
 import { Button, Link } from "@nextui-org/react";
 
 import { AuthContainer } from "@features/auth/ui";
@@ -14,8 +14,7 @@ import { setStatusAuthCode, setTypeAuth } from "@shared/lib";
 import { Loader } from "@shared/ui";
 
 import "./Auth.scss";
-
-const Auth: FC = () => {
+const Auth: FC = observer(() => {
 	const navigate = useNavigate();
 	const [error, setError] = useState("");
 	const [isDisable, setDisable] = useState(true);
@@ -81,6 +80,6 @@ const Auth: FC = () => {
 			</p>
 		</AuthContainer>
 	);
-};
+});
 
 export { Auth };

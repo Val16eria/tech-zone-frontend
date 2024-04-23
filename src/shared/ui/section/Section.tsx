@@ -1,12 +1,14 @@
 import { FC, PropsWithChildren } from "react";
 import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
+import { wordFormat } from "@shared/lib";
+
 import "./Section.scss";
 
 interface ISection {
 	title: string;
 	isBreadcrumbs: boolean;
-	productsCount?: string;
+	productsCount?: number;
 }
 
 const Section: FC<PropsWithChildren<ISection>> = (
@@ -29,9 +31,9 @@ const Section: FC<PropsWithChildren<ISection>> = (
 
 				<div className="section__article_header flex-row">
 					<p className="section__header_title section__header_txt">{title}</p>
-					{productsCount && (
+					{!!productsCount && (
 						<p className="section__header_count section__header_txt">
-							{productsCount}
+							{productsCount} {wordFormat(productsCount, "товар", "", "а", "ов")}
 						</p>
 					)}
 				</div>

@@ -6,6 +6,7 @@ export {
 	getAllAccessories,
 } from "./products";
 export { sendAuthentication, authentication } from "./auth";
+export { getAllFavourites } from "./favourites";
 export type {
 	IPhotos,
 	IBaseProduct,

@@ -10,16 +10,21 @@ import {
 	Modal,
 	ProductCard, Section
 } from "@shared/ui";
-import { wordFormat } from "@shared/lib";
 
 import "./Catalog.scss";
 
 interface ICatalog {
 	title: string;
+	icon: string;
 	products: IBaseProduct[];
 }
 
-const Catalog: FC<ICatalog> = ({ title, products }) => {
+const Catalog: FC<ICatalog> = (
+	{
+		title,
+		icon,
+		products
+	}) => {
 
 	if (CatalogModel.loading) {
 		return (
@@ -27,43 +32,42 @@ const Catalog: FC<ICatalog> = ({ title, products }) => {
 		)
 	}
 
-	const productsCount = `${products.length} ${wordFormat(products.length, "товар", "", "а", "ов")}`;
-
 	return (
 		<Section
 			title={title}
 			isBreadcrumbs={true}
-			productsCount={productsCount}
+			productsCount={products.length}
 		>
-			<div className="catalog">
-				<div className="catalog__filter">
-					<Filter/>
-				</div>
+			{products.length ? (
+				<div className="catalog">
+					<div className="catalog__filter">
+						<Filter/>
+					</div>
 
-				<div className="catalog__content">
-					<div className="catalog__content_sort">
-						<div className="catalog__content_sort-position flex-row">
-							<div className="catalog__content_filter-modal">
-								<Modal buttonTxt="Фильтр">
-									<Filter/>
-								</Modal>
+					<div className="catalog__content">
+						<div className="catalog__content_sort">
+							<div className="catalog__content_sort-position flex-row">
+								<div className="catalog__content_filter-modal">
+									<Modal buttonTxt="Фильтр">
+										<Filter/>
+									</Modal>
+								</div>
+								<Sort/>
 							</div>
-							<Sort/>
+						</div>
+
+						<div className="catalog__content_products">
+							{products.map((product) => <ProductCard key={product.id} {...product} />)}
 						</div>
 					</div>
-
-					<div className="catalog__content_products">
-						{products.length ?
-							products.map((product) => <ProductCard key={product.id} {...product} />) :
-							<Empty
-								icon=""
-								title="Товаров еще нет"
-								description="Следите за обновлениями, чтобы не пропустить новые товары"
-							/>
-						}
-					</div>
 				</div>
-			</div>
+			) : (
+				<Empty
+					icon={icon}
+					title="Товаров еще нет"
+					description="Следите за обновлениями, чтобы не пропустить новые товары"
+				/>
+			)}
 		</Section>
 	);
 };

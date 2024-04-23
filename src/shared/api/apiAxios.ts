@@ -47,7 +47,7 @@ api.interceptors.response.use(
 					});
 
 					if (response && response.token_access && response.token_refresh) {
-						setTokensCookie(response.token_access, response.token_refresh)
+						setTokensCookie(response.token_access, response.token_refresh);
 						return api(originalRequest);
 					}
 				} catch (refreshError) {
