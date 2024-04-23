@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { Carousel, Benefit } from "@features/main";
-import { Section } from "@shared/ui";
 
 import "./Main.scss";
 
@@ -12,8 +11,8 @@ const Main: FC = () => {
         <Carousel />
       </div>
       <div className="main__content flex-column">
-        <Section title="Новинки" products={[]} />
-        <Section title="Хиты продаж" products={[]} />
+        {/*новинки*/}
+        {/*хиты продаж*/}
         <Benefit/>
       </div>
     </div>

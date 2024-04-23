@@ -120,19 +120,11 @@ const ProductCard: FC<IProductCard> = (
 								aria-label="like"
 								onClick={handleLike}
 							>
-								{is_favourite ? (
-									<Image
-										className="product-card__details_btn-like"
-										src={FavouriteFullIcon}
-										alt="favourite"
-									/>
-								) : (
-									<Image
-										className="product-card__details_btn-like"
-										src={FavouriteIcon}
-										alt="favourite"
-									/>
-								)}
+								<Image
+									className="product-card__details_btn-like"
+									src={is_favourite ? FavouriteFullIcon: FavouriteIcon}
+									alt="favourite"
+								/>
 							</Button>
 						</div>
 					</div>
