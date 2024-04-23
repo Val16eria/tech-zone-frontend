@@ -18,9 +18,11 @@ import "./Auth.scss";
 const Auth: FC = () => {
 	const navigate = useNavigate();
 	const [error, setError] = useState("");
+	const [isDisable, setDisable] = useState(true);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const changeInputValue = () => {
+		setDisable(!inputRef.current?.value);
 		setError("");
 	};
 
@@ -69,7 +71,7 @@ const Auth: FC = () => {
 				color="primary"
 				size="md"
 				fullWidth={true}
-				isDisabled={inputRef.current?.value === ""}
+				isDisabled={isDisable}
 				onClick={checkInputValue}
 			>
 				Получить код

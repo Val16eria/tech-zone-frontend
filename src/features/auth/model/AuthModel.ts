@@ -24,10 +24,10 @@ class AuthModel {
 	async sendAuthenticationCode(email: string) {
 		try {
 			this._loading = true;
-			await sendAuthentication({email});
+			await sendAuthentication({email}).then(() => this._error = null)
+				.catch(() => this._error = "Ошибка отправки кода. Попробуйте еще раз");
 			runInAction(() => {
 				this._loading = false;
-				this._error = null;
 			});
 		} catch (err: unknown) {
 			this._loading = false;
