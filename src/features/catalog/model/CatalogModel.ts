@@ -150,6 +150,37 @@ class CatalogModel {
 			})
 		}
 	}
+
+	async updateProducts() {
+		try {
+			this._loading = true;
+			const laptopsPromise = this.getLaptops();
+			const tabletsPromise = this.getTablets();
+			const phonesPromise = this.getPhones();
+			const smartWatchesPromise = this.getSmartWatches();
+			const accessoriesPromise = this.getAccessories();
+
+			await Promise.all([
+				laptopsPromise,
+				tabletsPromise,
+				phonesPromise,
+				smartWatchesPromise,
+				accessoriesPromise
+			]);
+
+			runInAction(() => {
+				this._loading = false;
+				this._error = null;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+			runInAction(() => {
+				if (typeof error === "string") {
+					this._error = error;
+				}
+			});
+		}
+	}
 }
 
 export default new CatalogModel();

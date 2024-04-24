@@ -6,10 +6,9 @@ export type {
 	ISectionItems
 } from "./types.ts";
 export {
-	setAuth,
+	isAuth,
 	setTypeAuth,
 	getTypeAuth,
-	isAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,
 	clearStatusAuthCode,

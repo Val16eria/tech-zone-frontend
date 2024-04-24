@@ -17,6 +17,7 @@ import {
 	Tablets,
 	Accessories
 } from "@pages/catalog";
+import { Favourites } from "@pages/favourites";
 
 const Router: FC = () => {
 	const { pathname } = useLocation();
@@ -34,6 +35,7 @@ const Router: FC = () => {
 			<Route path="/phones" element={<Phones />} />
 			<Route path="/smart_watches" element={<SmartWatches />} />
 			<Route path="/accessories" element={<Accessories />} />
+			<Route path="/favourites" element={<Favourites />} />
 			<Route path="/policy" element={<Policy />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>

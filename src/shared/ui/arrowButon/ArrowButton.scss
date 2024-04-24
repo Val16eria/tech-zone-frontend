@@ -1,7 +1,12 @@
 .arrow-button {
-	border: 1px solid var(--stroke-gray);
+	border: 2px solid var(--stroke-gray);
 	border-radius: 69px;
 	padding: 16.91px;
+	transition: border-color 0.3s ease;
+
+	&:hover {
+		border: 2px solid var(--accent-blue);
+	}
 
 	&__left_img {
 		transform: rotate(0deg);

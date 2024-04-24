@@ -4,21 +4,18 @@ import {
 	useState
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 import { Button } from "@nextui-org/react";
 
 import { AuthContainer } from "@features/auth/ui";
 import { codeRegex, numberRegex } from "@features/auth/lib";
 import AuthModel from "@features/auth/model";
-import {
-	setAuth,
-	clearStatusAuthCode,
-	getTypeAuth
-} from "@shared/lib";
+import { clearStatusAuthCode, getTypeAuth } from "@shared/lib";
 import { Loader } from "@shared/ui";
 
 import "./AuthCode.scss";
 
-const AuthCode: FC = () => {
+const AuthCode: FC = observer(() => {
 	const navigate = useNavigate();
 	const [error, setError] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
@@ -43,7 +40,6 @@ const AuthCode: FC = () => {
 								setError(AuthModel.error);
 							} else {
 								clearStatusAuthCode();
-								setAuth();
 								navigate("/");
 							}
 						});
@@ -89,6 +85,6 @@ const AuthCode: FC = () => {
 			</Button>
 		</AuthContainer>
 	);
-};
+});
 
 export { AuthCode };

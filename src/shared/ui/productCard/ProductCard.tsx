@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 import {
   Card,
   CardBody,
@@ -8,6 +9,7 @@ import {
   Button,
 } from "@nextui-org/react";
 
+import FavouritesModel from "@features/favourites/model";
 import { IPhotos } from "@shared/api";
 import { isAuth, wordFormat } from "@shared/lib";
 
@@ -19,17 +21,17 @@ import DefaultImage from "@assets/svg/defaultImage.svg";
 import "./ProductCard.scss";
 
 interface IProductCard {
-	id: number,
-	photos: IPhotos[],
-	name: string,
-	price: number,
-	discount: number,
-	reviews_count: number,
-	average_rating: number | null,
-	is_favourite: boolean
+	id: number;
+	photos: IPhotos[];
+	name: string;
+	price: number;
+	discount: number;
+	reviews_count: number;
+	average_rating: number | null;
+	is_favourite: boolean;
 }
 
-const ProductCard: FC<IProductCard> = (
+const ProductCard: FC<IProductCard> = observer((
 	{
 		id,
 		photos,
@@ -41,10 +43,19 @@ const ProductCard: FC<IProductCard> = (
 		is_favourite
 	}) => {
 	const navigate = useNavigate();
+	const [isLike, setLike] = useState(is_favourite);
 
-	const handleLike = () => {
+	const handleLike = async () => {
 		if (!isAuth()) {
 			navigate("/auth");
+		} else {
+			if (isLike) {
+				FavouritesModel.deleteFavourites(id)
+					.then(() => setLike((prevState) => !prevState));
+			} else {
+				FavouritesModel.addFavourites(id)
+					.then(() => setLike((prevState) => !prevState));
+			}
 		}
 	}
 
@@ -70,10 +81,10 @@ const ProductCard: FC<IProductCard> = (
 			isPressable={false}
 			shadow="sm"
 		>
-			<CardBody className="product-card__body">
-				<div className={`${!photos.length && "product-card__body_default-img"}`}>
+			<CardBody className={`product-card__body ${!photos?.length && "product-card__body_default-img"}`}>
+				<div className="product-card__body_img">
 					<Image
-						src={photos.length ? photos[0].url : DefaultImage}
+						src={photos?.length ? photos[0].url : DefaultImage}
 						radius="none"
 						alt={name}
 					/>
@@ -120,19 +131,11 @@ const ProductCard: FC<IProductCard> = (
 								aria-label="like"
 								onClick={handleLike}
 							>
-								{is_favourite ? (
-									<Image
-										className="product-card__details_btn-like"
-										src={FavouriteFullIcon}
-										alt="favourite"
-									/>
-								) : (
-									<Image
-										className="product-card__details_btn-like"
-										src={FavouriteIcon}
-										alt="favourite"
-									/>
-								)}
+								<Image
+									className="product-card__details_btn-like"
+									src={isLike ? FavouriteFullIcon: FavouriteIcon}
+									alt="favourite"
+								/>
 							</Button>
 						</div>
 					</div>
@@ -149,6 +152,6 @@ const ProductCard: FC<IProductCard> = (
 			</CardFooter>
 		</Card>
   );
-};
+});
 
 export { ProductCard };

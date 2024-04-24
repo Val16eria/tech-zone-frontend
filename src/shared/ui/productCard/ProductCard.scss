@@ -9,9 +9,16 @@
 		align-items: center;
 		overflow: hidden !important;
 
+		&_img {
+			max-width: 150px;
+			max-height: 150px;
+		}
+
 		&_default-img {
 			background: #e7e7e7;
 			border-radius: 15px;
+			width: 100% !important;
+			height: 200px !important;
 		}
 	}
 
@@ -119,11 +126,7 @@
 
 		&__body {
 			padding: 2px;
-
-			&_img {
-				width: 120px;
-				height: 120px;
-			}
+			height: 120px;
 		}
 
 		&__content {
@@ -161,11 +164,7 @@
 
 		&__body {
 			padding: 0;
-
-			&_img {
-				width: 100px;
-				height: 100px;
-			}
+			height: 100px;
 		}
 
 		&__content {

@@ -17,7 +17,7 @@ const navbarItems: ISectionItems[] = [
     icon: FavouriteIcon,
     type: "favourites",
     title: "Избранное",
-    path: "/favorites",
+    path: "/favourites",
   },
   {
     id: 2,

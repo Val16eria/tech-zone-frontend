@@ -35,9 +35,9 @@ const Sort: FC = () => {
 			selectedKeys={[value]}
 			onChange={handleSelectionChange}
 		>
-			{types.map((animal) => (
-				<SelectItem key={animal.value} value={animal.value}>
-					{animal.label}
+			{types.map((item) => (
+				<SelectItem key={item.value} value={item.value}>
+					{item.label}
 				</SelectItem>
 			))}
 		</Select>

@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { BreadcrumbItem, Breadcrumbs } from "@nextui-org/react";
 
 import CatalogModel from "../model";
 import { Filter } from "./filter";
@@ -9,11 +8,12 @@ import {
 	Empty,
 	Loader,
 	Modal,
-	ProductCard
+	ProductCard,
+	Section
 } from "@shared/ui";
-import { wordFormat } from "@shared/lib";
 
 import "./Catalog.scss";
+import {observer} from "mobx-react-lite";
 
 interface ICatalog {
 	title: string;
@@ -21,7 +21,7 @@ interface ICatalog {
 	products: IBaseProduct[];
 }
 
-const Catalog: FC<ICatalog> = (
+const Catalog: FC<ICatalog> = observer((
 	{
 		title,
 		icon,
@@ -35,55 +35,43 @@ const Catalog: FC<ICatalog> = (
 	}
 
 	return (
-		<div className="catalog flex-column">
-			<Breadcrumbs>
-				<BreadcrumbItem href="/">Главная</BreadcrumbItem>
-				<BreadcrumbItem>{title}</BreadcrumbItem>
-			</Breadcrumbs>
-
+		<Section
+			title={title}
+			isBreadcrumbs={true}
+			productsCount={products.length}
+		>
 			{products.length ? (
-				<div className="flex-column gap-6">
-					<div className="catalog__header flex-row">
-						<p className="catalog__header_title catalog__header_txt">{title}</p>
-						<p className="catalog__header_count catalog__header_txt">
-							{products.length} {wordFormat(products.length, "товар", "", "а", "ов")}
-						</p>
+				<div className="catalog">
+					<div className="catalog__filter">
+						<Filter/>
 					</div>
 
 					<div className="catalog__content">
-						<div className="catalog__content_filter">
-							<Filter/>
+						<div className="catalog__content_sort">
+							<div className="catalog__content_sort-position flex-row">
+								<div className="catalog__content_filter-modal">
+									<Modal buttonTxt="Фильтр">
+										<Filter/>
+									</Modal>
+								</div>
+								<Sort/>
+							</div>
 						</div>
 
 						<div className="catalog__content_products">
-							<div className="catalog__products_sort-container">
-								<div className="catalog__products_sort flex-row">
-									<div className="catalog__content_filter-modal">
-										<Modal buttonTxt="Фильтр">
-											<Filter />
-										</Modal>
-									</div>
-									<Sort />
-								</div>
-							</div>
-
-							<div className="catalog__products_list">
-								{products.map((product) =>
-									<ProductCard key={product.id} {...product} />
-								)}
-							</div>
+							{products.map((product) => <ProductCard key={product.id} {...product} />)}
 						</div>
 					</div>
 				</div>
 			) : (
 				<Empty
 					icon={icon}
-					title="На данный момент товаров нет"
+					title="Товаров еще нет"
 					description="Следите за обновлениями, чтобы не пропустить новые товары"
 				/>
 			)}
-		</div>
+		</Section>
 	);
-};
+});
 
-export {Catalog};
+export { Catalog };
