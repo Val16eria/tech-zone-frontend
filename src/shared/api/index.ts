@@ -4,9 +4,12 @@ export {
 	getAllPhones,
 	getAllSmartWatches,
 	getAllAccessories,
-} from "./products";
+} from "./catalog";
 export { sendAuthentication, authentication } from "./auth";
+export { getProductTypeById, getProductById } from "./product";
 export { getAllFavourites } from "./favourites";
+
+export type { IProductType, TProductType } from "./product";
 export type {
 	IPhotos,
 	IBaseProduct,
@@ -15,4 +18,4 @@ export type {
 	IPhones,
 	ISmartWatches,
 	IAccessories
-} from "./products";
+} from "./catalog";

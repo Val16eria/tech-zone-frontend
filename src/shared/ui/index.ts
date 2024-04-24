@@ -5,4 +5,5 @@ export { Loader } from "./loader";
 export { Logo } from "./logo";
 export { Modal } from "./modal";
 export { ProductCard } from "./productCard";
+export { ProductRating } from "./productRating";
 export { Section } from "./section";

@@ -4,6 +4,7 @@
 
 :root {
   --accent-blue: #006FEE;
+  --light-blue: rgba(0, 111, 238, 0.1);
   --danger: #F31260;
   --background-white: #FDFDFD;
   --box-background: #F8F8F8;

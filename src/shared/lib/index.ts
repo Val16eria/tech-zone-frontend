@@ -17,4 +17,5 @@ export {
 	getAccessTokenCookie,
 	logout
 } from "./auth.ts";
+export { discountedPrice } from "./product.ts";
 export { wordFormat } from "./word-format.ts";

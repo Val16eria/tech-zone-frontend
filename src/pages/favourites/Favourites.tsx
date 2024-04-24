@@ -11,8 +11,9 @@ import {
 import FavouritesIcon from "@assets/svg/favourite-icon.svg";
 
 import "./Favourites.scss";
+import {WithAuth} from "@shared/hoc";
 
-const Favourites: FC = observer(() => {
+const Favourites: FC = observer(WithAuth(() => {
 
 	useEffect(() => {
 		if (!FavouritesModel.loading) {
@@ -39,6 +40,6 @@ const Favourites: FC = observer(() => {
 			}
 		</Section>
 	);
-});
+}));
 
 export { Favourites };
