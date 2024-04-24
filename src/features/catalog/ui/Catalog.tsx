@@ -8,10 +8,12 @@ import {
 	Empty,
 	Loader,
 	Modal,
-	ProductCard, Section
+	ProductCard,
+	Section
 } from "@shared/ui";
 
 import "./Catalog.scss";
+import {observer} from "mobx-react-lite";
 
 interface ICatalog {
 	title: string;
@@ -19,7 +21,7 @@ interface ICatalog {
 	products: IBaseProduct[];
 }
 
-const Catalog: FC<ICatalog> = (
+const Catalog: FC<ICatalog> = observer((
 	{
 		title,
 		icon,
@@ -70,6 +72,6 @@ const Catalog: FC<ICatalog> = (
 			)}
 		</Section>
 	);
-};
+});
 
 export { Catalog };

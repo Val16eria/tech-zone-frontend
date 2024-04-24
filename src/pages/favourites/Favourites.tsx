@@ -26,12 +26,11 @@ const Favourites: FC = observer(() => {
 
 	return (
 		<Section title="Избранное" isBreadcrumbs={true}>
-			{FavouritesModel.favourites.length ?
-				FavouritesModel.favourites.map((product) => (
-					<div className="favourites"><ProductCard
-						key={product.id} {...product} />
+			{FavouritesModel.favourites && FavouritesModel.favourites.length ? (
+					<div className="favourites">
+						{FavouritesModel.favourites.map((product) => <ProductCard key={product.id} {...product} />)}
 					</div>
-				)) :
+				) :
 				<Empty
 					icon={FavouritesIcon}
 					title="У вас пока нет избранных товаров"

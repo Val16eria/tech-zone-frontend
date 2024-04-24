@@ -20,7 +20,7 @@ const authentication = async (dto: IAuthentication): Promise<ITokens> => {
 	return response.data;
 };
 
-const validToken = async (dto: ITokens): Promise<ITokens> => {
+const validToken = async (dto: { token_refresh: string }): Promise<ITokens> => {
 	const response =
 		await api.post<ITokens, AxiosResponse<ITokens>>("/users/valid-token", {...dto});
 	return response.data;

@@ -1,19 +1,11 @@
 import Cookies from "js-cookie";
 
-const setAuth = () => {
-	localStorage.setItem("isAuth", "true");
-};
-
 const setTypeAuth = (value: string) => {
 	localStorage.setItem("email", value);
 };
 
 const getTypeAuth = () => {
 	return localStorage.getItem("email");
-};
-
-const isAuth = () => {
-	return !!localStorage.getItem("isAuth");
 };
 
 const setStatusAuthCode = () => {
@@ -47,15 +39,20 @@ const getRefreshTokenCookie = () => {
 	return Cookies.get("refresh_token");
 };
 
+const isAuth = () => {
+	return !!getAccessTokenCookie() && !!getRefreshTokenCookie();
+};
+
 const logout = () => {
 	localStorage.clear();
+	Cookies.remove("access_token");
+	Cookies.remove("refresh_token");
 }
 
 export {
-	setAuth,
+	isAuth,
 	setTypeAuth,
 	getTypeAuth,
-	isAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,
 	clearStatusAuthCode,

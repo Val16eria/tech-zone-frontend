@@ -9,9 +9,9 @@ import AccessoriesIcon from "@assets/svg/accessories-icon.svg";
 const Accessories: FC = observer(() => {
 
 	useEffect(() => {
-		if (!CatalogModel.loading) {
-			CatalogModel.getAccessories();
-		}
+			if (!CatalogModel.loading) {
+				CatalogModel.getAccessories();
+			}
 	}, []);
 
 	return (

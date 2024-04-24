@@ -27,7 +27,6 @@ api.interceptors.request.use(
 	(err) => Promise.reject(err),
 );
 
-
 api.interceptors.response.use(
 	(response: AxiosResponse) => response,
 	async (error) => {
@@ -41,13 +40,10 @@ api.interceptors.response.use(
 
 			if (refreshToken && accessToken) {
 				try {
-					const response = await validToken({
-						token_access: accessToken,
-						token_refresh: refreshToken,
-					});
+					const response = await validToken({ token_refresh: refreshToken });
 
 					if (response && response.token_access && response.token_refresh) {
-						setTokensCookie(response.token_access, response.token_refresh);
+						setTokensCookie(response.token_access, response.token_refresh)
 						return api(originalRequest);
 					}
 				} catch (refreshError) {

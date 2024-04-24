@@ -1,1 +1,5 @@
-export { getAllFavourites } from "./resources.ts";
+export {
+	getAllFavourites,
+	addFavouriteProduct,
+	deleteFavouriteProduct
+} from "./resources.ts";
