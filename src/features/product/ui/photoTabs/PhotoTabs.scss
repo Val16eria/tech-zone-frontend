@@ -1,0 +1,19 @@
+.photo-tabs {
+	&__tabs > div {
+		flex-direction: column;
+		justify-content: space-evenly;
+		height: 100%;
+	}
+
+	&__tabs {
+		&_tab {
+			height: auto !important;
+		}
+
+		&_tab > span {
+			box-shadow: none;
+			border: 2px solid var(--accent-blue);
+			border-radius: 12px;
+		}
+	}
+}

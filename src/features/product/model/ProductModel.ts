@@ -11,7 +11,11 @@ import {
 	ISmartWatches,
 	IAccessories,
 	getProductTypeById,
-	getProductById
+	getLaptopById,
+	getTabletById,
+	getPhoneById,
+	getSmartWatchById,
+	getAccessoryById
 } from "@shared/api";
 import { TProductType } from "@shared/api/product";
 
@@ -45,6 +49,7 @@ class ProductModel {
 		try {
 			this._loading = true;
 			const response = await getProductTypeById(id);
+
 			runInAction(() => {
 				this._productType = response.type;
 				this._loading = false;
@@ -63,10 +68,34 @@ class ProductModel {
 	async getProduct(id: number) {
 		try {
 			this._loading = true;
-			const response = await getProductById(id);
+
+			switch (this._productType) {
+				case "laptop":
+					await getLaptopById(id).then((product) =>
+						this._product = product as ILaptops);
+					break;
+				case "tablet":
+					await getTabletById(id).then((product) =>
+						this._product = product as ITablets);
+					break;
+				case "smartphone":
+					await getPhoneById(id).then((product) =>
+						this._product = product as IPhones);
+					break;
+				case "smartwatch":
+					getSmartWatchById(id).then((product) =>
+						this._product = product as ISmartWatches);
+					break;
+				case "accessory":
+					await getAccessoryById(id).then((product) =>
+						this._product = product as IAccessories);
+					break;
+				default:
+					this._product = null;
+					break;
+			}
 
 			runInAction(() => {
-				this._product = response;
 				this._loading = false;
 			})
 		} catch (error: unknown) {

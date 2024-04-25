@@ -1,8 +1,8 @@
 import { FC } from "react";
 
-import "./ProductParameter.scss";
+import "./Parameter.scss";
 
-const ProductParameter: FC = () => {
+const Parameter: FC = () => {
 	return (
 		<div>
 			<p>Цвет: <b>что-то выбрали</b></p>
@@ -11,4 +11,4 @@ const ProductParameter: FC = () => {
 	);
 };
 
-export { ProductParameter };
+export { Parameter };

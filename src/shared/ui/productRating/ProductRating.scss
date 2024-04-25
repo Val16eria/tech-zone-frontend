@@ -11,14 +11,14 @@
 
 	&__reviews {
 		&_txt {
-			color: var(--accent-blue);
+			color: var(--dark-blue-text);
+			opacity: 0.5;
 		}
 	}
 
 	&__average {
 		&_txt {
-			color: var(--dark-blue-text);
-			opacity: 0.5;
+			color: var(--accent-blue);
 		}
 	}
 }

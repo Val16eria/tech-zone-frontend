@@ -55,7 +55,7 @@ const ProductCard: FC<IProductCard> = observer((
 			<CardBody className={`product-card__body ${!photos?.length && "product-card__body_default-img"}`}>
 				<div className="product-card__body_img">
 					<Image
-						src={photos?.length ? photos[0].link : DefaultImage}
+						src={photos?.length ? photos[0].url : DefaultImage}
 						radius="none"
 						alt={name}
 					/>

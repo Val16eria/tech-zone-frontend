@@ -8,56 +8,34 @@ import { observer } from "mobx-react-lite";
 import { Card, CardBody } from "@nextui-org/react";
 
 import ProductModel from "@features/product/model";
-import { ProductParameter } from "@features/product/ui";
+import {
+	DescriptionTabs,
+	Parameter,
+	PhotoTabs
+} from "@features/product/ui";
 import { LikeButton } from "@features/favourites/ui";
+import { CartButton } from "@features/cart/ui";
 import {
 	Loader,
 	ProductRating,
 	Section
 } from "@shared/ui"
-import {
-	IAccessories,
-	ILaptops,
-	IPhones,
-	ISmartWatches,
-	ITablets
-} from "@shared/api";
 import { discountedPrice } from "@shared/lib";
 
 import "./Product.scss";
-import { CartButton } from "@features/cart/ui";
+
 const Product: FC = observer(() => {
 
 	const { id } = useParams();
 	const [product, setProduct] =
-		useState<ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null>(null);
+		useState<typeof ProductModel.product>(ProductModel.product);
 
 	useEffect(() => {
 		const displayProduct = async () => {
 			const productId = Number(id);
-
-			await ProductModel.getProduct(productId);
 			await ProductModel.getProductType(productId);
-			switch (ProductModel.productType) {
-				case "laptop":
-					setProduct(ProductModel.product as ILaptops);
-					break;
-				case "tablet":
-					setProduct(ProductModel.product as ITablets);
-					break;
-				case "smartphone":
-					setProduct(ProductModel.product as IPhones);
-					break;
-				case "smartwatch":
-					setProduct(ProductModel.product as ISmartWatches);
-					break;
-				case "accessory":
-					setProduct(ProductModel.product as IAccessories);
-					break;
-				default:
-					setProduct(null);
-					break;
-			}
+			await ProductModel.getProduct(productId);
+			setProduct(ProductModel.product);
 		}
 
 		displayProduct();
@@ -77,12 +55,12 @@ const Product: FC = observer(() => {
 					<p>Код товара: <b>{id}</b></p>
 				</div>
 				<div className="flex-row items-center gap-5">
-					<div>фото</div>
+					<PhotoTabs photos={product.photos} />
 					<Card className="product__card" shadow="sm">
 						<CardBody className="product__card_body flex-column">
 							<div className="product__body_item flex-column">
-								<ProductParameter />
-								<ProductParameter />
+								<Parameter />
+								<Parameter />
 							</div>
 							<div className="product__body_item flex-column">
 								<div className="product__body_price flex-row">
@@ -104,6 +82,7 @@ const Product: FC = observer(() => {
 						</CardBody>
 					</Card>
 				</div>
+				<DescriptionTabs />
 			</div>
 		</Section>
 	);

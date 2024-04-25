@@ -1,6 +1,6 @@
 interface IPhotos {
 	id: number;
-	link: string;
+	url: string;
 }
 
 interface IBaseProduct {

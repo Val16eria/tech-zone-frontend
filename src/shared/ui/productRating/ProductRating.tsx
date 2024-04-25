@@ -24,8 +24,8 @@ const ProductRating: FC<IProductRating> = ({ reviews_count, average_rating }) =>
 	return (
 		<>
 			<div className="product__outcome flex-row">
-				<p className="product__reviews_txt product__outcome_txt">
-					{reviews_count}
+				<p className="product__average_txt product__outcome_txt">
+					{averageRating(average_rating)}
 				</p>
 				<Image
 					width={13}
@@ -41,8 +41,8 @@ const ProductRating: FC<IProductRating> = ({ reviews_count, average_rating }) =>
 					src={ReviewsIcon}
 					alt="review"
 				/>
-				<p className="product__average_txt product__outcome_txt">
-					{averageRating(average_rating)}
+				<p className="product__reviews_txt product__outcome_txt">
+					{reviews_count}
 				</p>
 			</div>
 		</>
