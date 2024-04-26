@@ -13,7 +13,7 @@ import { CartButton } from "@features/cart/ui";
 
 import { IPhotos } from "@shared/api";
 import { discountedPrice } from "@shared/lib";
-import { ProductRating } from "@shared/ui";
+import { Review, Stars } from "@shared/ui";
 
 import DefaultImage from "@assets/svg/defaultImage.svg";
 import "./ProductCard.scss";
@@ -64,7 +64,8 @@ const ProductCard: FC<IProductCard> = observer((
 			<CardFooter className="product-card__content flex-column">
 				<div className="product-card__content_product flex-column">
 					<div className="product-card__product_outcome flex-row">
-						<ProductRating reviews_count={reviews_count} average_rating={average_rating} />
+						<Stars rating={average_rating} />
+						<Review reviews={reviews_count} />
 					</div>
 					<p className="product-card__product_title" onClick={redirectToProduct}>{name}</p>
 					<div className="product-card__product_details flex-row">

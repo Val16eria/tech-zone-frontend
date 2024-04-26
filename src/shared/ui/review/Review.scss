@@ -1,0 +1,11 @@
+.review {
+	align-items: center;
+	gap: 4px;
+
+	&__txt {
+		font-weight: 500;
+		font-size: 14px;
+		color: var(--dark-blue-text);
+		opacity: 0.5;
+	}
+}

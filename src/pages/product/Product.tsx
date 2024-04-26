@@ -1,8 +1,4 @@
-import {
-	FC,
-	useEffect,
-	useState
-} from "react"
+import { FC, useEffect } from "react"
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { Card, CardBody } from "@nextui-org/react";
@@ -17,8 +13,9 @@ import { LikeButton } from "@features/favourites/ui";
 import { CartButton } from "@features/cart/ui";
 import {
 	Loader,
-	ProductRating,
-	Section
+	Section,
+	Stars,
+	Review
 } from "@shared/ui"
 import { discountedPrice } from "@shared/lib";
 
@@ -27,15 +24,13 @@ import "./Product.scss";
 const Product: FC = observer(() => {
 
 	const { id } = useParams();
-	const [product, setProduct] =
-		useState<typeof ProductModel.product>(ProductModel.product);
+	const product = ProductModel.product;
 
 	useEffect(() => {
 		const displayProduct = async () => {
 			const productId = Number(id);
 			await ProductModel.getProductType(productId);
 			await ProductModel.getProduct(productId);
-			setProduct(ProductModel.product);
 		}
 
 		displayProduct();
@@ -50,7 +45,8 @@ const Product: FC = observer(() => {
 			<div className="product">
 				<div className="justify-between flex-row items-center">
 					<div className="flex-row items-center gap-5">
-						<ProductRating reviews_count={product.reviews_count} average_rating={product.average_rating} />
+						<Stars rating={product.average_rating} />
+						<Review reviews={product.reviews_count} />
 					</div>
 					<p>Код товара: <b>{id}</b></p>
 				</div>
@@ -65,17 +61,19 @@ const Product: FC = observer(() => {
 							<div className="product__body_item flex-column">
 								<div className="product__body_price flex-row">
 									<div className="flex-column">
-										{!!product.discount && <p className="product__price_txt">{`${product.price} ₽`}</p>}
+										{!!product.discount && (<p className="product__price_txt">{`${product.price} ₽`}</p>)}
 										<p className="product__discount_txt">
-											{`${discountedPrice(product.price, product.discount) || product.price} ₽`}
+										{`${discountedPrice(product.price, product.discount) || product.price} ₽`}
 										</p>
 									</div>
-									<p className="product__discount-persent">
-										Скидка: <span className="product__discount-persent_txt">{product.discount} %</span>
-									</p>
+									{!!product.discount && (
+										<p className="product__discount-persent">
+											Скидка: <span className="product__discount-persent_txt">{product.discount} %</span>
+										</p>
+									)}
 								</div>
 								<div className="product__btns flex-row">
-									<LikeButton product_id={product.id} is_favourite={product.is_favourite} />
+									<LikeButton product_id={product.id} is_favourite={product.is_favourite}/>
 									<CartButton />
 								</div>
 							</div>

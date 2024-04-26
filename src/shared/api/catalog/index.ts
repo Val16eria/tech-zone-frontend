@@ -6,6 +6,7 @@ export {
 	getAllAccessories
 } from "./resources.ts";
 export type {
+	IReviews,
 	IPhotos,
 	IBaseProduct,
 	ILaptops,

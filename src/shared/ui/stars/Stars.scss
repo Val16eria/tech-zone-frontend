@@ -1,0 +1,26 @@
+.stars {
+	align-items: center;
+	gap: 4px;
+
+	&__txt {
+		font-weight: 500;
+		font-size: 14px;
+		color: var(--accent-blue);
+	}
+}
+
+@media (max-width: 968px) {
+	.stars {
+		&__txt {
+			font-size: 10px;
+		}
+	}
+}
+
+@media (max-width: 680px) {
+	.stars {
+		&__txt {
+			font-size: 8px;
+		}
+	}
+}

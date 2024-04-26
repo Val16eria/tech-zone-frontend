@@ -3,6 +3,13 @@ interface IPhotos {
 	url: string;
 }
 
+interface IReviews {
+	user: string;
+	date_created: string;
+	rating: number;
+	text: string;
+}
+
 interface IBaseProduct {
 	id: number;
 	photos: IPhotos[];
@@ -10,6 +17,7 @@ interface IBaseProduct {
 	price: number;
 	discount: number;
 	reviews_count: number;
+	reviews: IReviews[];
 	average_rating: number | null;
 	is_favourite: boolean;
 }
@@ -142,6 +150,7 @@ interface IAccessoriesItems extends IAccessories {
 }
 
 export type {
+	IReviews,
 	IPhotos,
 	IBaseProduct,
 	IBaseProductItems,

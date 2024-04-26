@@ -19,6 +19,7 @@ export { getAllFavourites } from "./favourites";
 
 export type { IProductType, TProductType } from "./product";
 export type {
+	IReviews,
 	IPhotos,
 	IBaseProduct,
 	ILaptops,

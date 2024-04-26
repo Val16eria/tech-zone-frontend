@@ -1,11 +1,19 @@
 import { FC, useState } from "react";
+import { observer } from "mobx-react-lite";
 import { Tabs, Tab } from "@nextui-org/react";
 
-import "./DescriptionTabs.scss";
-import { Review } from "../review";
+import ProductModel from "@features/product/model";
+import { Feedback } from "@features/product/ui";
+import { Empty } from "@shared/ui";
 
-const DescriptionTabs: FC = () => {
+import "./DescriptionTabs.scss";
+
+const DescriptionTabs: FC = observer(() => {
 	const [selected, setSelected] = useState("reviews");
+
+	if (!ProductModel.product) {
+		return <Empty icon={""} title="Нет отзывов" />
+	}
 
 	return (
 		<div className="description-tabs">
@@ -18,7 +26,7 @@ const DescriptionTabs: FC = () => {
 			>
 
 				<Tab key="reviews" title="Отзывы">
-					<Review />
+					<Feedback reviews={ProductModel.product.reviews} />
 				</Tab>
 
 				<Tab key="specifications" title="Характеристики">
@@ -27,6 +35,6 @@ const DescriptionTabs: FC = () => {
 			</Tabs>
 		</div>
 	);
-};
+});
 
 export { DescriptionTabs };
