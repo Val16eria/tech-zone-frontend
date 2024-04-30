@@ -40,7 +40,7 @@ const Feedback: FC<IReview> = ({ reviews }) => {
 	const displayStars = (rating: number) => {
 		const stars: ReactElement[] = [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
 
-		for (let i = 0; i < Math.floor(rating); i++) {
+		for (let i = 0; i < rating; i++) {
 			stars[i] = fullStar;
 		}
 
@@ -63,7 +63,9 @@ const Feedback: FC<IReview> = ({ reviews }) => {
 										height={32}
 										alt="user image"
 									/>
-									<p className="feedback__user_name">{review.user}</p>
+									<p className="feedback__user_name">
+										{review.user !== " " ? review.user : "Неопознанный пользователь"}
+									</p>
 								</div>
 								<div className="feedback__info_rating flex-row">
 									<p className="feedback__rating_date">{review.date_created}</p>

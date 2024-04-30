@@ -66,46 +66,43 @@ class ProductModel {
 	}
 
 	async getProduct(id: number) {
+		let product: ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null;
+
 		try {
 			this._loading = true;
 
 			switch (this._productType) {
 				case "laptop":
-					await getLaptopById(id).then((product) =>
-						this._product = product as ILaptops);
+					this._product = await getLaptopById(id) as ILaptops;
 					break;
 				case "tablet":
-					await getTabletById(id).then((product) =>
-						this._product = product as ITablets);
+					product = await getTabletById(id) as ITablets;
 					break;
 				case "smartphone":
-					await getPhoneById(id).then((product) =>
-						this._product = product as IPhones);
+					product = await getPhoneById(id) as IPhones;
 					break;
 				case "smartwatch":
-					getSmartWatchById(id).then((product) =>
-						this._product = product as ISmartWatches);
+					product = await getSmartWatchById(id) as ISmartWatches;
 					break;
 				case "accessory":
-					await getAccessoryById(id).then((product) =>
-						this._product = product as IAccessories);
+					product = await getAccessoryById(id) as IAccessories;
 					break;
 				default:
-					this._product = null;
+					product = null;
 					break;
 			}
 
 			runInAction(() => {
+				this._product = product;
 				this._loading = false;
-			})
+			});
 		} catch (error: unknown) {
-			this._loading = false;
-
 			runInAction(() => {
+				this._loading = false;
 				if (typeof error === "string") {
 					this._error = error;
 				}
-			})
+			});
 		}
 	}
 }

@@ -1,3 +1,9 @@
 .description-tabs {
 	width: 100%;
+
+	&__specifications {
+		&_list {
+			gap: 40px;
+		}
+	}
 }

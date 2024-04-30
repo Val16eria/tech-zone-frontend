@@ -1,4 +1,8 @@
 .photo-tabs {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
 	&__tabs > div {
 		flex-direction: column;
 		justify-content: space-evenly;
@@ -14,6 +18,28 @@
 			box-shadow: none;
 			border: 2px solid var(--accent-blue);
 			border-radius: 12px;
+		}
+
+		&_img {
+			width: 400px;
+			height: 400px;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.photo-tabs {
+		flex-direction: column-reverse;
+
+		&__tabs > div {
+			flex-direction: row;
+		}
+
+		&__tabs {
+			&_img {
+				width: 250px;
+				height: 250px;
+			}
 		}
 	}
 }

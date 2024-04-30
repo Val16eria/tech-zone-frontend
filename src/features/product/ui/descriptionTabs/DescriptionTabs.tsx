@@ -5,13 +5,15 @@ import { Tabs, Tab } from "@nextui-org/react";
 import ProductModel from "@features/product/model";
 import { Feedback } from "@features/product/ui";
 import { Empty } from "@shared/ui";
+import { SpecificationPhone } from "../specifications";
 
 import "./DescriptionTabs.scss";
 
 const DescriptionTabs: FC = observer(() => {
 	const [selected, setSelected] = useState("reviews");
+	const product = ProductModel.product;
 
-	if (!ProductModel.product) {
+	if (!product) {
 		return <Empty icon={""} title="Нет отзывов" />
 	}
 
@@ -26,11 +28,11 @@ const DescriptionTabs: FC = observer(() => {
 			>
 
 				<Tab key="reviews" title="Отзывы">
-					<Feedback reviews={ProductModel.product.reviews} />
+					<Feedback reviews={product.reviews} />
 				</Tab>
 
 				<Tab key="specifications" title="Характеристики">
-					<p>характеристики</p>
+					{ProductModel.productType === "smartphone" && <SpecificationPhone />}
 				</Tab>
 			</Tabs>
 		</div>

@@ -50,7 +50,7 @@ const Product: FC = observer(() => {
 					</div>
 					<p>Код товара: <b>{id}</b></p>
 				</div>
-				<div className="flex-row items-center gap-5">
+				<div className="product__description">
 					<PhotoTabs photos={product.photos} />
 					<Card className="product__card" shadow="sm">
 						<CardBody className="product__card_body flex-column">
@@ -73,7 +73,7 @@ const Product: FC = observer(() => {
 									)}
 								</div>
 								<div className="product__btns flex-row">
-									<LikeButton product_id={product.id} is_favourite={product.is_favourite}/>
+									<LikeButton product_id={product.id} is_favourite={product.is_favourite} />
 									<CartButton />
 								</div>
 							</div>

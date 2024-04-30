@@ -58,6 +58,7 @@
 
 	&__details_prices {
 		display: flex;
+		flex-wrap: wrap;
 		width: fit-content;
 		text-align: start;
 		align-items: center;

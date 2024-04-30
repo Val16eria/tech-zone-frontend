@@ -15,7 +15,7 @@ interface IProductPhotoTabs {
 
 const PhotoTabs: FC<IProductPhotoTabs> = ({ photos }) => {
 	return (
-		<div className="photo-tabs flex-row">
+		<div className="photo-tabs">
 			<Tabs
 				aria-label="Dinamic tabs"
 				variant="light"
@@ -29,8 +29,7 @@ const PhotoTabs: FC<IProductPhotoTabs> = ({ photos }) => {
 						className="photo-tabs__tabs_tab"
 					>
 						<Image
-							width={400}
-							height={400}
+							className="photo-tabs__tabs_img"
 							src={photo.url}
 						/>
 					</Tab>

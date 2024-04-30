@@ -1,4 +1,11 @@
 .product {
+	&__description {
+		display: flex;
+		flex-direction: row;
+		gap: 20px;
+		align-items: center;
+	}
+
 	&__card {
 		width: 400px;
 		padding: 28px 32px;
@@ -59,5 +66,17 @@
 	&__btns {
 		gap: 16px;
 		align-items: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.product {
+		&__description {
+			flex-direction: column;
+		}
+
+		&__card {
+			width: 100%;
+		}
 	}
 }
