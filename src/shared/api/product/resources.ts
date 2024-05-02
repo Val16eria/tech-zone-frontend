@@ -7,7 +7,7 @@ import {
 	ILaptops,
 	IPhones,
 	ISmartWatches,
-	ITablets
+	ITablets, ITelevisions
 } from "../catalog";
 
 const getProductTypeById = async (id: number): Promise<IProductType> => {
@@ -16,16 +16,15 @@ const getProductTypeById = async (id: number): Promise<IProductType> => {
 	return response.data;
 };
 
-const getProductById = async (id: number): Promise<ILaptops | IPhones | ITablets | ISmartWatches | IAccessories> => {
-	const response =
-		await api.get<ILaptops | IPhones | ITablets | ISmartWatches | IAccessories,
-			AxiosResponse<ILaptops | IPhones | ITablets | ISmartWatches | IAccessories>>(`/products/${id}`);
-	return response.data;
-};
-
 const getLaptopById = async (id: number): Promise<ILaptops> => {
 	const response =
 		await api.get<ILaptops, AxiosResponse<ILaptops>>(`/laptops/${id}`);
+	return response.data;
+};
+
+const getTelevisionById = async (id: number): Promise<ITelevisions> => {
+	const response =
+		await api.get<ITelevisions, AxiosResponse<ITelevisions>>(`/televisions/${id}`);
 	return response.data;
 };
 
@@ -55,7 +54,7 @@ const getAccessoryById = async (id: number): Promise<IAccessories> => {
 
 export {
 	getProductTypeById,
-	getProductById,
+	getTelevisionById,
 	getLaptopById,
 	getTabletById,
 	getPhoneById,

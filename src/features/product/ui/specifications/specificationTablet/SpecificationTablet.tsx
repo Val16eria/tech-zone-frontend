@@ -4,12 +4,12 @@ import { observer } from "mobx-react-lite";
 import { SpecificationItem } from "../specificationItem";
 import { ISpecification } from "../../../lib";
 import ProductModel from "@features/product/model";
-import { IPhones } from "@shared/api";
+import { ITablets } from "@shared/api";
 
-const SpecificationPhone: FC = observer(() => {
-	const product = ProductModel.product as IPhones;
+const SpecificationTablet: FC = observer(() => {
+	const product = ProductModel.product as ITablets;
 
-	const Phone: ISpecification[] = [
+	const Tablet: ISpecification[] = [
 		{
 			title: "Заводские данные о товаре",
 			points: [{
@@ -29,7 +29,7 @@ const SpecificationPhone: FC = observer(() => {
 			title: "Основные характеристики",
 			points: [{
 				label: "Цвет товара",
-				value: product.color_main,
+				value: product.color_main
 			},
 			{
 				label: "Операционная система",
@@ -76,41 +76,26 @@ const SpecificationPhone: FC = observer(() => {
 			}],
 		},
 		{
-			title: "Память и процессор",
+			title: "Камера",
 			points: [{
-				label: "Оперативная память, в ГБ",
-				value: product.memory_ram,
+				label: "Количество основных камер",
+				value: product.number_cameras,
 			},
 			{
-				label: "Встроенная память, в ГБ",
-				value: product.memory,
+				label: "Разрешение основной камеры",
+				value: product.camera_quality,
 			},
 			{
-				label: "Модуль процессора",
-				value: product.processor_model,
+				label: "Разрешение фронтальной камеры",
+				value: product.front_camera_quality,
 			},
 			{
-				label: "Частота процессора",
-				value: product.processor_frequency,
+				label: "Максимальное разрешение записи видео",
+				value: product.video_format,
 			},
 			{
-				label: "Количество ядер процессора",
-				value: product.number_cores,
-			}],
-		},
-		{
-			title: "Размеры",
-			points: [{
-				label: "Высота, в сантиметрах",
-				value: product.width,
-			},
-			{
-				label: "Длина, в сантиметрах",
-				value: product.height,
-			},
-			{
-				label: "Толщина, в сантиметрах",
-				value: product.thickness,
+				label: "Стабилизация видео",
+				value: product.optical_stabilization,
 			}],
 		},
 		{
@@ -120,7 +105,7 @@ const SpecificationPhone: FC = observer(() => {
 				value: product.screen_resolution,
 			},
 			{
-				label: "Диагональ ээкрана, в дюймах",
+				label: "Диагональ экрана, в дюймах",
 				value: product.screen_diagonal,
 			},
 			{
@@ -147,58 +132,61 @@ const SpecificationPhone: FC = observer(() => {
 				value: product.support_lte,
 			},
 			{
-				label: "Стандарт коммуникации",
-				value: product.communication_standard,
-			},
-			{
 				label: "Формат сим-карты",
 				value: product.sim_card_format,
 			},
 			{
-				label: "Количество сим-карт",
-				value: product.sim_card_number,
-			},
-			{
-				label: "Технология звука",
-				value: product.sound_technology,
-			},
-			{
-				label: "Разъем для наушников",
-				value: product.headphone_output,
+				label: "Модуль связи",
+				value: product.communicate_module,
 			}],
 		},
 		{
-			title: "Камера",
+			title: "Память и процессор",
 			points: [{
-				label: "Количество основных ядер",
-				value: product.number_cameras,
+				label: "Оперативная память, в ГБ",
+				value: product.memory_ram,
 			},
 			{
-				label: "Разрешение основной камеры",
-				value: product.camera_quality,
+				label: "Встроенная память, в ГБ",
+				value: product.memory,
 			},
 			{
-				label: "Разрешение фронтальной камеры",
-				value: product.front_camera_quality,
+				label: "Модель процессора",
+				value: product.processor_model,
 			},
 			{
-				label: "Максимальное разрешение записи видео",
-				value: product.video_format,
+				label: "Частота процессора",
+				value: product.processor_frequency,
 			},
 			{
-				label: "Стабилизация видео",
-				value: product.optical_stabilization,
+				label: "Количество ядер процессора",
+				value: product.number_cores,
+			}],
+		},
+		{
+			title: "Размеры",
+			points: [{
+				label: "Высота, в сантиметрах",
+				value: product.height,
+			},
+			{
+				label: "Длина, в сантиметрах",
+				value: product.width,
+			},
+			{
+				label: "Толщина, в сантиметрах",
+				value: product.thickness,
 			}],
 		}
 	];
 
 	return (
 		<div className="gap-10 flex-column">
-			{Phone.map((item) => (
+			{Tablet.map((item) => (
 				<SpecificationItem key={item.title} specification={item} />
 			))}
 		</div>
 	);
 });
 
-export { SpecificationPhone };
+export { SpecificationTablet };

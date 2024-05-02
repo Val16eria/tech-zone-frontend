@@ -45,25 +45,25 @@ const Product: FC = observer(() => {
 			<div className="product">
 				<div className="justify-between flex-row items-center">
 					<div className="flex-row items-center gap-5">
-						<Stars rating={product.average_rating} />
-						<Review reviews={product.reviews_count} />
+						<Stars rating={product.average_rating}/>
+						<Review reviews={product.reviews_count}/>
 					</div>
 					<p>Код товара: <b>{id}</b></p>
 				</div>
 				<div className="product__description">
-					<PhotoTabs photos={product.photos} />
+					<PhotoTabs photos={product.photos}/>
 					<Card className="product__card" shadow="sm">
 						<CardBody className="product__card_body flex-column">
 							<div className="product__body_item flex-column">
-								<Parameter />
-								<Parameter />
+								<Parameter/>
+								<Parameter/>
 							</div>
 							<div className="product__body_item flex-column">
 								<div className="product__body_price flex-row">
 									<div className="flex-column">
 										{!!product.discount && (<p className="product__price_txt">{`${product.price} ₽`}</p>)}
 										<p className="product__discount_txt">
-										{`${discountedPrice(product.price, product.discount) || product.price} ₽`}
+											{`${discountedPrice(product.price, product.discount) || product.price} ₽`}
 										</p>
 									</div>
 									{!!product.discount && (
@@ -73,17 +73,18 @@ const Product: FC = observer(() => {
 									)}
 								</div>
 								<div className="product__btns flex-row">
-									<LikeButton product_id={product.id} is_favourite={product.is_favourite} />
-									<CartButton />
+									<LikeButton product_id={product.id} is_favourite={product.is_favourite}/>
+									<CartButton/>
 								</div>
 							</div>
 						</CardBody>
 					</Card>
 				</div>
-				<DescriptionTabs />
+				<p>{product.description}</p>
+				<DescriptionTabs/>
 			</div>
 		</Section>
 	);
 });
 
-export { Product };
+export {Product};

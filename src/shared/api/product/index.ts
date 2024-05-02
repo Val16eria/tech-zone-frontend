@@ -1,6 +1,6 @@
 export {
 	getProductTypeById,
-	getProductById,
+	getTelevisionById,
 	getLaptopById,
 	getTabletById,
 	getPhoneById,

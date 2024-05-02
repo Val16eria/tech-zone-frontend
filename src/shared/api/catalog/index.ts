@@ -1,4 +1,5 @@
 export {
+	getAllTelevisions,
 	getAllLaptops,
 	getAllTablets,
 	getAllPhones,
@@ -9,6 +10,7 @@ export type {
 	IReviews,
 	IPhotos,
 	IBaseProduct,
+	ITelevisions,
 	ILaptops,
 	ITablets,
 	IPhones,

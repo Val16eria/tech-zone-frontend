@@ -3,6 +3,12 @@ import { AxiosResponse } from "axios";
 import { api } from "../apiAxios.ts";
 import { IBaseProductItems } from "./types.ts";
 
+const getAllTelevisions = async (): Promise<IBaseProductItems> => {
+	const response =
+		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/televisions");
+	return response.data;
+};
+
 const getAllLaptops = async (): Promise<IBaseProductItems> => {
 	const response =
 		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/laptops");
@@ -34,6 +40,7 @@ const getAllAccessories = async (): Promise<IBaseProductItems> => {
 };
 
 export {
+	getAllTelevisions,
 	getAllLaptops,
 	getAllTablets,
 	getAllPhones,

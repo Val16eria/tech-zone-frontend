@@ -15,7 +15,8 @@ import {
 	Phones,
 	SmartWatches,
 	Tablets,
-	Accessories
+	Accessories,
+	Televisions
 } from "@pages/catalog";
 import { Favourites } from "@pages/favourites";
 import { Product } from "@pages/product";
@@ -31,6 +32,7 @@ const Router: FC = () => {
 		<Routes>
 			<Route path="/auth" element={isStatusAuthCode() ? <AuthCode /> : <Auth />} />
 			<Route path="/" element={<Main />} />
+			<Route path="/televisions" element={<Televisions />} />
 			<Route path="/laptops" element={<Laptops />} />
 			<Route path="/tablets" element={<Tablets />} />
 			<Route path="/phones" element={<Phones />} />

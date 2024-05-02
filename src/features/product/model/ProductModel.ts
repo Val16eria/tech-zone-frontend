@@ -5,31 +5,33 @@ import {
 } from "mobx";
 
 import {
+	ITelevisions,
 	ILaptops,
 	ITablets,
 	IPhones,
 	ISmartWatches,
 	IAccessories,
 	getProductTypeById,
+	getTelevisionById,
 	getLaptopById,
 	getTabletById,
 	getPhoneById,
 	getSmartWatchById,
-	getAccessoryById
+	getAccessoryById,
 } from "@shared/api";
 import { TProductType } from "@shared/api/product";
 
 class ProductModel {
 	private _loading: boolean = false;
 	private _productType: TProductType | null = null
-	private _product: ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null = null;
+	private _product: ITelevisions | ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null = null;
 	private _error: string | null = null;
 
 	get loading(): boolean {
 		return this._loading;
 	}
 
-	get product(): ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null {
+	get product(): ITelevisions | ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null {
 		return toJS(this._product);
 	}
 
@@ -66,14 +68,17 @@ class ProductModel {
 	}
 
 	async getProduct(id: number) {
-		let product: ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null;
+		let product: ITelevisions | ILaptops | ITablets | IPhones | ISmartWatches | IAccessories | null;
 
 		try {
 			this._loading = true;
 
 			switch (this._productType) {
+				case "television" :
+					product = await getTelevisionById(id) as ITelevisions;
+					break;
 				case "laptop":
-					this._product = await getLaptopById(id) as ILaptops;
+					product = await getLaptopById(id) as ILaptops;
 					break;
 				case "tablet":
 					product = await getTabletById(id) as ITablets;

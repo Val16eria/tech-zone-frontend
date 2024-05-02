@@ -1,4 +1,5 @@
 export {
+	getAllTelevisions,
 	getAllLaptops,
 	getAllTablets,
 	getAllPhones,
@@ -8,7 +9,7 @@ export {
 export { sendAuthentication, authentication } from "./auth";
 export {
 	getProductTypeById,
-	getProductById,
+	getTelevisionById,
 	getLaptopById,
 	getTabletById,
 	getPhoneById,
@@ -22,6 +23,7 @@ export type {
 	IReviews,
 	IPhotos,
 	IBaseProduct,
+	ITelevisions,
 	ILaptops,
 	ITablets,
 	IPhones,
