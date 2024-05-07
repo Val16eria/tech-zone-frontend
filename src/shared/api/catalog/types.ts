@@ -3,14 +3,21 @@ interface IPhotos {
 	url: string;
 }
 
+interface IReviews {
+	user: string;
+	rating: number;
+	text: string;
+	date_created: string;
+}
+
 interface IBaseProduct {
 	id: number;
-	photos: IPhotos[];
 	name: string;
 	price: number;
 	discount: number;
+	photos: IPhotos[];
 	reviews_count: number;
-	average_rating: number | null;
+	average_rating: number;
 	is_favourite: boolean;
 }
 
@@ -19,35 +26,42 @@ interface IBaseProductItems {
 }
 
 interface IProduct extends IBaseProduct {
+	color_main: string;
+	date_created: string;
 	description: string;
-	length: number;
+	equipment: string;
+	height: number;
+	thickness: number;
 	width: number;
 	weight: number;
-	date_created: string;
-	date_release: string;
-	screen_type: string;
-	screen_diagonal: string;
-	screen_resolution: string;
-	screen_format: string;
-	model: string;
-	operating_system: string;
 	material: string;
-	matrix_frequency: number;
-	matrix_type: string;
-	matrix_brightness: string;
-	matrix_contrast: string;
-	memory: number;
-	memory_ram: number;
-	sound_technology: string;
-	headphone_output: true;
-	color_main: string;
-	color_other: string;
+	model: string;
+	reviews: IReviews[];
+	type: string;
 	id_provider: number;
 	is_active: boolean;
 	quantity: number;
 }
 
-interface ILaptops extends IProduct {
+interface ITechnicalProduct {
+	color_other: string,
+	date_release: string;
+	headphone_output: boolean,
+	memory_ram: number;
+	memory: number;
+	matrix_frequency: number;
+	matrix_type: string;
+	matrix_brightness: string;
+	matrix_contrast: string;
+	screen_type: string;
+	screen_diagonal: string;
+	screen_resolution: string;
+	screen_format: string;
+	sound_technology: string;
+	operating_system: string;
+}
+
+interface ILaptops extends IProduct, ITechnicalProduct {
 	consumption: number;
 	keyboard_layout: string;
 	keyboard_backlight: string;
@@ -68,13 +82,10 @@ interface ILaptops extends IProduct {
 	hdmi_ports: boolean;
 	usb_devices: string;
 	battery_life: number;
+	microphone: boolean;
 }
 
-interface ILaptopsItems {
-	items: ILaptops[];
-}
-
-interface ITablets extends IProduct {
+interface ITablets extends IProduct, ITechnicalProduct {
 	number_cameras: number;
 	camera_quality: string;
 	video_format: string;
@@ -90,19 +101,16 @@ interface ITablets extends IProduct {
 	accumulator_type: string;
 	accumulator_capacity: number;
 	fast_charge: boolean;
+	sensors: string;
+	communicate_module: boolean;
 }
 
-interface ITabletsItems {
-	items: ITablets[];
-}
-
-interface IPhones extends IProduct {
+interface IPhones extends IProduct, ITechnicalProduct {
 	number_cameras: number;
 	camera_quality: string;
 	video_format: string;
 	optical_stabilization: boolean;
 	front_camera_quality: string;
-	operating_system: string;
 	support_lte: boolean;
 	sim_card_format: string;
 	pixel_density: number;
@@ -113,46 +121,53 @@ interface IPhones extends IProduct {
 	accumulator_type: string;
 	accumulator_capacity: number;
 	fast_charge: boolean;
+	communication_standard: string;
+	sim_card_number: string;
+	sensors: string;
 }
 
-interface IPhonesItems extends IProduct {
-	items: IPhones[];
-}
-
-interface ISmartWatches extends IProduct {
+interface ISmartWatches extends IProduct, ITechnicalProduct {
 	material_belt: string;
 	pixel_density: number;
 	degree_protection: string;
 	accumulator_type: string;
 	accumulator_capacity: number;
 	fast_charge: boolean;
+	water_resistance: number;
+	measurements: string;
 }
 
-interface ISmartWatchesItems extends ISmartWatches {
-	items: ISmartWatches[];
+interface ITelevisions extends IProduct, ITechnicalProduct {
+	consumption: number;
+	hdr_support: boolean;
+	angle_view: string;
+	voice_assistant: string;
+	wifi_availability: boolean;
+	wifi_standard: string;
+	sound_power: string;
+	subwoofer: boolean;
+	sound_surround: boolean;
+	codecs: string;
+	hdmi_ports: boolean;
+	hdmi_version: string;
+	usb_ports: string;
+	smartphone_control: boolean
+	management_application: string;
 }
 
 interface IAccessories extends IProduct {
-	color: string;
-	degree_protection: string;
-}
-
-interface IAccessoriesItems extends IAccessories {
-	items: IAccessories[];
+	features: string;
 }
 
 export type {
+	IReviews,
 	IPhotos,
 	IBaseProduct,
 	IBaseProductItems,
+	ITelevisions,
 	ILaptops,
-	ILaptopsItems,
 	ITablets,
-	ITabletsItems,
 	IPhones,
-	IPhonesItems,
 	ISmartWatches,
-	ISmartWatchesItems,
 	IAccessories,
-	IAccessoriesItems
 };

@@ -1,0 +1,15 @@
+.like-button {
+	&__img {
+		width: 32px;
+		height: 32px;
+	}
+}
+
+@media (max-width: 680px) {
+	.like-button {
+		&__img {
+			width: 20px;
+			height: 20px;
+		}
+	}
+}

@@ -1,5 +1,4 @@
-export { Main } from "./main";
-export { NotFound } from "./notFound";
+export { Auth, AuthCode } from "./auth"
 export {
 	Laptops,
 	Tablets,
@@ -7,3 +6,8 @@ export {
 	SmartWatches,
 	Accessories
 } from "./catalog";
+export { Favourites } from "./favourites";
+export { Main } from "./main";
+export { NotFound } from "./notFound";
+export { Policy } from "./policy";
+export { Product } from "./product";

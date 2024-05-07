@@ -1,0 +1,10 @@
+.cart-button {
+	width: 100%;
+}
+
+@media (max-width: 390px) {
+	.cart-button button {
+		padding: 0;
+		height: 32px;
+	}
+}

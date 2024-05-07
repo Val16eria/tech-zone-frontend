@@ -1,0 +1,63 @@
+.feedback {
+	max-width: 759px;
+	gap: 32px;
+
+	&__list {
+		&_item {
+			padding: 20px 0;
+			gap: 12px;
+		}
+	}
+
+	&__item {
+		&_info {
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		&_txt {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 26px;
+			color: var(--dark-blue-text);
+		}
+	}
+
+	&__info {
+		&_user {
+			gap: 12px;
+			align-items: center;
+		}
+
+		&_rating {
+			gap: 8px;
+			align-items: center;
+		}
+	}
+
+	&__user {
+		//&_img {
+		//
+		//}
+
+		&_name {
+			font-weight: 600;
+			font-size: 18px;
+			line-height: 27px;
+			color: var(--dark-blue-text);
+		}
+	}
+
+	&__rating {
+		&_date {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 26px;
+			color: rgba(49, 58, 92, 0.5);
+		}
+
+		&_stars {
+			gap: 8px;
+		}
+	}
+}

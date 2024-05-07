@@ -1,4 +1,5 @@
 export {
+	getAllTelevisions,
 	getAllLaptops,
 	getAllTablets,
 	getAllPhones,
@@ -6,8 +7,10 @@ export {
 	getAllAccessories
 } from "./resources.ts";
 export type {
+	IReviews,
 	IPhotos,
 	IBaseProduct,
+	ITelevisions,
 	ILaptops,
 	ITablets,
 	IPhones,

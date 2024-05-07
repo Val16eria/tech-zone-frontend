@@ -12,9 +12,11 @@ import {
 	getAllAccessories,
 	IBaseProduct
 } from "@shared/api";
+import {getAllTelevisions} from "@shared/api/catalog";
 
 class CatalogModel {
 	private _loading: boolean = false;
+	private _televisions: IBaseProduct[] = [];
 	private _laptops: IBaseProduct[] = [];
 	private _tablets: IBaseProduct[] = [];
 	private _phones: IBaseProduct[] = [];
@@ -24,6 +26,10 @@ class CatalogModel {
 
 	get loading(): boolean {
 		return this._loading;
+	}
+
+	get televisions(): IBaseProduct[] {
+		return toJS(this._televisions);
 	}
 
 	get laptops(): IBaseProduct[] {
@@ -52,6 +58,25 @@ class CatalogModel {
 
 	constructor() {
 		makeAutoObservable(this);
+	}
+
+	async getTelevisions() {
+		try {
+			this._loading = true;
+			const response = await getAllTelevisions();
+			runInAction(() => {
+				this._televisions = response.items;
+				this._loading = false;
+			})
+		} catch (error: unknown) {
+			this._loading = false;
+
+			runInAction(() => {
+				if (typeof error === "string") {
+					this._error = error;
+				}
+			})
+		}
 	}
 
 	async getLaptops() {

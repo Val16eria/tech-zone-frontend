@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import {
@@ -6,17 +6,15 @@ import {
   CardBody,
   CardFooter,
   Image,
-  Button,
 } from "@nextui-org/react";
 
-import FavouritesModel from "@features/favourites/model";
-import { IPhotos } from "@shared/api";
-import { isAuth, wordFormat } from "@shared/lib";
+import { LikeButton } from "@features/favourites/ui";
+import { CartButton } from "@features/cart/ui";
 
-import FavouriteIcon from "@assets/svg/favourite-icon.svg";
-import FavouriteFullIcon from "@assets/svg/favourite-full-icon.svg";
-import StarIcon from "@assets/svg/star.svg";
-import ReviewsIcon from "@assets/svg/review.svg";
+import { IPhotos } from "@shared/api";
+import { discountedPrice } from "@shared/lib";
+import { Review, Stars } from "@shared/ui";
+
 import DefaultImage from "@assets/svg/defaultImage.svg";
 import "./ProductCard.scss";
 
@@ -43,36 +41,9 @@ const ProductCard: FC<IProductCard> = observer((
 		is_favourite
 	}) => {
 	const navigate = useNavigate();
-	const [isLike, setLike] = useState(is_favourite);
 
-	const handleLike = async () => {
-		if (!isAuth()) {
-			navigate("/auth");
-		} else {
-			if (isLike) {
-				FavouritesModel.deleteFavourites(id)
-					.then(() => setLike((prevState) => !prevState));
-			} else {
-				FavouritesModel.addFavourites(id)
-					.then(() => setLike((prevState) => !prevState));
-			}
-		}
-	}
-
-	const discountedPrice = (percent: number) => {
-		if (percent === 0) {
-			return;
-		} else {
-			return Math.floor(price - ((price * percent) / 100));
-		}
-	};
-
-	const averageRating = (rating: number | null) => {
-		if (rating) {
-			return `${average_rating} ${wordFormat(rating, "отзыв", "", "а", "ов")}`;
-		} else {
-			return "нет отзывов"
-		}
+	const redirectToProduct = () => {
+		navigate(`/product/${id}`);
 	};
 
   return (
@@ -93,62 +64,19 @@ const ProductCard: FC<IProductCard> = observer((
 			<CardFooter className="product-card__content flex-column">
 				<div className="product-card__content_product flex-column">
 					<div className="product-card__product_outcome flex-row">
-						<div className="product-card__outcome_container flex-row">
-							<p className="product-card__outcome_txt product-card__outcome_estimation">
-								{reviews_count}
-							</p>
-							<Image
-								width={13}
-								height={13}
-								src={StarIcon}
-								alt="star"
-							/>
-						</div>
-						<div className="product-card__outcome_container flex-row">
-							<Image
-								width={13}
-								height={13}
-								src={ReviewsIcon}
-								alt="review"
-							/>
-							<p className="product-card__outcome_txt product-card__outcome_reviews">
-								{averageRating(average_rating)}
-							</p>
-						</div>
+						<Stars rating={average_rating} />
+						<Review reviews={reviews_count} />
 					</div>
-					<p className="product-card__product_title">{name}</p>
+					<p className="product-card__product_title" onClick={redirectToProduct}>{name}</p>
 					<div className="product-card__product_details flex-row">
 						<div className="product-card__details_prices">
 							{!!discount && <p className="product-card__prices_price">{`${price} ₽`}</p>}
-							<p className="product-card__prices_discount-price">{`${discountedPrice(discount) || price} ₽`}</p>
+							<p className="product-card__prices_discount-price">{`${discountedPrice(price, discount) || price} ₽`}</p>
 						</div>
-						<div className="product-card__details_btn">
-							<Button
-								isIconOnly
-								disableAnimation={true}
-								color="primary"
-								variant="light"
-								aria-label="like"
-								onClick={handleLike}
-							>
-								<Image
-									className="product-card__details_btn-like"
-									src={isLike ? FavouriteFullIcon: FavouriteIcon}
-									alt="favourite"
-								/>
-							</Button>
-						</div>
+						<LikeButton product_id={id} is_favourite={is_favourite} />
 					</div>
 				</div>
-				<div className="product-card__content_btn">
-					<Button
-						color="primary"
-						size="md"
-						fullWidth={true}
-					>
-						В корзину
-					</Button>
-				</div>
+				<CartButton />
 			</CardFooter>
 		</Card>
   );

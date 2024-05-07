@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 
 import { api } from "../apiAxios.ts";
 
-import { IBaseProductItems } from "@shared/api/products/types.ts";
+import { IBaseProductItems } from "../catalog/types.ts";
 
 const getAllFavourites = async (): Promise<IBaseProductItems> => {
 	const response =

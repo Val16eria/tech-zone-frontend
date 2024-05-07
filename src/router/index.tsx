@@ -15,9 +15,11 @@ import {
 	Phones,
 	SmartWatches,
 	Tablets,
-	Accessories
+	Accessories,
+	Televisions
 } from "@pages/catalog";
 import { Favourites } from "@pages/favourites";
+import { Product } from "@pages/product";
 
 const Router: FC = () => {
 	const { pathname } = useLocation();
@@ -30,12 +32,14 @@ const Router: FC = () => {
 		<Routes>
 			<Route path="/auth" element={isStatusAuthCode() ? <AuthCode /> : <Auth />} />
 			<Route path="/" element={<Main />} />
+			<Route path="/televisions" element={<Televisions />} />
 			<Route path="/laptops" element={<Laptops />} />
 			<Route path="/tablets" element={<Tablets />} />
 			<Route path="/phones" element={<Phones />} />
 			<Route path="/smart_watches" element={<SmartWatches />} />
 			<Route path="/accessories" element={<Accessories />} />
 			<Route path="/favourites" element={<Favourites />} />
+			<Route path="/product/:id" element={<Product />} />
 			<Route path="/policy" element={<Policy />} />
 			<Route path="*" element={<NotFound />} />
 		</Routes>
