@@ -9,3 +9,11 @@
 		opacity: 0.5;
 	}
 }
+
+@media (max-width: 968px) {
+	.review {
+		&__txt {
+			font-size: 10px;
+		}
+	}
+}

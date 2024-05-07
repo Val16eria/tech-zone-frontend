@@ -25,19 +25,19 @@ const DescriptionTabs: FC = observer(() => {
 	}
 
 	return (
-		<div className="description-tabs">
+		<div className="description-tabs flex-column">
 			<Tabs
+				className="description-tabs__tab"
 				aria-label="Options"
+				color="primary"
 				selectedKey={selected}
 				variant="underlined"
 				size="lg"
 				onSelectionChange={(select) => setSelected(select.toString())}
 			>
-
-				<Tab key="reviews" title="Отзывы">
+				<Tab key="reviews" title={`Отзывы ${product.reviews.length}`}>
 					<Feedback reviews={product.reviews} />
 				</Tab>
-
 				<Tab key="specifications" title="Характеристики">
 					{ProductModel.productType === "smartphone" && <SpecificationPhone />}
 					{ProductModel.productType === "laptop" && <SpecificationLaptop />}

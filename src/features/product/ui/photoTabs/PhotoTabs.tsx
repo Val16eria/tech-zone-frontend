@@ -7,6 +7,7 @@ import {
 
 import { IPhotos } from "@shared/api";
 
+import DefaultIcon from "@assets/svg/defaultImage.svg";
 import "./PhotoTabs.scss";
 
 interface IProductPhotoTabs {
@@ -14,6 +15,28 @@ interface IProductPhotoTabs {
 }
 
 const PhotoTabs: FC<IProductPhotoTabs> = ({ photos }) => {
+	if (!photos.length) {
+		return (
+			<div className="photo-tabs__tabs_default photo-tabs__tabs_img">
+				<Image
+					radius="none"
+					src={DefaultIcon}
+					width={64}
+					height={64}
+				/>
+			</div>
+		);
+	}
+
+	if (photos.length === 1) {
+		return (
+			<Image
+				className="photo-tabs__tabs_img"
+				src={photos[0].url}
+			/>
+		);
+	}
+
 	return (
 		<div className="photo-tabs">
 			<Tabs

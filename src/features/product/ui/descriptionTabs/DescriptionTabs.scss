@@ -1,5 +1,12 @@
 .description-tabs {
-	width: 100%;
+	&__tab {
+		border-bottom-width: 1px;
+		width: 100%;
+	}
+
+	&__tab > div {
+		padding: 0;
+	}
 
 	&__specifications {
 		&_list {

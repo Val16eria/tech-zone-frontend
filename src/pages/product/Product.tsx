@@ -1,7 +1,15 @@
-import { FC, useEffect } from "react"
+import {
+	FC,
+	useState,
+	useEffect
+} from "react"
 import { useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { Card, CardBody } from "@nextui-org/react";
+import {
+	Link,
+	Card,
+	CardBody
+} from "@nextui-org/react";
 
 import ProductModel from "@features/product/model";
 import {
@@ -25,6 +33,7 @@ const Product: FC = observer(() => {
 
 	const { id } = useParams();
 	const product = ProductModel.product;
+	const [isCropDescription, setCropDescription] = useState(true);
 
 	useEffect(() => {
 		const displayProduct = async () => {
@@ -36,13 +45,17 @@ const Product: FC = observer(() => {
 		displayProduct();
 	}, [id]);
 
+	const toggleDescription = () => {
+		setCropDescription((prevState) => !prevState);
+	}
+
 	if (ProductModel.loading || !product) {
 		return <Loader />
 	}
 
 	return (
 		<Section title={product.name} isBreadcrumbs={true}>
-			<div className="product">
+			<div className="product flex-column">
 				<div className="justify-between flex-row items-center">
 					<div className="flex-row items-center gap-5">
 						<Stars rating={product.average_rating}/>
@@ -50,7 +63,7 @@ const Product: FC = observer(() => {
 					</div>
 					<p>Код товара: <b>{id}</b></p>
 				</div>
-				<div className="product__description">
+				<div className="product__content">
 					<PhotoTabs photos={product.photos}/>
 					<Card className="product__card" shadow="sm">
 						<CardBody className="product__card_body flex-column">
@@ -80,11 +93,23 @@ const Product: FC = observer(() => {
 						</CardBody>
 					</Card>
 				</div>
-				<p>{product.description}</p>
+				<div>
+					<p className={`product__description ${isCropDescription && "product__description_crop"}`}>
+						{product.description}
+					</p>
+					<Link
+						className="product__description_btn"
+						color="primary"
+						size="sm"
+						onClick={toggleDescription}
+					>
+						{isCropDescription ? "Развернуть" : "Свернуть"}
+					</Link>
+				</div>
 				<DescriptionTabs/>
 			</div>
 		</Section>
 	);
 });
 
-export {Product};
+export { Product };
