@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 
-import { api } from "@shared/api/apiAxios.ts";
+import { api } from "../apiAxios.ts";
 import { IProductType } from "./types.ts";
 import {
 	IAccessories,

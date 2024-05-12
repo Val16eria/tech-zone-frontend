@@ -11,7 +11,7 @@ import { Empty } from "@shared/ui";
 import ReviewIcon from "@assets/svg/review-blue-icon.svg";
 import FullStarIcon from "@assets/svg/star.svg";
 import EmptyStarIcon from "@assets/svg/star-line-icon.svg";
-import EmptyUserPhoto from "@assets/svg/empty-user-photo.png";
+import EmptyUserPhoto from "@assets/svg/empty-user-avatar.png";
 import "./Feedback.scss";
 
 interface IReview {

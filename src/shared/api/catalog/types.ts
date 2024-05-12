@@ -17,8 +17,9 @@ interface IBaseProduct {
 	discount: number;
 	photos: IPhotos[];
 	reviews_count: number;
-	average_rating: number;
+	average_rating: number | null;
 	is_favourite: boolean;
+	is_in_cart: boolean;
 }
 
 interface IBaseProductItems {

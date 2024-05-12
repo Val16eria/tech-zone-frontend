@@ -43,4 +43,4 @@ const Section: FC<PropsWithChildren<ISection>> = (
 	);
 };
 
-export {Section};
+export { Section };

@@ -27,6 +27,7 @@ interface IProductCard {
 	reviews_count: number;
 	average_rating: number | null;
 	is_favourite: boolean;
+	is_in_cart: boolean;
 }
 
 const ProductCard: FC<IProductCard> = observer((
@@ -38,7 +39,8 @@ const ProductCard: FC<IProductCard> = observer((
 		discount,
 		reviews_count,
 		average_rating,
-		is_favourite
+		is_favourite,
+		is_in_cart,
 	}) => {
 	const navigate = useNavigate();
 
@@ -76,7 +78,7 @@ const ProductCard: FC<IProductCard> = observer((
 						<LikeButton product_id={id} is_favourite={is_favourite} />
 					</div>
 				</div>
-				<CartButton />
+				<CartButton is_in_cart={is_in_cart} />
 			</CardFooter>
 		</Card>
   );

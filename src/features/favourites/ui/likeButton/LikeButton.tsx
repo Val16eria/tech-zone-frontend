@@ -1,5 +1,6 @@
 import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 import { Button, Image } from "@nextui-org/react";
 
 import FavouritesModel from "../../model";
@@ -14,7 +15,11 @@ interface ILikeButton {
 	is_favourite: boolean;
 }
 
-const LikeButton: FC<ILikeButton> = ({ product_id, is_favourite }) => {
+const LikeButton: FC<ILikeButton> = observer((
+	{
+		product_id,
+		is_favourite ,
+	}) => {
 	const navigate = useNavigate();
 	const [isLike, setLike] = useState(is_favourite);
 
@@ -23,12 +28,11 @@ const LikeButton: FC<ILikeButton> = ({ product_id, is_favourite }) => {
 			navigate("/auth");
 		} else {
 			if (isLike) {
-				FavouritesModel.deleteFavourites(product_id)
-					.then(() => setLike((prevState) => !prevState));
+				await FavouritesModel.deleteFavourites(product_id);
 			} else {
-				FavouritesModel.addFavourites(product_id)
-					.then(() => setLike((prevState) => !prevState));
+				await FavouritesModel.addFavourites(product_id);
 			}
+			setLike(prevState => !prevState);
 		}
 	};
 
@@ -43,11 +47,11 @@ const LikeButton: FC<ILikeButton> = ({ product_id, is_favourite }) => {
 		>
 			<Image
 				className="like-button__img"
-				src={isLike ? FavouriteFullIcon: FavouriteIcon}
+				src={isLike ? FavouriteFullIcon : FavouriteIcon}
 				alt="favourite"
 			/>
 		</Button>
 	);
-};
+});
 
 export { LikeButton };

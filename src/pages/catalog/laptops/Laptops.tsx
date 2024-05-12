@@ -9,9 +9,7 @@ import LaptopIcon from "@assets/svg/laptop-icon.svg";
 const Laptops: FC = observer(() => {
 
 	useEffect(() => {
-		if (!CatalogModel.loading) {
-			CatalogModel.getLaptops();
-		}
+		CatalogModel.getLaptops();
 	}, []);
 
 	return (

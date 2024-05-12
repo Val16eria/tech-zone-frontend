@@ -1,6 +1,10 @@
 import { AxiosError } from "axios";
 
-import { makeAutoObservable, runInAction } from "mobx";
+import {
+	makeAutoObservable,
+	runInAction,
+	toJS
+} from "mobx";
 
 import { sendAuthentication, authentication } from "@shared/api";
 import { IError, setTokensCookie } from "@shared/lib";
@@ -14,7 +18,7 @@ class AuthModel {
 	}
 
 	get error(): string | null {
-		return this._error;
+		return toJS(this._error);
 	}
 
 	constructor() {
@@ -29,32 +33,32 @@ class AuthModel {
 			runInAction(() => {
 				this._loading = false;
 			});
-		} catch (err: unknown) {
+		} catch (error: unknown) {
 			this._loading = false;
-			const error = (err as AxiosError)?.response?.statusText as string;
+			const err = (error as AxiosError)?.response?.data as IError;
 
 			runInAction(() => {
-				this._error = error;
+				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
 			});
 		}
 	}
 
-	async authentication(identifier: string, code: number) {
+	async authentication(email: string, code: number) {
 		try {
 			this._loading = true;
-			const response = await authentication({identifier, code});
+			const response = await authentication({email, code});
 			setTokensCookie(response.token_access, response.token_refresh);
 
 			runInAction(() => {
 				this._loading = false;
 				this._error = null;
 			});
-		} catch (err: unknown) {
+		} catch (error: unknown) {
 			this._loading = false;
-			const error = (err as AxiosError)?.response?.data as IError;
+			const err = (error as AxiosError).response?.data as IError;
 
 			runInAction(() => {
-				this._error = error.detail;
+				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
 			});
 		}
 	}

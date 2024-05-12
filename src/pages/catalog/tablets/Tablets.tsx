@@ -9,9 +9,7 @@ import TabletIcon from "@assets/svg/tablet-icon.svg";
 const Tablets: FC = observer(() => {
 
 	useEffect(() => {
-		if (!CatalogModel.loading) {
-			CatalogModel.getTablets();
-		}
+		CatalogModel.getTablets();
 	}, []);
 
 	return (

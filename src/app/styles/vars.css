@@ -8,8 +8,10 @@
   --danger: #F31260;
   --background-white: #FDFDFD;
   --box-background: #F8F8F8;
-  --dark-blue-text: #313A5C;
+  --dark-blue-text: #2e3036;
   --stroke-gray: rgba(39, 39, 39, 0.1);
   --footer-background: #222639;
   --icon-background: #E7F1FE;
+  --primary-50: #E6F1FE;
+  --stroke-grey: rgba(39, 39, 39, 0.1)
 }

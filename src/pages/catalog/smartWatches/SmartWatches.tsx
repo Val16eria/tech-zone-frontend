@@ -9,9 +9,7 @@ import SmartWatchIcon from "@assets/svg/watch-icon.svg";
 const SmartWatches: FC = observer(() => {
 
 	useEffect(() => {
-		if (!CatalogModel.loading) {
-			CatalogModel.getSmartWatches();
-		}
+		CatalogModel.getSmartWatches();
 	}, []);
 
 	return (
