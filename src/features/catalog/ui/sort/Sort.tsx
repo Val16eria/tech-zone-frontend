@@ -10,7 +10,7 @@ import "./Sort.scss";
 const Sort: FC = () => {
 	const types = [
 		{ label: "По популярности", value: "popular"},
-		{ label: "С самой выоской оценкой", value: "high"},
+		{ label: "С самой высокой оценкой", value: "high"},
 		{ label: "С самой низкой оценкой", value: "low"},
 		{ label: "Сначала дорогое", value: "expensive"},
 		{ label: "Сначала дешевое", value: "cheap"},

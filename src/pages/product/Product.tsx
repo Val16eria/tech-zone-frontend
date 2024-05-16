@@ -87,7 +87,7 @@ const Product: FC = observer(() => {
 								</div>
 								<div className="product__btns flex-row">
 									<LikeButton product_id={product.id} is_favourite={product.is_favourite}/>
-									<CartButton/>
+									<CartButton is_in_cart={product.is_in_cart} />
 								</div>
 							</div>
 						</CardBody>

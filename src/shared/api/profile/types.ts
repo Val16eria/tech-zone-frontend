@@ -1,5 +1,5 @@
 interface IUpdateUserFields {
-	photo?: File;
+	photo?: File | string;
 	last_name?: string;
 	first_name?: string;
 	phone_number?: string;

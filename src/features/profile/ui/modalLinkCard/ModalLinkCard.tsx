@@ -2,18 +2,19 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-	Button,
+	Button, Image,
 	Input,
 	Link,
 	Modal,
 	ModalBody,
 	ModalContent,
 	ModalFooter,
-	ModalHeader
+	ModalHeader, Tooltip
 } from "@nextui-org/react";
 
 import { ModalLinkCardFormData, modalLinkCardSchema } from "../../lib";
 
+import InfoIcon from "@assets/svg/info-icon.svg";
 import "./ModalLinkCard.scss";
 
 interface IModalLinkCard {
@@ -103,6 +104,15 @@ const ModalLinkCard: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 								errorMessage={errors.card_cvv?.message ?? ""}
 								isInvalid={!!errors.card_cvv?.message}
 								maxLength={3}
+								endContent={
+									<Tooltip
+										radius="sm"
+										shadow="lg"
+										content="Три цифры на обороте карты"
+									>
+										<Image src={InfoIcon} alt="cvv icon" />
+									</Tooltip>
+								}
 								{...register("card_cvv")}
 							/>
 						</div>

@@ -61,7 +61,7 @@ const PersonalData: FC = observer(() => {
 
 	const onSubmit = (data: PersonalDataFormData) => {
 		if (!isOpen) {
-			toast.promise(PersonalDataModel.updatePersonalData({...data, photo: file}), {
+			toast.promise(PersonalDataModel.updatePersonalData(file ? {...data, photo: file} : data), {
 				loading: "Загрузка...",
 				success: "Ваши данные успешно сохранены",
 				error: "Ошибка обновления данных. Попробуйте еще раз"
