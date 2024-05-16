@@ -1,5 +1,11 @@
 interface IError {
-	detail: string;
+	detail: [
+		{
+			loc: [string, unknown],
+			msg: string,
+			type: string,
+		}
+	];
 }
 
 interface IBaseItems {

@@ -1,1 +1,1 @@
-export { DescriptionTabs } from "./descriptionTabs.tsx";
+export { DescriptionTabs } from "./DescriptionTabs.tsx";

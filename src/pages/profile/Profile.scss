@@ -1,0 +1,26 @@
+.profile {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	gap: 24px;
+
+	&__tabs {
+		&_tab > span {
+			display: none;
+		}
+
+		&_tab {
+			margin-top: 24px;
+		}
+
+		&_tab > div {
+			font-weight: 600;
+			font-size: 28px;
+			line-height: 42px;
+			color: var(--dark-blue-text);
+		}
+
+		&_tab-inactive {
+			opacity: 0.5;
+		}
+	}
+}

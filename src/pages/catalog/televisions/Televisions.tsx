@@ -9,9 +9,7 @@ import TelevisionIcon from "@assets/svg/tv-icon.svg";
 const Televisions: FC = observer(() => {
 
 	useEffect(() => {
-		if (!CatalogModel.loading) {
-			CatalogModel.getTelevisions();
-		}
+		CatalogModel.getTelevisions();
 	}, []);
 
 	return (

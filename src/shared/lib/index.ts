@@ -11,6 +11,7 @@ export {
 	getTypeAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,
+	clearTyeAuth,
 	clearStatusAuthCode,
 	setTokensCookie,
 	getRefreshTokenCookie,

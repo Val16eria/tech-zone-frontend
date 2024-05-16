@@ -7,7 +7,7 @@ interface IEmail {
 }
 
 interface IAuthentication {
-	identifier: string;
+	email: string;
 	code: number;
 }
 

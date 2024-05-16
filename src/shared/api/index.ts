@@ -17,6 +17,11 @@ export {
 	getAccessoryById
 } from "./product";
 export { getAllFavourites } from "./favourites";
+export {
+	getUser,
+	updateUser,
+	deleteUser
+} from "./profile";
 
 export type { IProductType, TProductType } from "./product";
 export type {
@@ -30,3 +35,4 @@ export type {
 	ISmartWatches,
 	IAccessories
 } from "./catalog";
+export type { IUser, IUpdateUserFields } from "./profile";

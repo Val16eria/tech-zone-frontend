@@ -7,12 +7,10 @@ import CatalogModel from "@features/catalog/model";
 import PhoneIcon from "@assets/svg/smartphone-icon.svg";
 
 const Phones: FC = observer(() => {
-
 	useEffect(() => {
-		if (!CatalogModel.loading) {
-			CatalogModel.getPhones();
-		}
+		CatalogModel.getPhones();
 	}, []);
+
 
 	return (
 		<Catalog

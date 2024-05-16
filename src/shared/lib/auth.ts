@@ -8,6 +8,10 @@ const getTypeAuth = () => {
 	return localStorage.getItem("email");
 };
 
+const clearTyeAuth = () => {
+	localStorage.removeItem("email");
+}
+
 const setStatusAuthCode = () => {
 	localStorage.setItem("sentCode", "true");
 };
@@ -55,6 +59,7 @@ export {
 	getTypeAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,
+	clearTyeAuth,
 	clearStatusAuthCode,
 	setTokensCookie,
 	getAccessTokenCookie,

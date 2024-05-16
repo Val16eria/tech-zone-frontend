@@ -1,5 +1,10 @@
-import { FC, useState } from "react";
+import {
+	FC,
+	useEffect,
+	useState
+} from "react";
 import { useLocation } from "react-router-dom";
+import { observer } from "mobx-react-lite";
 import {
 	Badge,
 	Divider,
@@ -19,10 +24,17 @@ import { catalogItems, navbarItems } from "../../lib";
 import { Logo } from "@shared/ui";
 
 import "./TopHeader.scss";
+import FavouritesModel from "@features/favourites/model";
 
-const TopHeader: FC = () => {
+const TopHeader: FC = observer(() => {
 	const { pathname } = useLocation();
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+	const { favourites } = FavouritesModel;
+
+	useEffect(() => {
+		FavouritesModel.getFavourites();
+	}, [favourites.length]);
 
 	return (
 		<Navbar
@@ -48,17 +60,12 @@ const TopHeader: FC = () => {
 					{navbarItems.map((item) => (
 						<NavbarItem key={item.id}>
 							<Link className="top-header__link flex-column" href={item.path}>
-								{
-									item.type === "cart" || item.type === "favourites" ?
-										<Badge content="5" color="primary" size="md">
-											<Image
-												radius="none"
-												width={24}
-												height={24}
-												src={item.icon}
-												alt={item.title}
-											/>
-										</Badge> :
+								{item.type === "favourites" && (
+									<Badge
+										content={favourites.length}
+										color="primary"
+										size="md"
+									>
 										<Image
 											radius="none"
 											width={24}
@@ -66,7 +73,32 @@ const TopHeader: FC = () => {
 											src={item.icon}
 											alt={item.title}
 										/>
-								}
+									</Badge>
+								)}
+								{item.type === "cart" && (
+									<Badge
+										content={undefined}
+										color="primary"
+										size="md"
+									>
+										<Image
+											radius="none"
+											width={24}
+											height={24}
+											src={item.icon}
+											alt={item.title}
+										/>
+									</Badge>
+								)}
+								{item.type !== "cart" && item.type !== "favourites" && (
+									<Image
+										radius="none"
+										width={24}
+										height={24}
+										src={item.icon}
+										alt={item.title}
+									/>
+								)}
 								<p className={`top-header__link_txt ${item.path === pathname && "isActive"}`}>
 									{item.title}
 								</p>
@@ -130,7 +162,7 @@ const TopHeader: FC = () => {
 			</NavbarMenu>
 		</Navbar>
 	);
-};
+});
 
 export { TopHeader };
 
