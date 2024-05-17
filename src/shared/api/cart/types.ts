@@ -10,4 +10,13 @@ interface ICartItem {
 	items: ICart[];
 }
 
-export type { ICart, ICartItem };
+interface IUpdateCart {
+	id_product: number;
+	quantity: number;
+}
+
+export type {
+	ICart,
+	ICartItem,
+	IUpdateCart
+};

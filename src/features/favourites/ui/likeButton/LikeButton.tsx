@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import { Button, Image } from "@nextui-org/react";
@@ -8,31 +8,25 @@ import { isAuth } from "@shared/lib";
 
 import FavouriteFullIcon from "@assets/svg/favourite-full-icon.svg";
 import FavouriteIcon from "@assets/svg/favourite-icon.svg";
-import "./LikeButton.scss";
 
 interface ILikeButton {
 	product_id: number;
 	is_favourite: boolean;
 }
 
-const LikeButton: FC<ILikeButton> = observer((
-	{
-		product_id,
-		is_favourite ,
-	}) => {
+const LikeButton: FC<ILikeButton> = observer(({ product_id, is_favourite }) => {
 	const navigate = useNavigate();
-	const [isLike, setLike] = useState(is_favourite);
 
 	const handleLike = async () => {
 		if (!isAuth()) {
 			navigate("/auth");
 		} else {
-			if (isLike) {
+			if (is_favourite) {
 				await FavouritesModel.deleteFavourites(product_id);
 			} else {
 				await FavouritesModel.addFavourites(product_id);
 			}
-			setLike(prevState => !prevState);
+			await FavouritesModel.getFavourites();
 		}
 	};
 
@@ -46,8 +40,8 @@ const LikeButton: FC<ILikeButton> = observer((
 			onClick={handleLike}
 		>
 			<Image
-				className="like-button__img"
-				src={isLike ? FavouriteFullIcon : FavouriteIcon}
+				className="small-action-btn"
+				src={is_favourite ? FavouriteFullIcon : FavouriteIcon}
 				alt="favourite"
 			/>
 		</Button>

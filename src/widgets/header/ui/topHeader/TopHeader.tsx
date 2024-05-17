@@ -22,6 +22,7 @@ import {
 import { Search } from "../search";
 import { catalogItems, navbarItems } from "../../lib";
 import FavouritesModel from "@features/favourites/model";
+import CartModel from "@features/cart/model";
 import { Logo } from "@shared/ui";
 
 import "./TopHeader.scss";
@@ -31,10 +32,12 @@ const TopHeader: FC = observer(() => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const { favourites } = FavouritesModel;
+	const { cart } = CartModel;
 
 	useEffect(() => {
 		FavouritesModel.getFavourites();
-	}, [favourites.length]);
+		CartModel.getCart();
+	}, [favourites.length, cart.length]);
 
 	return (
 		<Navbar
@@ -77,7 +80,7 @@ const TopHeader: FC = observer(() => {
 								)}
 								{item.type === "cart" && (
 									<Badge
-										content={undefined}
+										content={cart.length ? cart.length : undefined }
 										color="primary"
 										size="md"
 									>

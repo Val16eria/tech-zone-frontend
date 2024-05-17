@@ -20,7 +20,7 @@ import "./ProductCard.scss";
 
 interface IProductCard {
 	id: number;
-	photos: IPhotos[];
+	photos: IPhotos[] | null;
 	name: string;
 	price: number;
 	discount: number;
@@ -57,6 +57,7 @@ const ProductCard: FC<IProductCard> = observer((
 			<CardBody className={`product-card__body ${!photos?.length && "product-card__body_default-img"}`}>
 				<div className="product-card__body_img">
 					<Image
+						className="product-card__body_img"
 						src={photos?.length ? photos[0].url : DefaultImage}
 						radius="none"
 						alt={name}
@@ -78,7 +79,7 @@ const ProductCard: FC<IProductCard> = observer((
 						<LikeButton product_id={id} is_favourite={is_favourite} />
 					</div>
 				</div>
-				<CartButton is_in_cart={is_in_cart} />
+				<CartButton is_in_cart={is_in_cart} id_product={id} />
 			</CardFooter>
 		</Card>
   );

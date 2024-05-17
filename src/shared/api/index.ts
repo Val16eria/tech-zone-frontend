@@ -1,6 +1,11 @@
 export { sendAuthentication, authentication } from "./auth";
 
-export { getAllCart } from "./cart";
+export {
+	getAllCart,
+	addProductInCart,
+	deleteProductInCart,
+	updateProductCart
+} from "./cart";
 export type { ICart } from "./cart";
 
 export {

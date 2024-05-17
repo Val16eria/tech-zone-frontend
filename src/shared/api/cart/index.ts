@@ -1,2 +1,11 @@
-export { getAllCart } from "./resources.ts";
-export type { ICartItem, ICart } from "./types.ts";
+export {
+	getAllCart,
+	addProductInCart,
+	deleteProductInCart,
+	updateProductCart
+} from "./resources.ts";
+export type {
+	ICartItem,
+	ICart,
+	IUpdateCart
+} from "./types.ts";

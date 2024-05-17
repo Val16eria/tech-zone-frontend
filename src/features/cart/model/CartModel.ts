@@ -5,7 +5,13 @@ import {
 	toJS
 } from "mobx";
 
-import { getAllCart, ICart } from "@shared/api";
+import {
+	getAllCart,
+	addProductInCart,
+	deleteProductInCart,
+	updateProductCart,
+	ICart
+} from "@shared/api";
 import { IError } from "@shared/lib";
 
 class CartModel {
@@ -36,6 +42,63 @@ class CartModel {
 
 			runInAction(() => {
 				this._cart = response.items;
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			const err = (error as AxiosError).response?.data as IError;
+
+			runInAction(() => {
+				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
+			});
+		}
+	}
+
+	async addProduct(id: number) {
+		try {
+			this._loading = true;
+			await addProductInCart({ id_product: id });
+
+			runInAction(() => {
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			const err = (error as AxiosError).response?.data as IError;
+
+			runInAction(() => {
+				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
+			});
+		}
+	}
+
+	async deleteProduct(id: number) {
+		try {
+			this._loading = true;
+			await deleteProductInCart(id);
+
+			runInAction(() => {
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			const err = (error as AxiosError).response?.data as IError;
+
+			runInAction(() => {
+				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
+			});
+		}
+	}
+
+	async updateCart(quantity: number, id_product: number) {
+		try {
+			this._loading = true;
+			await updateProductCart({ quantity }, id_product);
+
+			runInAction(() => {
 				this._loading = false;
 			});
 		} catch (error: unknown) {

@@ -5,25 +5,17 @@ import { Divider } from "@nextui-org/react";
 import CartModel from "@features/cart/model";
 import { CartProduct } from "@features/cart/ui";
 import { WithAuth } from "@shared/hoc";
-import {
-	Empty,
-	Loader,
-	Section
-} from "@shared/ui";
+import { Empty, Section } from "@shared/ui";
 
 import CartIcon from "@assets/svg/cart-icon.svg";
 import "./Cart.scss";
 
 const Cart: FC = WithAuth(observer(() => {
-	const { cart, loading } = CartModel;
+	const { cart } = CartModel;
 
 	useEffect(() => {
 		CartModel.getCart();
 	}, []);
-
-	if (loading) {
-		return <Loader />;
-	}
 
 	return (
 		<Section
@@ -54,4 +46,4 @@ const Cart: FC = WithAuth(observer(() => {
 	);
 }));
 
-export {Cart};
+export { Cart };

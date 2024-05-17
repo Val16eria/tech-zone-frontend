@@ -1,0 +1,16 @@
+.quantity-button {
+	align-items: center;
+	gap: 20px;
+
+	&__btn {
+		width: 32px;
+		height: 32px;
+	}
+
+	&__count {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 26px;
+		color: var(--dark-blue-text);
+	}
+}

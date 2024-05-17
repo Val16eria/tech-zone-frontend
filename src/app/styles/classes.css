@@ -16,6 +16,11 @@
   color: var(--accent-blue);
 }
 
+.small-action-btn {
+  width: 32px;
+  height: 32px;
+}
+
 @media (max-width: 1024px) {
   .custom-container {
     padding-left: 70px;
@@ -27,6 +32,13 @@
   .custom-container {
     padding-left: 30px;
     padding-right: 30px;
+  }
+}
+
+@media (max-width: 680px) {
+  .small-action-btn {
+    width: 20px;
+    height: 20px;
   }
 }
 

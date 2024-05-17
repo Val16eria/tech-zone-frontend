@@ -4,7 +4,6 @@ import { observer } from "mobx-react-lite";
 import FavouritesModel from "@features/favourites/model";
 import {
 	Empty,
-	Loader,
 	ProductCard,
 	Section
 } from "@shared/ui";
@@ -14,15 +13,11 @@ import FavouritesIcon from "@assets/svg/favourite-icon.svg";
 import "./Favourites.scss";
 
 const Favourites: FC = WithAuth(observer(() => {
-	const { favourites, loading } = FavouritesModel;
+	const { favourites } = FavouritesModel;
 
 	useEffect(() => {
 		FavouritesModel.getFavourites();
 	}, []);
-
-	if (loading) {
-		return <Loader />;
-	}
 
 	return (
 		<Section title="Избранное" isBreadcrumbs={true}>
