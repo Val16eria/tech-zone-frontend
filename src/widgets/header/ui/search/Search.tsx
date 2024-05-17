@@ -17,7 +17,11 @@ const Search: FC = () => {
       placeholder="Поиск по сайту"
       className="search"
       endContent={
-        <Button className="search__icon" isIconOnly color="primary">
+        <Button
+          className="search__icon"
+          isIconOnly
+          color="primary"
+        >
           <Image
             radius="none"
             src={SearchIcon}

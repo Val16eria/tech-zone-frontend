@@ -21,10 +21,10 @@ import {
 
 import { Search } from "../search";
 import { catalogItems, navbarItems } from "../../lib";
+import FavouritesModel from "@features/favourites/model";
 import { Logo } from "@shared/ui";
 
 import "./TopHeader.scss";
-import FavouritesModel from "@features/favourites/model";
 
 const TopHeader: FC = observer(() => {
 	const { pathname } = useLocation();
@@ -62,7 +62,7 @@ const TopHeader: FC = observer(() => {
 							<Link className="top-header__link flex-column" href={item.path}>
 								{item.type === "favourites" && (
 									<Badge
-										content={favourites.length}
+										content={favourites.length ? favourites.length : undefined}
 										color="primary"
 										size="md"
 									>

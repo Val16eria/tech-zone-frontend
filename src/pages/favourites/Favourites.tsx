@@ -11,7 +11,6 @@ import {
 import { WithAuth } from "@shared/hoc";
 
 import FavouritesIcon from "@assets/svg/favourite-icon.svg";
-
 import "./Favourites.scss";
 
 const Favourites: FC = WithAuth(observer(() => {

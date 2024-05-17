@@ -1,0 +1,36 @@
+.cart-product {
+	align-items: center;
+	gap: 20px;
+	max-width: 610px;
+	max-height: 150px;
+	width: 100%;
+	height: 100%;
+
+	&__content {
+		justify-content: space-between;
+		gap: 32px;
+
+		&_item {
+			justify-content: space-between;
+			align-items: flex-start;
+			gap: 126px;
+		}
+	}
+
+	&__item {
+		&_title {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 26px;
+			color: var(--dark-blue-text);
+		}
+
+		&_price {
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+			color: #464455;
+			flex-shrink: 0;
+		}
+	}
+}

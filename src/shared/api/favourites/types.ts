@@ -1,4 +1,4 @@
-import { IBaseProduct } from "@shared/api";
+import { IBaseProduct } from "../catalog";
 
 interface IFavourites {
 	product: IBaseProduct;

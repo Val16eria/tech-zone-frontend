@@ -1,3 +1,8 @@
+export { sendAuthentication, authentication } from "./auth";
+
+export { getAllCart } from "./cart";
+export type { ICart } from "./cart";
+
 export {
 	getAllTelevisions,
 	getAllLaptops,
@@ -6,24 +11,6 @@ export {
 	getAllSmartWatches,
 	getAllAccessories,
 } from "./catalog";
-export { sendAuthentication, authentication } from "./auth";
-export {
-	getProductTypeById,
-	getTelevisionById,
-	getLaptopById,
-	getTabletById,
-	getPhoneById,
-	getSmartWatchById,
-	getAccessoryById
-} from "./product";
-export { getAllFavourites } from "./favourites";
-export {
-	getUser,
-	updateUser,
-	deleteUser
-} from "./profile";
-
-export type { IProductType, TProductType } from "./product";
 export type {
 	IReviews,
 	IPhotos,
@@ -35,4 +22,28 @@ export type {
 	ISmartWatches,
 	IAccessories
 } from "./catalog";
+
+export {
+	getAllFavourites,
+	addFavouriteProduct,
+	deleteFavouriteProduct
+} from "./favourites";
+export type { IFavourites } from "./favourites";
+
+export {
+	getProductTypeById,
+	getTelevisionById,
+	getLaptopById,
+	getTabletById,
+	getPhoneById,
+	getSmartWatchById,
+	getAccessoryById
+} from "./product";
+export type { IProductType, TProductType } from "./product";
+
+export {
+	getUser,
+	updateUser,
+	deleteUser
+} from "./profile";
 export type { IUser, IUpdateUserFields } from "./profile";

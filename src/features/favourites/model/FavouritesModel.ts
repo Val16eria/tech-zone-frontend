@@ -1,16 +1,16 @@
+import { AxiosError } from "axios";
 import {
 	makeAutoObservable,
 	runInAction,
 	toJS
 } from "mobx";
 
-import { getAllFavourites } from "@shared/api";
 import {
+	getAllFavourites,
 	addFavouriteProduct,
 	deleteFavouriteProduct,
 	IFavourites
-} from "@shared/api/favourites";
-import { AxiosError } from "axios";
+} from "@shared/api";
 import { IError } from "@shared/lib";
 
 class FavouritesModel {
