@@ -1,4 +1,5 @@
 export { Auth, AuthCode } from "./auth"
+export { Cart } from "./cart";
 export {
 	Laptops,
 	Tablets,

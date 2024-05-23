@@ -1,29 +1,19 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { observer } from "mobx-react-lite";
 
 import FavouritesModel from "@features/favourites/model";
 import {
 	Empty,
-	Loader,
 	ProductCard,
 	Section
 } from "@shared/ui";
 import { WithAuth } from "@shared/hoc";
 
 import FavouritesIcon from "@assets/svg/favourite-icon.svg";
-
 import "./Favourites.scss";
 
 const Favourites: FC = WithAuth(observer(() => {
-	const { favourites, loading } = FavouritesModel;
-
-	useEffect(() => {
-		FavouritesModel.getFavourites();
-	}, []);
-
-	if (loading) {
-		return <Loader />;
-	}
+	const { favourites } = FavouritesModel;
 
 	return (
 		<Section title="Избранное" isBreadcrumbs={true}>

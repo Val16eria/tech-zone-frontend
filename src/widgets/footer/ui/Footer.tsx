@@ -21,7 +21,7 @@ const Footer: FC = () => {
                     key={section.id}
                     size="sm"
                     className="footer__column_item"
-                    href={"path" in section ? section.path : undefined}
+                    href={section.path}
                   >
                     {section.title}
                   </Link>

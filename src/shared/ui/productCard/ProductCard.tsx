@@ -20,7 +20,7 @@ import "./ProductCard.scss";
 
 interface IProductCard {
 	id: number;
-	photos: IPhotos[];
+	photos: IPhotos[] | null;
 	name: string;
 	price: number;
 	discount: number;
@@ -39,8 +39,6 @@ const ProductCard: FC<IProductCard> = observer((
 		discount,
 		reviews_count,
 		average_rating,
-		is_favourite,
-		is_in_cart,
 	}) => {
 	const navigate = useNavigate();
 
@@ -57,6 +55,7 @@ const ProductCard: FC<IProductCard> = observer((
 			<CardBody className={`product-card__body ${!photos?.length && "product-card__body_default-img"}`}>
 				<div className="product-card__body_img">
 					<Image
+						className="product-card__body_img"
 						src={photos?.length ? photos[0].url : DefaultImage}
 						radius="none"
 						alt={name}
@@ -69,16 +68,18 @@ const ProductCard: FC<IProductCard> = observer((
 						<Stars rating={average_rating} />
 						<Review reviews={reviews_count} />
 					</div>
-					<p className="product-card__product_title" onClick={redirectToProduct}>{name}</p>
+					<p className="product-card__product_title line-2" onClick={redirectToProduct}>{name}</p>
 					<div className="product-card__product_details flex-row">
 						<div className="product-card__details_prices">
 							{!!discount && <p className="product-card__prices_price">{`${price} ₽`}</p>}
-							<p className="product-card__prices_discount-price">{`${discountedPrice(price, discount) || price} ₽`}</p>
+							<p className="product-card__prices_discount-price">
+								{`${discountedPrice(price, discount) || price} ₽`}
+							</p>
 						</div>
-						<LikeButton product_id={id} is_favourite={is_favourite} />
+						<LikeButton id_product={id} />
 					</div>
 				</div>
-				<CartButton is_in_cart={is_in_cart} />
+				<CartButton id_product={id} />
 			</CardFooter>
 		</Card>
   );

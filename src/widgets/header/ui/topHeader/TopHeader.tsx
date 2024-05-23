@@ -21,20 +21,27 @@ import {
 
 import { Search } from "../search";
 import { catalogItems, navbarItems } from "../../lib";
+import FavouritesModel from "@features/favourites/model";
+import CartModel from "@features/cart/model";
 import { Logo } from "@shared/ui";
 
 import "./TopHeader.scss";
-import FavouritesModel from "@features/favourites/model";
 
 const TopHeader: FC = observer(() => {
 	const { pathname } = useLocation();
-	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isMenuOpen, setMenuOpen] = useState(false);
 
 	const { favourites } = FavouritesModel;
+	const { cart } = CartModel;
 
 	useEffect(() => {
 		FavouritesModel.getFavourites();
-	}, [favourites.length]);
+		CartModel.getCart();
+	}, [favourites.length, cart.length]);
+
+	const closeMenu = () => {
+		setMenuOpen(false);
+	};
 
 	return (
 		<Navbar
@@ -43,7 +50,7 @@ const TopHeader: FC = observer(() => {
 			className="top-header"
 			isMenuOpen={isMenuOpen}
 			isBlurred={false}
-			onMenuOpenChange={setIsMenuOpen}
+			onMenuOpenChange={setMenuOpen}
 		>
 			<NavbarBrand>
 				<Logo mode="light" />
@@ -62,7 +69,7 @@ const TopHeader: FC = observer(() => {
 							<Link className="top-header__link flex-column" href={item.path}>
 								{item.type === "favourites" && (
 									<Badge
-										content={favourites.length}
+										content={favourites.length ? favourites.length : undefined}
 										color="primary"
 										size="md"
 									>
@@ -77,7 +84,7 @@ const TopHeader: FC = observer(() => {
 								)}
 								{item.type === "cart" && (
 									<Badge
-										content={undefined}
+										content={cart.length ? cart.length : undefined }
 										color="primary"
 										size="md"
 									>
@@ -113,7 +120,7 @@ const TopHeader: FC = observer(() => {
 				className="md:hidden"
 			/>
 
-			<NavbarMenu>
+			<NavbarMenu className="z-50">
 				<div className="top-header__menu flex-column">
 					{navbarItems.map((item) => (
 						<NavbarMenuItem key={item.id}>
@@ -121,6 +128,7 @@ const TopHeader: FC = observer(() => {
 								className="top-header__menu-link"
 								color="foreground"
 								href={item.path}
+								onClick={closeMenu}
 							>
 								<Image
 									radius="none"
@@ -139,11 +147,12 @@ const TopHeader: FC = observer(() => {
 					<Divider className="divider" />
 
 					{catalogItems.map((item) => (
-						<NavbarItem key={item.id}>
+						<NavbarMenuItem key={item.id}>
 							<Link
 								className="top-header__menu-link flex-row"
 								color="foreground"
 								href={item.path}
+								onClick={closeMenu}
 							>
 								<Image
 									radius="none"
@@ -156,7 +165,7 @@ const TopHeader: FC = observer(() => {
 									{item.title}
 								</p>
 							</Link>
-						</NavbarItem>
+						</NavbarMenuItem>
 					))}
 				</div>
 			</NavbarMenu>

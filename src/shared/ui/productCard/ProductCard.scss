@@ -42,11 +42,7 @@
 		font-weight: 500;
 		font-size: 16px;
 		line-height: 26px;
-		overflow: hidden;
 		cursor: pointer;
-		display: -webkit-box;
-		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
 		color: var(--dark-blue-text);
 	}
 
@@ -59,7 +55,7 @@
 	&__details_prices {
 		display: flex;
 		flex-wrap: wrap;
-		width: fit-content;
+		width: min-content;
 		text-align: start;
 		align-items: center;
 		gap: 4px;
@@ -76,6 +72,7 @@
 		line-height: 26px;
 		text-decoration: line-through;
 		color: var(--dark-blue-text);
+		flex-shrink: 0;
 		opacity: 0.5;
 	}
 
@@ -85,6 +82,7 @@
 		font-size: 20px;
 		line-height: 30px;
 		color: #464455;
+		flex-shrink: 0;
 	}
 }
 

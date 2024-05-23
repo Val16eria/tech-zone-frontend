@@ -4,7 +4,9 @@ interface IPhotos {
 }
 
 interface IReviews {
+	id: number;
 	user: string;
+	photo_url: string;
 	rating: number;
 	text: string;
 	date_created: string;
@@ -15,7 +17,7 @@ interface IBaseProduct {
 	name: string;
 	price: number;
 	discount: number;
-	photos: IPhotos[];
+	photos: IPhotos[] | null
 	reviews_count: number;
 	average_rating: number | null;
 	is_favourite: boolean;

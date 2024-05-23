@@ -1,0 +1,17 @@
+.quantity-button {
+	align-items: center;
+	gap: 20px;
+
+	&__count {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 26px;
+		color: var(--dark-blue-text);
+	}
+}
+
+@media (max-width: 628px) {
+	.quantity-button {
+		gap: 10px;
+	}
+}

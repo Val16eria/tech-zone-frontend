@@ -11,11 +11,11 @@ import DefaultIcon from "@assets/svg/defaultImage.svg";
 import "./PhotoTabs.scss";
 
 interface IProductPhotoTabs {
-	photos: IPhotos[];
+	photos: IPhotos[] | null;
 }
 
 const PhotoTabs: FC<IProductPhotoTabs> = ({ photos }) => {
-	if (!photos.length) {
+	if (!photos || !photos.length) {
 		return (
 			<div className="photo-tabs__tabs_default photo-tabs__tabs_img">
 				<Image

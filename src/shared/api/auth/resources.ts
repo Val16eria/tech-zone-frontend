@@ -10,19 +10,19 @@ import {
 
 const sendAuthentication = async (dto: IEmail): Promise<IStatus> => {
 	const response =
-		await api.post<IStatus, AxiosResponse<IStatus>>("/users/send-authentication-code/", {...dto});
+		await api.post<IStatus, AxiosResponse<IStatus>>("/users/send-authentication-code", {...dto});
 	return response.data;
 };
 
 const authentication = async (dto: IAuthentication): Promise<ITokens> => {
 	const response =
-		await api.post<ITokens, AxiosResponse<ITokens>>("/users/authentication/", {...dto});
+		await api.post<ITokens, AxiosResponse<ITokens>>("/users/authentication", {...dto});
 	return response.data;
 };
 
 const validToken = async (dto: { token_refresh: string }): Promise<ITokens> => {
 	const response =
-		await api.post<ITokens, AxiosResponse<ITokens>>("/users/valid-token/", {...dto});
+		await api.post<ITokens, AxiosResponse<ITokens>>("/users/valid-token", {...dto});
 	return response.data;
 };
 

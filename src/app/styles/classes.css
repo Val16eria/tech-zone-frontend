@@ -16,6 +16,19 @@
   color: var(--accent-blue);
 }
 
+.small-action-btn {
+  min-width: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.line-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 @media (max-width: 1024px) {
   .custom-container {
     padding-left: 70px;
@@ -27,6 +40,13 @@
   .custom-container {
     padding-left: 30px;
     padding-right: 30px;
+  }
+}
+
+@media (max-width: 680px) {
+  .small-action-btn {
+    width: 24px;
+    height: 24px;
   }
 }
 

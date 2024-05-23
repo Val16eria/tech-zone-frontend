@@ -6,24 +6,25 @@ import {
 } from "mobx";
 
 import {
-	getAllFavourites,
-	addFavouriteProduct,
-	deleteFavouriteProduct,
-	IFavourites
+	getAllCart,
+	addProductInCart,
+	deleteProductInCart,
+	updateProductCart,
+	ICart
 } from "@shared/api";
 import { IError } from "@shared/lib";
 
-class FavouritesModel {
+class CartModel {
 	private _loading: boolean = false;
-	private _favourites: IFavourites[] = [];
+	private _cart: ICart[] = [];
 	private _error: string | null = null;
 
 	get loading(): boolean {
 		return this._loading;
 	}
 
-	get favourites(): IFavourites[] {
-		return toJS(this._favourites);
+	get cart(): ICart[] {
+		return toJS(this._cart);
 	}
 
 	get error(): string | null {
@@ -34,13 +35,13 @@ class FavouritesModel {
 		makeAutoObservable(this);
 	}
 
-	async getFavourites() {
+	async getCart() {
 		try {
 			this._loading = true;
-			const response = await getAllFavourites();
+			const response = await getAllCart();
 
 			runInAction(() => {
-				this._favourites = response.items;
+				this._cart = response.items;
 				this._loading = false;
 			});
 		} catch (error: unknown) {
@@ -54,46 +55,62 @@ class FavouritesModel {
 		}
 	}
 
-	async addFavourites(id_product: number) {
+	async addProduct(id: number) {
 		try {
 			this._loading = true;
-			await addFavouriteProduct({ id_product });
+			await addProductInCart({ id_product: id });
+
 			runInAction(() => {
 				this._loading = false;
 			});
 		} catch (error: unknown) {
 			this._loading = false;
 
-			const err = (error as AxiosError)?.response?.data as IError;
-
-			if ((error as AxiosError)?.response?.status === 409) {
-				this.deleteFavourites(id_product);
-			}
-
-			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
-			})
-		}
-	}
-
-	async deleteFavourites(id_product: number) {
-		try {
-			this._loading = true;
-			await deleteFavouriteProduct(id_product);
-
-			runInAction(() => {
-				this._favourites = this._favourites.filter(item => item.product.id !== id_product);
-				this._loading = false;
-			});
-		} catch (error: unknown) {
-			this._loading = false;
 			const err = (error as AxiosError).response?.data as IError;
+
 			runInAction(() => {
 				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
 			});
 		}
 	}
 
+	async deleteProduct(id: number) {
+		try {
+			this._loading = true;
+			await deleteProductInCart(id);
+
+			runInAction(() => {
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			const err = (error as AxiosError).response?.data as IError;
+
+			runInAction(() => {
+				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
+			});
+		}
+	}
+
+	async updateCart(quantity: number, id_product: number) {
+		try {
+			this._loading = true;
+			await updateProductCart({ quantity }, id_product);
+
+			runInAction(() => {
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			const err = (error as AxiosError).response?.data as IError;
+
+			runInAction(() => {
+				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
+			});
+		}
+	}
 }
 
-export default new FavouritesModel();
+export default new CartModel();

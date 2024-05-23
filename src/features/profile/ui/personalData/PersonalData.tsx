@@ -74,12 +74,8 @@ const PersonalData: FC = observer(() => {
 		navigate("/");
 	};
 
-	const deleteAccount = () => {
-		toast.promise(PersonalDataModel.deletePersonalData(), {
-			loading: "Загрузка...",
-			success: "Ваш аккаунт успешно удален",
-			error: "Ошибка удаления аккаунта"
-		});
+	const deleteAccount = async () => {
+		await PersonalDataModel.deletePersonalData();
 		navigate("/");
 	};
 
@@ -177,7 +173,7 @@ const PersonalData: FC = observer(() => {
 										isSelected={isCash}
 										onValueChange={setCash}
 									>
-										<span className="personal-data__btn_txt">Наличный расчет</span>
+										<p className="personal-data__btn_txt">Наличный расчет</p>
 									</Checkbox>
 									<div className="personal-data__btns_btn flex-row" onClick={onOpen}>
 										<Image
