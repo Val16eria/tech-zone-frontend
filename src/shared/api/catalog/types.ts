@@ -4,7 +4,9 @@ interface IPhotos {
 }
 
 interface IReviews {
+	id: number;
 	user: string;
+	photo_url: string;
 	rating: number;
 	text: string;
 	date_created: string;

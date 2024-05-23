@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { observer } from "mobx-react-lite";
 
 import FavouritesModel from "@features/favourites/model";
@@ -14,10 +14,6 @@ import "./Favourites.scss";
 
 const Favourites: FC = WithAuth(observer(() => {
 	const { favourites } = FavouritesModel;
-
-	useEffect(() => {
-		FavouritesModel.getFavourites();
-	}, []);
 
 	return (
 		<Section title="Избранное" isBreadcrumbs={true}>

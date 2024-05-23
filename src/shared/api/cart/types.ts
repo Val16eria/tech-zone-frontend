@@ -6,7 +6,7 @@ interface ICart {
 	quantity: number;
 }
 
-interface ICartItem {
+interface ICartItems {
 	items: ICart[];
 }
 
@@ -17,6 +17,6 @@ interface IUpdateCart {
 
 export type {
 	ICart,
-	ICartItem,
+	ICartItems,
 	IUpdateCart
 };

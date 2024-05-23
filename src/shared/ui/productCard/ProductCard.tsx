@@ -39,8 +39,6 @@ const ProductCard: FC<IProductCard> = observer((
 		discount,
 		reviews_count,
 		average_rating,
-		is_favourite,
-		is_in_cart,
 	}) => {
 	const navigate = useNavigate();
 
@@ -70,16 +68,18 @@ const ProductCard: FC<IProductCard> = observer((
 						<Stars rating={average_rating} />
 						<Review reviews={reviews_count} />
 					</div>
-					<p className="product-card__product_title" onClick={redirectToProduct}>{name}</p>
+					<p className="product-card__product_title line-2" onClick={redirectToProduct}>{name}</p>
 					<div className="product-card__product_details flex-row">
 						<div className="product-card__details_prices">
 							{!!discount && <p className="product-card__prices_price">{`${price} ₽`}</p>}
-							<p className="product-card__prices_discount-price">{`${discountedPrice(price, discount) || price} ₽`}</p>
+							<p className="product-card__prices_discount-price">
+								{`${discountedPrice(price, discount) || price} ₽`}
+							</p>
 						</div>
-						<LikeButton product_id={id} is_favourite={is_favourite} />
+						<LikeButton id_product={id} />
 					</div>
 				</div>
-				<CartButton is_in_cart={is_in_cart} id_product={id} />
+				<CartButton id_product={id} />
 			</CardFooter>
 		</Card>
   );

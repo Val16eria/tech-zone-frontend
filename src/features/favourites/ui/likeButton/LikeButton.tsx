@@ -10,21 +10,21 @@ import FavouriteFullIcon from "@assets/svg/favourite-full-icon.svg";
 import FavouriteIcon from "@assets/svg/favourite-icon.svg";
 
 interface ILikeButton {
-	product_id: number;
-	is_favourite: boolean;
+	id_product: number;
 }
 
-const LikeButton: FC<ILikeButton> = observer(({ product_id, is_favourite }) => {
+const LikeButton: FC<ILikeButton> = observer(({ id_product }) => {
 	const navigate = useNavigate();
+	const isLike = FavouritesModel.favourites.some(item => item.product.id === id_product);
 
 	const handleLike = async () => {
 		if (!isAuth()) {
 			navigate("/auth");
 		} else {
-			if (is_favourite) {
-				await FavouritesModel.deleteFavourites(product_id);
+			if (isLike) {
+				await FavouritesModel.deleteFavourites(id_product);
 			} else {
-				await FavouritesModel.addFavourites(product_id);
+				await FavouritesModel.addFavourites(id_product);
 			}
 			await FavouritesModel.getFavourites();
 		}
@@ -32,6 +32,7 @@ const LikeButton: FC<ILikeButton> = observer(({ product_id, is_favourite }) => {
 
 	return (
 		<Button
+			className="small-action-btn"
 			isIconOnly
 			disableAnimation={true}
 			color="primary"
@@ -40,8 +41,7 @@ const LikeButton: FC<ILikeButton> = observer(({ product_id, is_favourite }) => {
 			onClick={handleLike}
 		>
 			<Image
-				className="small-action-btn"
-				src={is_favourite ? FavouriteFullIcon : FavouriteIcon}
+				src={isLike ? FavouriteFullIcon : FavouriteIcon}
 				alt="favourite"
 			/>
 		</Button>

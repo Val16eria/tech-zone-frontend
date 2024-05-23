@@ -54,17 +54,15 @@ const Feedback: FC<IReview> = ({ reviews }) => {
 	return (
 		<div className="feedback flex-column">
 			<div>
-				{currentReviews.map((review, index) => (
-					<div key={index} className="feedback__list flex-column">
+				{currentReviews.map((review) => (
+					<div key={review.id} className="feedback__list flex-column">
 						<div className="feedback__list_item flex-column">
 							<div className="feedback__item_info flex-row">
 								<div className="feedback__info_user flex-row">
 									<Image
 										className="feedback__user_img"
-										src={EmptyUserPhoto}
+										src={review.photo_url || EmptyUserPhoto}
 										radius="full"
-										width={32}
-										height={32}
 										alt="user image"
 									/>
 									<p className="feedback__user_name">

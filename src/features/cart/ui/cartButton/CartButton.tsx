@@ -9,18 +9,18 @@ import { isAuth } from "@shared/lib";
 import "./CartButton.scss";
 
 interface ICartButton {
-	is_in_cart: boolean;
 	id_product: number;
 }
 
-const CartButton: FC<ICartButton> = observer(({ is_in_cart, id_product }) => {
+const CartButton: FC<ICartButton> = observer(({ id_product }) => {
 	const navigate = useNavigate();
+	const isInCart = CartModel.cart.some(item => item.product.id === id_product);
 
 	const handleCart = async () => {
 		if (!isAuth()) {
 			navigate("/auth");
 		} else {
-			if (is_in_cart) {
+			if (isInCart) {
 				navigate("/cart")
 			} else {
 				await CartModel.addProduct(id_product);
@@ -32,13 +32,13 @@ const CartButton: FC<ICartButton> = observer(({ is_in_cart, id_product }) => {
 	return (
 		<div className="cart-button">
 			<Button
-				className={`${is_in_cart ? "cart-button__active" : undefined}`}
+				className={`${isInCart ? "cart-button__active" : undefined}`}
 				color="primary"
 				size="md"
 				fullWidth={true}
 				onClick={handleCart}
 			>
-				{is_in_cart ? "В корзине" : "В корзину"}
+				{isInCart ? "В корзине" : "В корзину"}
 			</Button>
 		</div>
 	);

@@ -5,7 +5,7 @@ import { IUpdateUserFields, IUser } from "./types.ts";
 
 const getUser = async (): Promise<IUser> => {
 	const response =
-		await api.get<IUser, AxiosResponse<IUser>>("/users/");
+		await api.get<IUser, AxiosResponse<IUser>>("/users");
 	return response.data;
 };
 
@@ -22,7 +22,7 @@ const updateUser = async (dto: IUpdateUserFields): Promise<IUser> => {
 	});
 
 	const response =
-		await api.patch<IUser, AxiosResponse<IUser>>("/users/", formData, {
+		await api.patch<IUser, AxiosResponse<IUser>>("/users", formData, {
 			headers: {
 				"Content-Type": "multipart/form-data"
 			}
@@ -32,7 +32,7 @@ const updateUser = async (dto: IUpdateUserFields): Promise<IUser> => {
 
 const deleteUser = async (): Promise<IUser> => {
 	const response =
-		await api.delete<IUser, AxiosResponse<IUser>>("/users/");
+		await api.delete<IUser, AxiosResponse<IUser>>("/users");
 	return response.data;
 };
 

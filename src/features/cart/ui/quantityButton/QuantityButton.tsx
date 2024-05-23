@@ -37,30 +37,22 @@ const QuantityButton: FC<IQuantityButton> = observer(({ quantity, id_product }) 
 	return (
 		<div className="quantity-button flex-row">
 			<Button
-				className="quantity-button__btn"
 				isIconOnly
 				isDisabled={count <= 1}
+				className="small-action-btn"
+				radius="sm"
 				onClick={subtractCount}
 			>
-				<Image
-					src={count <= 1 ? DisableMinusIcon : MinusIcon}
-					width={25}
-					height={25}
-					alt="minus"
-				/>
+				<Image src={count <= 1 ? DisableMinusIcon : MinusIcon} alt="minus" />
 			</Button>
 			<p className="quantity-button__count">{count}</p>
 			<Button
-				className="quantity-button__btn"
 				isIconOnly
+				className="small-action-btn"
+				radius="sm"
 				onClick={addCount}
 			>
-				<Image
-					src={PlusIcon}
-					width={25}
-					height={25}
-					alt="plus"
-				/>
+				<Image src={PlusIcon} alt="plus" />
 			</Button>
 		</div>
 	);

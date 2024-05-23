@@ -1,11 +1,11 @@
 import { AxiosResponse } from "axios";
 
 import { api } from "../apiAxios.ts";
-import { ICartItem, IUpdateCart } from "./types.ts";
+import { ICartItems, IUpdateCart } from "./types.ts";
 
-const getAllCart = async (): Promise<ICartItem> => {
+const getAllCart = async (): Promise<ICartItems> => {
 	const response =
-		await api.get<ICartItem, AxiosResponse<ICartItem>>("/cart");
+		await api.get<ICartItems, AxiosResponse<ICartItems>>("/cart");
 	return response.data;
 };
 

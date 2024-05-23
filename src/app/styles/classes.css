@@ -17,8 +17,16 @@
 }
 
 .small-action-btn {
-  width: 32px;
-  height: 32px;
+  min-width: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.line-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 @media (max-width: 1024px) {
@@ -37,8 +45,8 @@
 
 @media (max-width: 680px) {
   .small-action-btn {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
   }
 }
 
