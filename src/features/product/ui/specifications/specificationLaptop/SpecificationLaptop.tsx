@@ -58,6 +58,22 @@ const SpecificationLaptop: FC = observer(() => {
 			{
 				label: "Комплектация",
 				value: product.equipment,
+			},
+			{
+				label: "Модель процессора",
+				value: product.processor_model,
+			},
+			{
+				label: "Частота процессора",
+				value: product.processor_frequency,
+			},
+			{
+				label: "Количество ядер",
+				value: product.number_cores,
+			},
+			{
+				label: "Количество потоков",
+				value: product.number_threads,
 			}],
 		},
 		{

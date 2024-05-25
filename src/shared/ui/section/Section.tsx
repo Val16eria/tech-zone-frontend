@@ -24,8 +24,8 @@ const Section: FC<PropsWithChildren<ISection>> = (
 			<div className="section__article flex-column">
 				{isBreadcrumbs && (
 					<Breadcrumbs>
-						<BreadcrumbItem href="/">Главная</BreadcrumbItem>
-						<BreadcrumbItem>{title}</BreadcrumbItem>
+						<BreadcrumbItem className="section__article_breadcrumb-item" href="/">Главная</BreadcrumbItem>
+						<BreadcrumbItem className="section__article_breadcrumb-item">{title}</BreadcrumbItem>
 					</Breadcrumbs>
 				)}
 

@@ -18,5 +18,6 @@ export {
 	getAccessTokenCookie,
 	logout
 } from "./auth.ts";
+export { setOrderItem, getOrderItem } from "./order.ts";
 export { discountedPrice } from "./product.ts";
 export { wordFormat } from "./wordFormat.ts";

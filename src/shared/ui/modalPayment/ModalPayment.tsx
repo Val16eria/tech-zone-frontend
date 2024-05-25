@@ -2,27 +2,29 @@ import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-	Button, Image,
+	Button,
+	Image,
 	Input,
 	Link,
 	Modal,
 	ModalBody,
 	ModalContent,
 	ModalFooter,
-	ModalHeader, Tooltip
+	ModalHeader,
+	Tooltip
 } from "@nextui-org/react";
 
-import { ModalLinkCardFormData, modalLinkCardSchema } from "../../lib";
+import { ModalLinkCardFormData, modalLinkCardSchema } from "@features/profile/lib";
 
 import InfoIcon from "@assets/svg/info-icon.svg";
-import "./ModalLinkCard.scss";
+import "./ModalPayment.scss";
 
 interface IModalLinkCard {
 	isOpen: boolean;
 	onOpenChange: () => void;
 }
 
-const ModalLinkCard: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
+const ModalPayment: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 	const [formattedCardNumber, setFormattedCardNumber] = useState("");
 	const [formattedCardDate, setFormattedCardDate] = useState("");
 	const [isValid, setValid] = useState(false);
@@ -64,14 +66,18 @@ const ModalLinkCard: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 	};
 
 	return (
-		<Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+		<Modal
+			isOpen={isOpen}
+			onOpenChange={onOpenChange}
+			placement="center"
+		>
 			<ModalContent>
 				<ModalHeader>
 					Привязка карты
 				</ModalHeader>
 				<form onSubmit={handleSubmit(onSubmit)} onChange={formValid}>
 					<ModalBody>
-						<div className="modal-link-card__body">
+						<div className="modal-payment__body">
 							<Input
 								type="text"
 								color="default"
@@ -118,7 +124,7 @@ const ModalLinkCard: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 						</div>
 					</ModalBody>
 					<ModalFooter>
-						<div className="modal-link-card__footer flex-column">
+						<div className="modal-payment__footer flex-column">
 							<Button
 								isDisabled={!isValid}
 								fullWidth={true}
@@ -127,7 +133,7 @@ const ModalLinkCard: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 							>
 								Привязать карту
 							</Button>
-							<p className="modal-link-card__footer_txt">Нажимая кнопку "Привязать карту", Вы соглашаетесь
+							<p className="modal-payment__footer_txt">Нажимая кнопку "Привязать карту", Вы соглашаетесь
 								c условиями <Link href="/policy" size="sm">политики конфиденциальности</Link>
 							</p>
 						</div>
@@ -138,4 +144,4 @@ const ModalLinkCard: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 	);
 };
 
-export { ModalLinkCard };
+export { ModalPayment };

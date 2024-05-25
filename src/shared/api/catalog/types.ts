@@ -86,6 +86,10 @@ interface ILaptops extends IProduct, ITechnicalProduct {
 	usb_devices: string;
 	battery_life: number;
 	microphone: boolean;
+	processor_model: string;
+	processor_frequency: number;
+	number_cores: number;
+	number_threads: number;
 }
 
 interface ITablets extends IProduct, ITechnicalProduct {

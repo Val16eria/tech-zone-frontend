@@ -21,7 +21,7 @@ const QuantityButton: FC<IQuantityButton> = observer(({ quantity, id_product }) 
 	const addCount = async () => {
 		await CartModel.updateCart(count + 1, id_product)
 			.then(() => setCount((prevState) => ++prevState));
-		await CartModel.getCart();
+		// await CartModel.getCart();
 	};
 
 	const subtractCount = async () => {
@@ -31,7 +31,7 @@ const QuantityButton: FC<IQuantityButton> = observer(({ quantity, id_product }) 
 
 		await CartModel.updateCart(count - 1, id_product)
 			.then(() => setCount((prevState) => --prevState));
-		await CartModel.getCart();
+		// await CartModel.getCart();
 	};
 
 	return (

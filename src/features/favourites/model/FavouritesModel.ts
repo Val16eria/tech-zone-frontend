@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import {
 	makeAutoObservable,
 	runInAction,
@@ -11,7 +10,6 @@ import {
 	deleteFavouriteProduct,
 	IFavourites
 } from "@shared/api";
-import { IError } from "@shared/lib";
 
 class FavouritesModel {
 	private _loading: boolean = false;
@@ -46,11 +44,9 @@ class FavouritesModel {
 		} catch (error: unknown) {
 			this._loading = false;
 
-			const err = (error as AxiosError).response?.data as IError;
-
 			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
-			});
+				this._error = (error as Error).message;
+			})
 		}
 	}
 
@@ -64,14 +60,8 @@ class FavouritesModel {
 		} catch (error: unknown) {
 			this._loading = false;
 
-			const err = (error as AxiosError)?.response?.data as IError;
-
-			if ((error as AxiosError)?.response?.status === 409) {
-				this.deleteFavourites(id_product);
-			}
-
 			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
+				this._error = (error as Error).message;
 			})
 		}
 	}
@@ -87,10 +77,10 @@ class FavouritesModel {
 			});
 		} catch (error: unknown) {
 			this._loading = false;
-			const err = (error as AxiosError).response?.data as IError;
+
 			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
-			});
+				this._error = (error as Error).message;
+			})
 		}
 	}
 

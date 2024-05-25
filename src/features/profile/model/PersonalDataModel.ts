@@ -45,9 +45,7 @@ class PersonalDataModel {
 			this._loading = false;
 
 			runInAction(() => {
-				if (typeof error === "string") {
-					this._error = error;
-				}
+				this._error = (error as Error).message;
 			})
 		}
 	}
@@ -66,9 +64,7 @@ class PersonalDataModel {
 			this._loading = false;
 
 			runInAction(() => {
-				if (typeof error === "string") {
-					this._error = error;
-				}
+				this._error = (error as Error).message;
 			})
 		}
 	}
@@ -86,9 +82,7 @@ class PersonalDataModel {
 			this._loading = false;
 
 			runInAction(() => {
-				if (typeof error === "string") {
-					this._error = error;
-				}
+				this._error = (error as Error).message;
 			})
 		}
 	}

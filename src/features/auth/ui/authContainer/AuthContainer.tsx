@@ -13,7 +13,6 @@ import {
 	Input
 } from "@nextui-org/react";
 
-import { Error } from "@shared/ui";
 import { getTypeAuth, isAuth } from "@shared/lib";
 
 import "./AuthContainer.scss";
@@ -70,11 +69,11 @@ const AuthContainer: FC<PropsWithChildren<IAuthContainer>> = (
 							type="text"
 							maxLength={type === "code" ? 6 : undefined}
 							isInvalid={!!error}
+							errorMessage={error}
 							ref={inputRef}
 							onChange={checkInputValue}
 							onKeyDown={handleKeyDown}
 						/>
-						{error && <Error text={error} />}
 					</div>
 					{children}
 				</form>

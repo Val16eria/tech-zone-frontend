@@ -62,11 +62,10 @@
 	&__info_inputs {
 		gap: 12px;
 		flex-wrap: wrap;
-	}
 
-	&__inputs_input {
-		max-width: 400px;
-		width: 100%;
+		& > div {
+			width: 400px;
+		}
 	}
 
 	&__actions {
@@ -87,36 +86,21 @@
 			line-height: 30px;
 			color: var(--dark-blue-text);
 		}
+	}
+}
 
-		&_btns {
-			flex-wrap: wrap;
-			align-items: center;
-			gap: 12px;
+@media (max-width: 1124px) {
+	.personal-data {
+		&__info {
+			&_avatar-wrapper {
+				margin: 0 auto;
+			}
+
+			&_inputs {
+				& > div {
+					width: 100%;
+				}
+			}
 		}
-	}
-
-	&__btns_btn {
-		gap: 8px;
-		align-items: center;
-		border: 2px solid var(--stroke-grey);
-		border-radius: 14px;
-		padding: 26px 30px !important;
-		cursor: pointer;
-		transition: border-color 0.3s ease;
-
-		&:hover {
-			border: 2px solid var(--accent-blue);
-		}
-	}
-
-	&__btns_btn > div, p, label {
-		padding: 0;
-	}
-
-	&__btn_txt {
-		font-weight: 400;
-		font-size: 16px;
-		line-height: 150%;
-		color: var(--dark-blue-text);
 	}
 }

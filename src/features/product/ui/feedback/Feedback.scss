@@ -27,6 +27,10 @@
 		&_user {
 			gap: 12px;
 			align-items: center;
+
+			& > div {
+				flex-shrink: 0;
+			}
 		}
 
 		&_rating {
@@ -36,6 +40,7 @@
 	}
 
 	&__user {
+
 		&_img {
 			width: 32px;
 			height: 32px;

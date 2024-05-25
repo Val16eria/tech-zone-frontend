@@ -1,6 +1,23 @@
 .product {
 	gap: 16px;
 
+	&__id {
+		flex-shrink: 0;
+		align-items: baseline;
+		gap: 5px;
+
+		&_txt {
+			font-weight: 500;
+			font-size: 14px;
+			line-height: 21px;
+			color: var(--dark-blue-text);
+		}
+
+		&_title {
+			opacity: 0.7;
+		}
+	}
+
 	&__content {
 		display: flex;
 		flex-direction: row;
@@ -48,6 +65,7 @@
 
 	&__price {
 		&_txt {
+			flex-shrink: 0;
 			font-weight: 500;
 			font-size: 16px;
 			line-height: 26px;
@@ -59,6 +77,7 @@
 
 	&__discount {
 		&_txt {
+			flex-shrink: 0;
 			font-weight: 600;
 			font-size: 28px;
 			line-height: 42px;
@@ -76,9 +95,6 @@
 			border-radius: 12px;
 			padding: 8px 10px;
 			background: var(--light-blue);
-			font-weight: 500;
-			font-size: 16px;
-			line-height: 26px;
 			color: var(--accent-blue);
 		}
 	}
@@ -100,3 +116,53 @@
 		}
 	}
 }
+
+@media (max-width: 640px) {
+	.product {
+		&__id {
+			&_txt {
+				font-size: 12px;
+				line-height: 16px;
+			}
+		}
+
+		&__discount-persent {
+			font-size: 12px;
+		}
+
+		&__card {
+			padding: 10px 15px;
+		}
+
+		&__price {
+			&_txt {
+				font-size: 14px;
+				line-height: 16px;
+			}
+		}
+
+		&__discount {
+			&_txt {
+				font-size: 20px;
+				line-height: 24px;
+			}
+		}
+	}
+}
+
+@media (max-width: 280px) {
+	.product {
+		&__price {
+			&_txt {
+				font-size: 12px;
+			}
+		}
+
+		&__discount {
+			&_txt {
+				font-size: 16px;
+			}
+		}
+	}
+}
+

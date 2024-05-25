@@ -14,7 +14,6 @@ import {
 	Button,
 	Card,
 	CardBody,
-	Checkbox,
 	Image,
 	Input,
 	Link,
@@ -22,12 +21,15 @@ import {
 } from "@nextui-org/react";
 
 import PersonalDataModel from "../../model";
-import { ModalLinkCard } from "../modalLinkCard";
+import { PersonalDataInput } from "../personalDataInput";
 import { personalDataSchema, PersonalDataFormData } from "../../lib";
-import { Loader } from "@shared/ui";
+import {
+	ErrorNotice,
+	Loader,
+	Payment
+} from "@shared/ui";
 import { logout } from "@shared/lib";
 
-import PayIcon from "@assets/svg/card-add-icon.svg";
 import DefaultAvatarIcon from "@assets/svg/empty-user-avatar.png";
 import CameraIcon from "@assets/svg/camera-icon.svg";
 import "./PersonalData.scss";
@@ -35,9 +37,8 @@ import "./PersonalData.scss";
 const PersonalData: FC = observer(() => {
 	const navigate = useNavigate();
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-	const { user, loading } = PersonalDataModel;
+	const { user, loading, error } = PersonalDataModel;
 
-	const [isCash, setCash] = useState(false);
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 	const [file, setFile] = useState<File>();
 
@@ -47,7 +48,7 @@ const PersonalData: FC = observer(() => {
 		setValue,
 		formState: { errors }} = useForm<PersonalDataFormData>({
 		resolver: yupResolver(personalDataSchema)
-	})
+	});
 
 	useEffect(() => {
 		PersonalDataModel.getPersonalData();
@@ -93,6 +94,10 @@ const PersonalData: FC = observer(() => {
 		return <Loader />
 	}
 
+	if (error) {
+		return <ErrorNotice />;
+	}
+
 	return (
 		<>
 			<Card shadow="sm" radius="lg">
@@ -119,44 +124,34 @@ const PersonalData: FC = observer(() => {
 									/>
 								</div>
 								<div className="personal-data__info_inputs flex-row">
-									<div className="personal-data__inputs_input">
-										<Input
-											type="text"
-											variant="bordered"
-											label="Имя"
-											defaultValue={user?.first_name ?? ""}
-											isInvalid={!!errors.first_name?.message}
-											errorMessage={errors.first_name?.message ?? ""}
-											{...register("first_name")}
-										/>
-									</div>
-
-									<div className="personal-data__inputs_input">
-										<Input
-											type="text"
-											variant="bordered"
-											label="Фамилия"
-											defaultValue={user?.last_name ?? ""}
-											isInvalid={!!errors.last_name?.message}
-											errorMessage={errors.last_name?.message ?? ""}
-											{...register("last_name")}
-										/>
-									</div>
-
-									<div className="personal-data__inputs_input">
-										<Input
-											type="tel"
-											variant="bordered"
-											label="Телефон"
-											defaultValue={user?.phone_number ?? ""}
-											isInvalid={!!errors.phone_number?.message}
-											errorMessage={errors.phone_number?.message ?? ""}
-											{...register("phone_number")}
-										/>
-									</div>
-
+									<PersonalDataInput
+										type="text"
+										variant="bordered"
+										label="Имя"
+										defaultValue={user?.first_name ?? ""}
+										isInvalid={!!errors.first_name?.message}
+										errorMessage={errors.first_name?.message ?? ""}
+										{...register("first_name")}
+									/>
+									<PersonalDataInput
+										type="text"
+										variant="bordered"
+										label="Фамилия"
+										defaultValue={user?.last_name ?? ""}
+										isInvalid={!!errors.last_name?.message}
+										errorMessage={errors.last_name?.message ?? ""}
+										{...register("last_name")}
+									/>
+									<PersonalDataInput
+										type="tel"
+										variant="bordered"
+										label="Телефон"
+										defaultValue={user?.phone_number ?? ""}
+										isInvalid={!!errors.phone_number?.message}
+										errorMessage={errors.phone_number?.message ?? ""}
+										{...register("phone_number")}
+									/>
 									<Input
-										className="personal-data__inputs_input"
 										isDisabled
 										type="email"
 										value={user?.email}
@@ -167,25 +162,11 @@ const PersonalData: FC = observer(() => {
 							</div>
 							<div className="personal-data__pay flex-column">
 								<h1 className="personal-data__pay_title">Способ оплаты</h1>
-								<div className="personal-data__pay_btns flex-row">
-									<Checkbox
-										className="personal-data__btns_btn"
-										isSelected={isCash}
-										onValueChange={setCash}
-									>
-										<p className="personal-data__btn_txt">Наличный расчет</p>
-									</Checkbox>
-									<div className="personal-data__btns_btn flex-row" onClick={onOpen}>
-										<Image
-											width={24}
-											height={24}
-											src={PayIcon}
-											alt="pay icon"
-										/>
-										<p className="personal-data__btn_txt">Привязать карту</p>
-									</div>
-									<ModalLinkCard isOpen={isOpen} onOpenChange={onOpenChange}  />
-								</div>
+								<Payment
+									isOpen={isOpen}
+									onOpen={onOpen}
+									onOpenChange={onOpenChange}
+								/>
 							</div>
 						</div>
 						<div className="personal-data__actions flex-column">

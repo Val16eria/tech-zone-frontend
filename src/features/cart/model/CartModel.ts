@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import {
 	makeAutoObservable,
 	runInAction,
@@ -12,7 +11,6 @@ import {
 	updateProductCart,
 	ICart
 } from "@shared/api";
-import { IError } from "@shared/lib";
 
 class CartModel {
 	private _loading: boolean = false;
@@ -47,11 +45,9 @@ class CartModel {
 		} catch (error: unknown) {
 			this._loading = false;
 
-			const err = (error as AxiosError).response?.data as IError;
-
 			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
-			});
+				this._error = (error as Error).message;
+			})
 		}
 	}
 
@@ -66,11 +62,9 @@ class CartModel {
 		} catch (error: unknown) {
 			this._loading = false;
 
-			const err = (error as AxiosError).response?.data as IError;
-
 			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
-			});
+				this._error = (error as Error).message;
+			})
 		}
 	}
 
@@ -85,11 +79,9 @@ class CartModel {
 		} catch (error: unknown) {
 			this._loading = false;
 
-			const err = (error as AxiosError).response?.data as IError;
-
 			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
-			});
+				this._error = (error as Error).message;
+			})
 		}
 	}
 
@@ -104,11 +96,9 @@ class CartModel {
 		} catch (error: unknown) {
 			this._loading = false;
 
-			const err = (error as AxiosError).response?.data as IError;
-
 			runInAction(() => {
-				this._error = err.detail[0].msg || String(err.detail) || "Что-то пошло не так";
-			});
+				this._error = (error as Error).message;
+			})
 		}
 	}
 }

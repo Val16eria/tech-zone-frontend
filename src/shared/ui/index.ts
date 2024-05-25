@@ -1,9 +1,13 @@
 export { ArrowButton } from "./arrowButon";
-export { Empty } from "./empty";
-export { Error } from "./error";
+export { DefaultImage } from "./defaultImage";
+export { ErrorNotice } from "./errorNotice";
 export { Loader } from "./loader";
 export { Logo } from "./logo";
 export { Modal } from "./modal";
+export { ModalPayment } from "./modalPayment";
+export { Notice } from "./notice";
+export { Payment } from "./payment";
+export { PriceSummaryCard } from "./priceSummaryCard";
 export { ProductCard } from "./productCard";
 export { Review } from "./review";
 export { Section } from "./section";

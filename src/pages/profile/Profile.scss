@@ -24,3 +24,14 @@
 		}
 	}
 }
+
+@media (max-width: 768px) {
+	.profile {
+		&__tabs {
+			&_tab > div {
+				font-size: 20px;
+				line-height: 20px;
+			}
+		}
+	}
+}

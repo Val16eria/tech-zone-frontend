@@ -61,7 +61,10 @@ const Product: FC = observer(() => {
 						<Stars rating={product.average_rating}/>
 						<Review reviews={product.reviews_count}/>
 					</div>
-					<p>Код товара: <b>{id}</b></p>
+					<div className="product__id flex-row">
+						<p className="product__id_txt product__id_title">Код товара:</p>
+						<p className="product__id_txt">{id}</p>
+					</div>
 				</div>
 				<div className="product__content">
 					<PhotoTabs photos={product.photos}/>
@@ -106,7 +109,7 @@ const Product: FC = observer(() => {
 						{isCropDescription ? "Развернуть" : "Свернуть"}
 					</Link>
 				</div>
-				<DescriptionTabs/>
+				<DescriptionTabs />
 			</div>
 		</Section>
 	);

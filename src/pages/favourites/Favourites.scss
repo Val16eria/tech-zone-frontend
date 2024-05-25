@@ -6,7 +6,7 @@
 	padding-bottom: 40px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
 	.favourites {
 		grid-template-columns: repeat(3, 1fr);
 	}

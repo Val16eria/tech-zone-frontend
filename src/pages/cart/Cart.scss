@@ -20,35 +20,6 @@
 		}
 	}
 
-	&__card {
-		height: fit-content;
-		padding: 32px 28px;
-
-		&_body {
-			gap: 12px;
-		}
-
-		&_body-txt {
-			align-items: center;
-			justify-content: space-between;
-		}
-
-		&_body-discount {
-			font-weight: 500;
-			font-size: 16px;
-			line-height: 26px;
-			color: var(--dark-blue-text);
-			opacity: 0.5;
-		}
-
-		&_body-price {
-			font-weight: 600;
-			font-size: 20px;
-			line-height: 30px;
-			color: #464455;
-		}
-	}
-
 	&__divider {
 		margin: 10px 0;
 	}
@@ -63,15 +34,6 @@
 @media (max-width: 980px) {
 	.cart {
 		flex-direction: column;
-
-		&__card {
-			position: fixed !important;
-			padding: 24px 18px;
-			z-index: 40;
-			bottom: 0;
-			left: 0;
-			border-radius: 8px 8px 0 0 !important;
-		}
 
 		&__divider {
 			margin: 10px 0;
