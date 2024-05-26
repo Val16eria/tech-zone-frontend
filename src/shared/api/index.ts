@@ -6,7 +6,7 @@ export {
 	deleteProductInCart,
 	updateProductCart
 } from "./cart";
-export type { ICart } from "./cart";
+export type { ICart, ICartProduct } from "./cart";
 
 export {
 	getAllTelevisions,
@@ -34,6 +34,13 @@ export {
 	deleteFavouriteProduct
 } from "./favourites";
 export type { IFavourites } from "./favourites";
+
+export { createOrder } from "./order";
+export type {
+	IOrderInfo,
+	IOrder,
+	ICreateOrder
+} from "./order";
 
 export {
 	getProductTypeById,

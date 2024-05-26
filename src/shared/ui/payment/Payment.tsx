@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Checkbox, Image } from "@nextui-org/react";
+import {Checkbox, CheckboxGroup, Image} from "@nextui-org/react";
 
 import { ModalPayment } from "@shared/ui";
 
@@ -18,17 +18,15 @@ const Payment: FC<IPayment> = (
 		onOpen,
 		onOpenChange
 	}) => {
-	const [isCash, setCash] = useState(false);
+	const [selected, setSelected] = useState(["cash"])
 
 	return (
 		<div className="payment flex-row">
-			<Checkbox
-				className="payment__checkbox"
-				isSelected={isCash}
-				onValueChange={setCash}
-			>
-				<p className="payment__txt">Наличный расчет</p>
-			</Checkbox>
+			<CheckboxGroup value={selected} onValueChange={setSelected}>
+				<Checkbox className="payment__checkbox" value="cash">
+					<p className="payment__txt">Наличный расчет</p>
+				</Checkbox>
+			</CheckboxGroup>
 			<div className="payment__checkbox flex-row" onClick={onOpen}>
 				<Image
 					width={24}
@@ -43,4 +41,4 @@ const Payment: FC<IPayment> = (
 	);
 };
 
-export {Payment};
+export { Payment };

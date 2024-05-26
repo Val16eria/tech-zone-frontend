@@ -30,17 +30,6 @@
 		font-size: 16px;
 		line-height: 26px;
 		color: var(--dark-blue-text);
-
-		&_crop {
-			overflow: hidden;
-			display: -webkit-box;
-			-webkit-box-orient: vertical;
-			-webkit-line-clamp: 3;
-		}
-
-		&_btn {
-			margin-top: 5px;
-		}
 	}
 
 	&__card {

@@ -5,6 +5,7 @@ export {
 	updateProductCart
 } from "./resources.ts";
 export type {
+	ICartProduct,
 	ICartItems,
 	ICart,
 	IUpdateCart

@@ -64,7 +64,7 @@ const Cart: FC = WithAuth(observer(() => {
 
 	const onSubmit = () => {
 		const selectedProducts = cart.filter(product => selected.includes(product.id.toString()));
-		setOrderItem(selectedProducts, totalDiscount, totalPrice);
+		setOrderItem(selectedProducts, selected, totalDiscount, totalPrice);
 		navigate("/order");
 	};
 
@@ -76,10 +76,12 @@ const Cart: FC = WithAuth(observer(() => {
 		}
 	};
 
-	const deleteProducts = () => {
+	const deleteProducts = async () => {
 		const selectedProducts = cart.filter(product => selected.includes(product.id.toString()));
-		selectedProducts.forEach((product) => CartModel.deleteProduct(product.product.id));
-		CartModel.getCart();
+		for (const product of selectedProducts) {
+			await CartModel.deleteProduct(product.product.id);
+		}
+		await CartModel.getCart();
 	};
 
 	const handleSelectAll = () => {

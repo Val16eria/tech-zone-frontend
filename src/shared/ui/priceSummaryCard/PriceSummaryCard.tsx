@@ -18,7 +18,7 @@ interface IPriceSummaryCard {
 	totalDiscount: number;
 	totalPrice: number;
 	isDisable: boolean;
-	onSubmit: () => void;
+	onSubmit?: () => void;
 }
 
 const PriceSummaryCard: FC<IPriceSummaryCard> = (
@@ -69,6 +69,7 @@ const PriceSummaryCard: FC<IPriceSummaryCard> = (
 				<Button
 					isDisabled={isDisable}
 					fullWidth
+					type="submit"
 					color="primary"
 					onClick={onSubmit}
 				>

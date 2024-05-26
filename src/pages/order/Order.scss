@@ -4,7 +4,7 @@
 	gap: 118px;
 	justify-content: space-between;
 
-	&__form {
+	&__steps {
 		width: 400px;
 		gap: 40px;
 
@@ -29,10 +29,8 @@
 	.order {
 		flex-direction: column;
 
-		&__form {
+		&__steps {
 			width: 100%;
-			&_list {
-			}
 		}
 	}
 }

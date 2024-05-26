@@ -42,9 +42,10 @@
 
 		&_prices {
 			display: flex;
+			flex-direction: column-reverse;
 			flex-wrap: wrap;
-			width: min-content;
-			justify-content: right;
+			width: fit-content;
+			align-items: flex-end;
 			gap: 4px;
 		}
 
