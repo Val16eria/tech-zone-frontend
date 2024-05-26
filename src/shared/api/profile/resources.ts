@@ -22,7 +22,7 @@ const updateUser = async (dto: IUpdateUserFields): Promise<IUser> => {
 	});
 
 	const response =
-		await api.patch<IUser, AxiosResponse<IUser>>("/users", formData, {
+		await api.put<IUser, AxiosResponse<IUser>>("/users", formData, {
 			headers: {
 				"Content-Type": "multipart/form-data"
 			}

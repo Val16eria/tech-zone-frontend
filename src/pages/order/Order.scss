@@ -1,0 +1,36 @@
+.order {
+	display: flex;
+	flex-direction: row;
+	gap: 118px;
+	justify-content: space-between;
+
+	&__steps {
+		width: 400px;
+		gap: 40px;
+
+		&_list {
+			gap: 12px;
+		}
+	}
+
+	&__card {
+		max-width: 457px;
+		width: 100%;
+	}
+}
+
+@media (max-width: 1280px) {
+	.order {
+		gap: 80px;
+	}
+}
+
+@media (max-width: 980px) {
+	.order {
+		flex-direction: column;
+
+		&__steps {
+			width: 100%;
+		}
+	}
+}

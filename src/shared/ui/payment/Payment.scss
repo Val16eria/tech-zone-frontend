@@ -1,0 +1,30 @@
+.payment {
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+
+	&__checkbox {
+		gap: 8px;
+		align-items: center;
+		border: 2px solid var(--stroke-grey);
+		border-radius: 14px;
+		padding: 26px 30px !important;
+		cursor: pointer;
+		transition: border-color 0.3s ease;
+
+		&:hover {
+			border: 2px solid var(--accent-blue);
+		}
+
+		& > div, p, label {
+			padding: 0;
+		}
+	}
+
+	&__txt {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 150%;
+		color: var(--dark-blue-text);
+	}
+}

@@ -1,27 +1,28 @@
 import {
 	FC,
-	useEffect,
+	useCallback, useEffect,
+	useMemo,
 	useState
 } from "react";
+import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import {
 	Button,
-	Card,
-	CardBody,
-	CardFooter,
 	Checkbox,
 	CheckboxGroup,
-	Divider,
-	Image
+	Image, useDisclosure
 } from "@nextui-org/react";
+import { toast, Toaster } from "sonner";
 
 import CartModel from "@features/cart/model";
-import { CartProduct } from "@features/cart/ui";
+import { ModalDeleteProduct, CartProductItem } from "@features/cart/ui";
 import { WithAuth } from "@shared/hoc";
+import { setOrderItem } from "@shared/lib";
 import {
-	Empty,
-	Loader,
-	Section
+	Notice,
+	Section,
+	ErrorNotice,
+	PriceSummaryCard, Loader
 } from "@shared/ui";
 
 import CartIcon from "@assets/svg/cart-icon.svg";
@@ -29,21 +30,22 @@ import DeleteIcon from "@assets/svg/delete-icon.svg";
 import "./Cart.scss";
 
 const Cart: FC = WithAuth(observer(() => {
+	const navigate = useNavigate();
+
+	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [selected, setSelected] = useState<string[]>([]);
-	const [totalPrice, setTotalPrice] = useState<number>(0);
-	const [totalDiscount, setTotalDiscount] = useState<number>(0);
-	const { cart, loading } = CartModel;
+	const { cart, loading, error } = CartModel;
 
 	useEffect(() => {
-		calculateTotals();
-	}, [selected, cart]);
+		CartModel.getCart();
+	}, []);
 
-	const calculateTotals = () => {
+	const calculateTotals = useCallback(() => {
 		let calculatedTotalPrice = 0;
 		let calculatedTotalDiscount = 0;
 
 		selected.forEach((id) => {
-			const product = cart.find((item) => item.product.id.toString() === id);
+			const product = cart.find((item) => item.id.toString() === id);
 			if (product) {
 				const productTotalPrice = product.product.price * product.quantity;
 				const productDiscount = productTotalPrice * (product.product.discount / 100);
@@ -52,21 +54,42 @@ const Cart: FC = WithAuth(observer(() => {
 			}
 		});
 
-		setTotalPrice(Math.floor(calculatedTotalPrice));
-		setTotalDiscount(Math.floor(calculatedTotalDiscount));
+		return {
+			totalPrice: Math.floor(calculatedTotalPrice),
+			totalDiscount: Math.floor(calculatedTotalDiscount)
+		};
+	}, [selected, cart]);
+
+	const { totalPrice, totalDiscount } = useMemo(() => calculateTotals(), [calculateTotals]);
+
+	const onSubmit = () => {
+		const selectedProducts = cart.filter(product => selected.includes(product.id.toString()));
+		setOrderItem(selectedProducts, selected, totalDiscount, totalPrice);
+		navigate("/order");
 	};
 
-	const deleteAllProducts = () => {
-		cart.map((product) => CartModel.deleteProduct(product.product.id));
-		CartModel.getCart();
+	const openModal = () => {
+		if (selected.length) {
+			onOpen();
+		} else {
+			toast.error("Выберите товары, которые хотите удалить");
+		}
+	};
+
+	const deleteProducts = async () => {
+		const selectedProducts = cart.filter(product => selected.includes(product.id.toString()));
+		for (const product of selectedProducts) {
+			await CartModel.deleteProduct(product.product.id);
+		}
+		await CartModel.getCart();
 	};
 
 	const handleSelectAll = () => {
 		if (selected.length === cart.length) {
 			setSelected([]);
 		} else {
-			const allProductIds = cart.map(product => product.product.id.toString());
-			setSelected(allProductIds);
+			const orderItems = cart.map(product => product.id.toString());
+			setSelected(orderItems);
 		}
 	};
 
@@ -74,78 +97,73 @@ const Cart: FC = WithAuth(observer(() => {
 		return <Loader />;
 	}
 
+	if (error) {
+		return <ErrorNotice />;
+	}
+
 	return (
-		<Section
-			title="Корзина"
-			isBreadcrumbs={true}
-			productsCount={cart.length}
-		>
-			{cart.length ? (
-				<div className="cart">
-					<div className="cart__content flex-column">
-						<div className="cart__content_products flex-row">
-							<Checkbox
-								className="p-0 m-0"
-								isSelected={selected.length === cart.length}
-								onChange={handleSelectAll}
-							>
-								Выбрать все
-							</Checkbox>
-							<Button
-								className="p-0"
-								color="primary"
-								variant="light"
-								disableAnimation={true}
-								aria-label="delete all"
-								startContent={
-									<Image
-										className="small-action-btn"
-										src={DeleteIcon}
-										alt="delete"
-									/>}
-								onClick={deleteAllProducts}
-							>
-								Удалить все
-							</Button>
+		<>
+			<Section
+				title="Корзина"
+				isBreadcrumbs={true}
+				productsCount={cart.length}
+			>
+				{cart.length ? (
+					<div className="cart">
+						<div className="cart__content flex-column">
+							<div className="cart__content_products flex-row">
+								<Checkbox
+									className="p-0 m-0"
+									isSelected={selected.length === cart.length}
+									onChange={handleSelectAll}
+								>
+									Выбрать все
+								</Checkbox>
+								<Button
+									className="p-0"
+									color="primary"
+									variant="light"
+									disableAnimation={true}
+									aria-label="delete all"
+									startContent={
+										<Image
+											className="small-action-btn"
+											src={DeleteIcon}
+											alt="delete"
+										/>}
+									onClick={openModal}
+								>
+									Удалить все
+								</Button>
+								<ModalDeleteProduct
+									isOpen={isOpen}
+									onOpenChange={onOpenChange}
+									onAction={deleteProducts}
+								/>
+							</div>
+							<CheckboxGroup value={selected} onValueChange={setSelected}>
+								{cart.map((product) => (
+									<CartProductItem key={product.id} product={product} />
+								))}
+							</CheckboxGroup>
 						</div>
-						<CheckboxGroup value={selected} onValueChange={setSelected}>
-							{cart.map((product) => (
-								<div key={product.id}>
-									<Checkbox
-										className="cart__checkbox p-0 m-0 flex max-w-none items-center"
-										value={product.product.id.toString()}
-									>
-										<CartProduct cartProduct={product} />
-									</Checkbox>
-									{product.product !== cart.at(-1)?.product && <Divider className="cart__divider" />}
-								</div>
-							))}
-						</CheckboxGroup>
+						<PriceSummaryCard
+							totalDiscount={totalDiscount}
+							totalPrice={totalPrice}
+							isDisable={!selected.length}
+							onSubmit={onSubmit}
+						/>
 					</div>
-					<Card fullWidth className="cart__card">
-						<CardBody className="cart__card_body flex-column">
-							<div className="cart__card_body-txt flex-row">
-								<p className="cart__card_body-discount">Скидка</p>
-								<p className="cart__card_body-discount">{totalDiscount.toFixed(0)} ₽</p>
-							</div>
-							<div className="cart__card_body-txt flex-row">
-								<p className="cart__card_body-price">Итого</p>
-								<p className="cart__card_body-price">{totalPrice.toFixed(0)} ₽</p>
-							</div>
-						</CardBody>
-						<CardFooter>
-							<Button fullWidth color="primary">Оформить заказ</Button>
-						</CardFooter>
-					</Card>
-				</div>
-			) : (
-				<Empty
-					icon={CartIcon}
-					title="У вас пока нет товаров в корзине"
-					description="Добавьте товары в корзину"
-				/>
-			)}
-		</Section>
+				) : (
+					<Notice
+						icon={CartIcon}
+						title="У вас пока нет товаров в корзине"
+						description="Добавьте товары в корзину"
+					/>
+				)}
+			</Section>
+			<Toaster />
+		</>
 	);
 }));
 

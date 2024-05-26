@@ -6,8 +6,8 @@ import {
 } from "@nextui-org/react";
 
 import { IPhotos } from "@shared/api";
+import { DefaultImage } from "@shared/ui";
 
-import DefaultIcon from "@assets/svg/defaultImage.svg";
 import "./PhotoTabs.scss";
 
 interface IProductPhotoTabs {
@@ -17,13 +17,8 @@ interface IProductPhotoTabs {
 const PhotoTabs: FC<IProductPhotoTabs> = ({ photos }) => {
 	if (!photos || !photos.length) {
 		return (
-			<div className="photo-tabs__tabs_default photo-tabs__tabs_img">
-				<Image
-					radius="none"
-					src={DefaultIcon}
-					width={64}
-					height={64}
-				/>
+			<div className="photo-tabs__tabs_img">
+				<DefaultImage />
 			</div>
 		);
 	}

@@ -13,9 +13,12 @@ import { CartButton } from "@features/cart/ui";
 
 import { IPhotos } from "@shared/api";
 import { discountedPrice } from "@shared/lib";
-import { Review, Stars } from "@shared/ui";
+import {
+	DefaultImage,
+	Review,
+	Stars
+} from "@shared/ui";
 
-import DefaultImage from "@assets/svg/defaultImage.svg";
 import "./ProductCard.scss";
 
 interface IProductCard {
@@ -54,12 +57,13 @@ const ProductCard: FC<IProductCard> = observer((
 		>
 			<CardBody className={`product-card__body ${!photos?.length && "product-card__body_default-img"}`}>
 				<div className="product-card__body_img">
-					<Image
-						className="product-card__body_img"
-						src={photos?.length ? photos[0].url : DefaultImage}
-						radius="none"
-						alt={name}
-					/>
+					{photos?.length ? (
+						<Image
+							src={photos[0].url }
+							radius="none"
+							alt={name}
+						/>
+					) : <DefaultImage />}
 				</div>
 			</CardBody>
 			<CardFooter className="product-card__content flex-column">

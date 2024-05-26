@@ -122,6 +122,12 @@ const TopHeader: FC = observer(() => {
 
 			<NavbarMenu className="z-50">
 				<div className="top-header__menu flex-column">
+					<NavbarMenuItem>
+							<Search/>
+					</NavbarMenuItem>
+
+					<Divider className="divider" />
+
 					{navbarItems.map((item) => (
 						<NavbarMenuItem key={item.id}>
 							<Link

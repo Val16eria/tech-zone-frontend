@@ -1,0 +1,72 @@
+.price-summary-card {
+	height: fit-content;
+	padding: 32px 28px;
+
+	&__title {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 30px;
+		color: var(--dark-blue-text);
+	}
+
+	&__body {
+		gap: 12px;
+
+		&_products {
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 16px;
+		}
+
+		&_img {
+			display: flex;
+			align-items: center;
+			width: 100px;
+			height: 100px;
+			cursor: pointer;
+		}
+
+		&_txt {
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&_discount {
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 26px;
+			color: var(--dark-blue-text);
+			opacity: 0.5;
+		}
+
+		&_price {
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+			color: #464455;
+		}
+	}
+}
+
+@media (max-width: 980px) {
+	.price-summary-card {
+		position: fixed !important;
+		padding: 24px 18px;
+		z-index: 40;
+		bottom: 0;
+		left: 0;
+		border-radius: 8px 8px 0 0 !important;
+	}
+}
+
+
+@media (max-width: 680px) {
+	.price-summary-card {
+		&__body {
+			&_img {
+				width: 70px;
+				height: 70px;
+			}
+		}
+	}
+}

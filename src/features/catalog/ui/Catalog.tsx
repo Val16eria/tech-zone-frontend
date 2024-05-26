@@ -1,19 +1,20 @@
 import { FC } from "react";
+import { observer } from "mobx-react-lite";
 
 import CatalogModel from "../model";
 import { Filter } from "./filter";
 import { Sort } from "./sort";
 import { IBaseProduct } from "@shared/api";
 import {
-	Empty,
+	Notice,
 	Loader,
 	Modal,
 	ProductCard,
-	Section
+	Section,
+	ErrorNotice
 } from "@shared/ui";
 
 import "./Catalog.scss";
-import {observer} from "mobx-react-lite";
 
 interface ICatalog {
 	title: string;
@@ -28,10 +29,16 @@ const Catalog: FC<ICatalog> = observer((
 		products
 	}) => {
 
-	if (CatalogModel.loading) {
+	const { loading, error } = CatalogModel;
+
+	if (loading) {
 		return (
 			<Loader />
 		)
+	}
+
+	if (error) {
+		return <ErrorNotice />;
 	}
 
 	return (
@@ -64,7 +71,7 @@ const Catalog: FC<ICatalog> = observer((
 					</div>
 				</div>
 			) : (
-				<Empty
+				<Notice
 					icon={icon}
 					title="Товаров еще нет"
 					description="Следите за обновлениями, чтобы не пропустить новые товары"

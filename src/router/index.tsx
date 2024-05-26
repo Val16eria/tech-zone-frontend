@@ -20,6 +20,7 @@ import {
 } from "@pages/catalog";
 import { Favourites } from "@pages/favourites";
 import { Cart } from "@pages/cart";
+import { Order } from "@pages/order";
 import { Product } from "@pages/product";
 import { Profile } from "@pages/profile";
 
@@ -42,6 +43,7 @@ const Router: FC = () => {
 			<Route path="/accessories" element={<Accessories />} />
 			<Route path="/favourites" element={<Favourites />} />
 			<Route path="/cart" element={<Cart />} />
+			<Route path="/order" element={<Order />} />
 			<Route path="/product/:id" element={<Product />} />
 			<Route path="/profile" element={<Profile />} />
 			<Route path="/policy" element={<Policy />} />

@@ -17,7 +17,7 @@
 }
 
 .small-action-btn {
-  min-width: 32px !important;
+  min-width: 20px !important;
   width: 32px !important;
   height: 32px !important;
 }
@@ -58,5 +58,12 @@
 
   .divider {
     margin: 8px 0 4px 0;
+  }
+}
+
+@media (max-width: 320px) {
+  .small-action-btn {
+    width: 20px !important;
+    height: 20px !important;
   }
 }

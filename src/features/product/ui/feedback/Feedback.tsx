@@ -6,9 +6,8 @@ import {
 } from "@nextui-org/react";
 
 import { IReviews } from "@shared/api";
-import { Empty } from "@shared/ui";
+import { dateFormat } from "@shared/lib";
 
-import ReviewIcon from "@assets/svg/review-blue-icon.svg";
 import FullStarIcon from "@assets/svg/star.svg";
 import EmptyStarIcon from "@assets/svg/star-line-icon.svg";
 import EmptyUserPhoto from "@assets/svg/empty-user-avatar.png";
@@ -47,10 +46,6 @@ const Feedback: FC<IReview> = ({ reviews }) => {
 		setCurrentPage(page);
 	};
 
-	if (!currentReviews.length) {
-		return <Empty icon={ReviewIcon} title="Нет комментариев" />;
-	}
-
 	return (
 		<div className="feedback flex-column">
 			<div>
@@ -72,7 +67,7 @@ const Feedback: FC<IReview> = ({ reviews }) => {
 									</p>
 								</div>
 								<div className="feedback__info_rating flex-row">
-									<p className="feedback__rating_date">{review.date_created}</p>
+									<p className="feedback__rating_date">{dateFormat(review.date_created)}</p>
 									<div className="feedback__rating_stars flex-row">
 										{displayStars(review.rating)}
 									</div>

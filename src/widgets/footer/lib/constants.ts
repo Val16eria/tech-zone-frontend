@@ -18,8 +18,8 @@ const footerItems: IFooterItems[] = [
 		sections: [
 			{
 				id: 1,
-				title: "г. Ростов-на-Дону, ул. Пушкина, 1",
-				path: "",
+				title: "г. Ростов-на-Дону, ул. 18-линия, 8",
+				path: `https://www.google.com/maps?q=${encodeURIComponent("г. Ростов-на-Дону, ул. 18-линия, 8")}`,
 			},
 			{
 				id: 2,

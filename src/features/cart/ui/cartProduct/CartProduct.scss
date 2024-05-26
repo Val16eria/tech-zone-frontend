@@ -5,6 +5,8 @@
 	height: 150px;
 
 	&__img {
+		display: flex;
+		align-items: center;
 		width: 140px;
 		height: 140px;
 		object-fit: contain;
@@ -40,9 +42,10 @@
 
 		&_prices {
 			display: flex;
+			flex-direction: column-reverse;
 			flex-wrap: wrap;
-			width: min-content;
-			justify-content: right;
+			width: fit-content;
+			align-items: flex-end;
 			gap: 4px;
 		}
 
