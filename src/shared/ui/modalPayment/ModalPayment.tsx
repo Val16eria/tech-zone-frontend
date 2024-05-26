@@ -5,7 +5,6 @@ import {
 	Button,
 	Image,
 	Input,
-	Link,
 	Modal,
 	ModalBody,
 	ModalContent,
@@ -15,6 +14,7 @@ import {
 } from "@nextui-org/react";
 
 import { ModalLinkCardFormData, modalLinkCardSchema } from "@features/profile/lib";
+import { PolicyLink } from "@shared/ui";
 
 import InfoIcon from "@assets/svg/info-icon.svg";
 import "./ModalPayment.scss";
@@ -133,9 +133,7 @@ const ModalPayment: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 							>
 								Привязать карту
 							</Button>
-							<p className="modal-payment__footer_txt">Нажимая кнопку "Привязать карту", Вы соглашаетесь
-								c условиями <Link href="/policy" size="sm">политики конфиденциальности</Link>
-							</p>
+							<PolicyLink actionTxt="Привязать карту" />
 						</div>
 					</ModalFooter>
 				</form>

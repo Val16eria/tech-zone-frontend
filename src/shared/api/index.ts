@@ -35,8 +35,14 @@ export {
 } from "./favourites";
 export type { IFavourites } from "./favourites";
 
-export { createOrder } from "./order";
+export {
+	createOrder,
+	getOrderList,
+	getOrderById
+} from "./order";
 export type {
+	IOrderProduct,
+	TOrderStatus,
 	IOrderInfo,
 	IOrder,
 	ICreateOrder
@@ -59,3 +65,10 @@ export {
 	deleteUser
 } from "./profile";
 export type { IUser, IUpdateUserFields } from "./profile";
+
+export {
+	getReviewById,
+	updateReview,
+	createReview
+} from "./review";
+export type { IReview } from "./review";

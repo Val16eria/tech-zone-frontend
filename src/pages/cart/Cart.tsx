@@ -1,8 +1,8 @@
 import {
 	FC,
-	useCallback, useEffect,
 	useMemo,
-	useState
+	useState,
+	useCallback
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
@@ -22,7 +22,7 @@ import {
 	Notice,
 	Section,
 	ErrorNotice,
-	PriceSummaryCard, Loader
+	PriceSummaryCard
 } from "@shared/ui";
 
 import CartIcon from "@assets/svg/cart-icon.svg";
@@ -34,11 +34,7 @@ const Cart: FC = WithAuth(observer(() => {
 
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [selected, setSelected] = useState<string[]>([]);
-	const { cart, loading, error } = CartModel;
-
-	useEffect(() => {
-		CartModel.getCart();
-	}, []);
+	const { cart, error } = CartModel;
 
 	const calculateTotals = useCallback(() => {
 		let calculatedTotalPrice = 0;
@@ -92,10 +88,6 @@ const Cart: FC = WithAuth(observer(() => {
 			setSelected(orderItems);
 		}
 	};
-
-	if (loading) {
-		return <Loader />;
-	}
 
 	if (error) {
 		return <ErrorNotice />;

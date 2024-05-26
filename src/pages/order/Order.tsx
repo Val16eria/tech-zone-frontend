@@ -21,14 +21,16 @@ import {
 	PriceSummaryCard
 } from "@shared/ui";
 
-import CartIcon from "@assets/svg/cart-icon.svg";
+import OrderIcon from "@assets/svg/order-icon.svg";
 import "./Order.scss"
 
 const Order: FC = WithAuth(observer(() => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-	const { user, loading} = PersonalDataModel;
+	const { user} = PersonalDataModel;
 	const userError = PersonalDataModel.error;
+	const userLoading = PersonalDataModel.loading;
 	const orderError = OrderModel.error;
+	const orderLoading = OrderModel.loading;
 	const orderItem = getOrderItem();
 
 	const {
@@ -61,7 +63,7 @@ const Order: FC = WithAuth(observer(() => {
 		setValue("phone_number", user?.phone_number || "");
 	}, [user, setValue]);
 
-	if (loading) {
+	if (userLoading || orderLoading) {
 		return <Loader />;
 	}
 
@@ -133,7 +135,7 @@ const Order: FC = WithAuth(observer(() => {
 					</form>
 				) : (
 					<Notice
-						icon={CartIcon}
+						icon={OrderIcon}
 						title="У вас пока нет заказов"
 						description="Перейдите в корзину и оформите заказ"
 					/>

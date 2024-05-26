@@ -41,14 +41,9 @@ const Footer: FC = () => {
             Все права защищены.
           </p>
         </div>
-        <div className="footer__rules_agreements">
-          <Link size="sm" className="footer__rules_txt">
-            Пользовательсоке соглашение
-          </Link>
-          <Link size="sm" href="/policy" className="footer__rules_txt">
-            Политика конфиденциальности
-          </Link>
-        </div>
+        <Link size="sm" href="/policy" className="footer__rules_txt">
+          Политика конфиденциальности
+        </Link>
       </div>
     </footer>
   );

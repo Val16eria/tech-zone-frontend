@@ -23,7 +23,10 @@ const Payment: FC<IPayment> = (
 	return (
 		<div className="payment flex-row">
 			<CheckboxGroup value={selected} onValueChange={setSelected}>
-				<Checkbox className="payment__checkbox" value="cash">
+				<Checkbox
+					className={`payment__checkbox ${selected.includes("cash") && "payment__checkbox_active"}`}
+					value="cash"
+				>
 					<p className="payment__txt">Наличный расчет</p>
 				</Checkbox>
 			</CheckboxGroup>

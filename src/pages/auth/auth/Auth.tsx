@@ -5,15 +5,14 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { Button, Link } from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 import { AuthContainer } from "@features/auth/ui";
 import { emailRegex } from "@features/auth/lib";
 import AuthModel from "@features/auth/model";
 import { setStatusAuthCode, setTypeAuth } from "@shared/lib";
-import { Loader } from "@shared/ui";
+import { Loader, PolicyLink } from "@shared/ui";
 
-import "./Auth.scss";
 const Auth: FC = observer(() => {
 	const navigate = useNavigate();
 	const [error, setError] = useState("");
@@ -75,9 +74,7 @@ const Auth: FC = observer(() => {
 			>
 				Получить код
 			</Button>
-			<p className="auth__txt">Нажимая кнопку "Получить код",
-				Вы соглашаетесь c условиями <Link size="sm" href="/policy">политики конфиденциальности</Link>
-			</p>
+			<PolicyLink actionTxt="Получить код" />
 		</AuthContainer>
 	);
 });

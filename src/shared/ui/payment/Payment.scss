@@ -3,6 +3,7 @@
 	align-items: center;
 	gap: 12px;
 
+
 	&__checkbox {
 		gap: 8px;
 		align-items: center;
@@ -11,6 +12,10 @@
 		padding: 26px 30px !important;
 		cursor: pointer;
 		transition: border-color 0.3s ease;
+
+		&_active {
+			border: 2px solid var(--accent-blue);
+		}
 
 		&:hover {
 			border: 2px solid var(--accent-blue);

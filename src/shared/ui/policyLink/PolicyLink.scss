@@ -1,0 +1,13 @@
+.policy-link {
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 21px;
+	color: var(--dark-blue-text);
+}
+
+@media (max-width: 768px) {
+	.policy-link {
+		font-size: 12px;
+		line-height: 18px;
+	}
+}

@@ -1,0 +1,72 @@
+.order-history {
+	gap: 16px;
+
+	&__small-txt {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 26px;
+	}
+
+	&__card {
+		padding: 40px;
+
+		&_body {
+			align-items: flex-start;
+			gap: 249px;
+		}
+	}
+
+
+	&__body {
+		&_description {
+			gap: 20px;
+		}
+
+		&__list {
+			gap: 14px;
+		}
+	}
+
+	&__description {
+		&_number {
+			gap: 8px;
+		}
+
+		&_status {
+			color: var(--accent-blue);
+			text-align: center;
+			border-radius: 14px;
+			padding: 10px;
+			flex-shrink: 0;
+		}
+	}
+
+	&__status-assembly {
+		color: var(--accent-blue);
+		background: rgba(0, 111, 238, 0.1);
+	}
+
+	&__status-ready {
+		color: var(--accent-blue);
+		background: rgba(0, 111, 238, 0.1);
+	}
+
+	&__status-got {
+		color: #12A150;
+		background: #E8FAF0;
+	}
+
+	&__number {
+		&_title {
+			flex-shrink: 0;
+			font-weight: 600;
+			font-size: 20px;
+			line-height: 30px;
+			color: var(--dark-blue-text);
+		}
+
+		&_value {
+			color: var(--dark-blue-text);
+		}
+	}
+}
