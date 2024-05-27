@@ -18,7 +18,7 @@ const OrderProduct: FC<IOrderCard> = ({ status, product }) => {
 	const navigate = useNavigate();
 
 	return (
-		<div className="order-product flex-row">
+		<div className="order-product">
 			<div className="order-product__img">
 				{product.product.photos ? (
 					<Image
@@ -28,7 +28,7 @@ const OrderProduct: FC<IOrderCard> = ({ status, product }) => {
 					/>
 				) : <DefaultImage />}
 			</div>
-			<div className="order-product__description flex-row">
+			<div className="order-product__description">
 				<div className="order-product__description_info flex-row">
 					<p
 						className="order-product__info_title line-2 order-product__info_txt"
@@ -47,10 +47,10 @@ const OrderProduct: FC<IOrderCard> = ({ status, product }) => {
 						quantity={product.quantity}
 					/>
 					<div className="order-product__actions_btns flex-row">
-						<LikeButton id_product={product.product.id} />
+						{status !== "got" && <LikeButton id_product={product.product.id} />}
 						{status !== "got" ?
 							<CartButton id_product={product.product.id} /> :
-							<ReviewButton id_review={product.product.id_review} />
+							<ReviewButton id_review={product.product.id_review} id_product={product.product.id} />
 						}
 					</div>
 				</div>

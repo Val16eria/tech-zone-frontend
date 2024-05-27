@@ -1,6 +1,6 @@
-export type { IReview } from "./types.ts";
+export type { IReview, IBaseReview } from "./types.ts";
 export {
 	getReviewById,
-	updateReview,
-	createReview
+	updateReviewById,
+	createReviewById
 } from "./resources.ts";

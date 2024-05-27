@@ -8,7 +8,7 @@
 }
 
 .divider {
-  margin: 16px 0 8px 0;
+  margin: 16px 0;
   background: var(--stroke-gray) !important;
 }
 
@@ -44,8 +44,8 @@
 
 @media (max-width: 680px) {
   .small-action-btn {
-    width: 24px;
-    height: 24px;
+    width: 24px !important;
+    height: 24px !important;
   }
 }
 
@@ -56,13 +56,6 @@
   }
 
   .divider {
-    margin: 8px 0 4px 0;
-  }
-}
-
-@media (max-width: 320px) {
-  .small-action-btn {
-    width: 20px !important;
-    height: 20px !important;
+    margin: 8px 0;
   }
 }

@@ -43,11 +43,12 @@ const PhotoTabs: FC<IProductPhotoTabs> = ({ photos }) => {
 				{(photo) => (
 					<Tab
 						key={photo.id}
-						title={<Image width={85} height={85} src={photo.url} />}
 						className="photo-tabs__tabs_tab"
+						title={<Image className="photo-tabs__tab_img" radius="none" src={photo.url} />}
 					>
 						<Image
 							className="photo-tabs__tabs_img"
+							radius="none"
 							src={photo.url}
 						/>
 					</Tab>

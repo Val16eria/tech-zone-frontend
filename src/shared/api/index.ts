@@ -68,7 +68,7 @@ export type { IUser, IUpdateUserFields } from "./profile";
 
 export {
 	getReviewById,
-	updateReview,
-	createReview
+	updateReviewById,
+	createReviewById
 } from "./review";
-export type { IReview } from "./review";
+export type { IReview, IBaseReview } from "./review";

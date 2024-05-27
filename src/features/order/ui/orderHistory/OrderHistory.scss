@@ -2,6 +2,7 @@
 	gap: 16px;
 
 	&__small-txt {
+		width: fit-content;
 		font-weight: 500;
 		font-size: 16px;
 		line-height: 26px;
@@ -11,19 +12,17 @@
 		padding: 40px;
 
 		&_body {
-			align-items: flex-start;
-			gap: 249px;
+			display: flex !important;
+			flex-direction: row !important;
+			justify-content: space-between;
+			gap: 20px;
 		}
 	}
 
-
 	&__body {
 		&_description {
+			width: fit-content;
 			gap: 20px;
-		}
-
-		&__list {
-			gap: 14px;
 		}
 	}
 
@@ -33,7 +32,6 @@
 		}
 
 		&_status {
-			color: var(--accent-blue);
 			text-align: center;
 			border-radius: 14px;
 			padding: 10px;
@@ -67,6 +65,36 @@
 
 		&_value {
 			color: var(--dark-blue-text);
+		}
+	}
+}
+
+@media (max-width: 1228px) {
+	.order-history {
+		&__card {
+			&_body {
+				flex-direction: column !important;
+			}
+		}
+	}
+}
+
+@media (max-width: 650px) {
+	.order-history {
+		&__card {
+			padding: 10px;
+		}
+
+		&__number {
+			&_title {
+				font-size: 18px;
+				line-height: 24px;
+			}
+		}
+
+		&__small-txt {
+			font-size: 14px;
+			line-height: 20px;
 		}
 	}
 }

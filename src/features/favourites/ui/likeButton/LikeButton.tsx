@@ -32,7 +32,6 @@ const LikeButton: FC<ILikeButton> = observer(({ id_product }) => {
 
 	return (
 		<Button
-			className="small-action-btn"
 			isIconOnly
 			disableAnimation={true}
 			color="primary"
@@ -41,6 +40,7 @@ const LikeButton: FC<ILikeButton> = observer(({ id_product }) => {
 			onClick={handleLike}
 		>
 			<Image
+				className="small-action-btn"
 				src={isLike ? FavouriteFullIcon : FavouriteIcon}
 				alt="favourite"
 			/>

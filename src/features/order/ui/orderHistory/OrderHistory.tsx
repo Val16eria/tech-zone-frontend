@@ -1,6 +1,10 @@
 import { FC, useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { Card, CardBody } from "@nextui-org/react";
+import {
+	Card,
+	CardBody,
+	Divider
+} from "@nextui-org/react";
 
 import OrderModel from "../../model";
 import { OrderProduct } from "../orderProduct";
@@ -41,7 +45,7 @@ const OrderHistory: FC = observer(() => {
 		<div className="order-history flex-column">
 			{orderList.map((orderItem) => (
 				<Card className="order-history__card" shadow="sm" radius="lg">
-					<CardBody className="order-history__card_body flex-row">
+					<CardBody className="order-history__card_body">
 						<div className="order-history__body_description flex-column">
 							<div className="order-history__description_number flex-column">
 								<p className="order-history__number_title">Номер заказа</p>
@@ -54,13 +58,17 @@ const OrderHistory: FC = observer(() => {
 								{OrderStatuses[orderItem.status]}
 							</p>
 						</div>
-						<div className="order-history__body_list flex-column">
-							{orderItem.order_items.map((product) =>
-								<OrderProduct
-									key={product.id}
-									status={orderItem.status}
-									product={product}
-								/>
+						<div className="flex-column">
+							{orderItem.order_items.map((product) => (
+								<>
+									<OrderProduct
+										key={product.id}
+										status={orderItem.status}
+										product={product}
+									/>
+									{product.product !== orderItem.order_items.at(-1)?.product && <Divider className="divider" />}
+								</>
+								)
 							)}
 						</div>
 					</CardBody>
