@@ -33,7 +33,10 @@ const DescriptionTabs: FC = observer(() => {
 				onSelectionChange={(select) => setSelected(select.toString())}
 			>
 				<Tab key="reviews" title={`Отзывы ${product?.reviews.length}`}>
-					{product ? <Feedback reviews={product.reviews} /> : <Notice icon={ReviewIcon} title="Отзывов нет" />}
+					{product?.reviews.length ?
+						<Feedback reviews={product.reviews} /> :
+						<Notice icon={ReviewIcon} title="Отзывов нет" />
+					}
 				</Tab>
 				<Tab key="specifications" title="Характеристики">
 					{ProductModel.productType === "smartphone" && <SpecificationPhone />}

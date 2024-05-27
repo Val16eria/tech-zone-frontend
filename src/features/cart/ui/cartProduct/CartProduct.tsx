@@ -6,8 +6,7 @@ import { LikeButton } from "@features/favourites/ui";
 import { QuantityButton } from "../quantityButton";
 import { DeleteButton } from "../deleteButton";
 import { ICart } from "@shared/api";
-import { discountedPrice } from "@shared/lib";
-import { DefaultImage } from "@shared/ui";
+import { DefaultImage, Price } from "@shared/ui";
 
 import "./CartProduct.scss";
 
@@ -37,15 +36,11 @@ const
 					}>
 						{cartProduct.product.name}
 					</p>
-					<div className="cart-product__item_prices">
-						{cartProduct.product.discount && <p className="cart-product__item_price">
-							{`${cartProduct.quantity * cartProduct.product.price} ₽`}
-						</p>}
-						<p className="cart-product__item_discount">
-							{`${discountedPrice(cartProduct.product.price * cartProduct.quantity, cartProduct.product.discount) 
-							|| cartProduct.quantity * cartProduct.product.price} ₽`}
-						</p>
-					</div>
+					<Price
+						price={cartProduct.product.price}
+						discount={cartProduct.product.discount}
+						quantity={cartProduct.quantity}
+					/>
 				</div>
 				<div className="cart-product__content_item flex-row">
 					<QuantityButton quantity={cartProduct.quantity} id_product={cartProduct.product.id} />

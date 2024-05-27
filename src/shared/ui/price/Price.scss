@@ -1,0 +1,36 @@
+.price {
+	display: flex;
+	width: fit-content;
+	align-items: flex-end;
+	gap: 4px;
+
+	&__price {
+		flex-shrink: 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 26px;
+		text-decoration: line-through;
+		color: var(--dark-blue-text);
+		opacity: 0.5;
+	}
+
+	&__discount {
+		flex-shrink: 0;
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 30px;
+		color: #464455;
+	}
+}
+
+@media (max-width: 628px) {
+	.price {
+		&__price {
+			font-size: 14px;
+		}
+
+		&__discount {
+			font-size: 18px;
+		}
+	}
+}

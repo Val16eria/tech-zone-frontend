@@ -1,11 +1,12 @@
 import {
-	makeAutoObservable,
+	toJS,
 	runInAction,
-	toJS
+	makeAutoObservable
 } from "mobx";
 
 import {
 	createOrder,
+	getOrderList,
 	IOrder,
 	ICreateOrder
 } from "@shared/api";
@@ -42,6 +43,24 @@ class OrderModel {
 			await createOrder(dto);
 
 			runInAction(() => {
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			runInAction(() => {
+				this._error = (error as Error).message;
+			})
+		}
+	}
+
+	async getOrders() {
+		try {
+			this._loading = true;
+			const response = await getOrderList();
+
+			runInAction(() => {
+				this._orderList = response.items;
 				this._loading = false;
 			});
 		} catch (error: unknown) {

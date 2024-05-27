@@ -2,6 +2,7 @@ import { FC, useState } from "react";
 import { Tab, Tabs } from "@nextui-org/react";
 
 import { PersonalData } from "@features/profile/ui";
+import { OrderHistory } from "@features/order/ui";
 import { WithAuth } from "@shared/hoc";
 
 import "./Profile.scss";
@@ -31,7 +32,7 @@ const Profile: FC = WithAuth(() => {
 					key="orders"
 					title="Заказы"
 				>
-					<p>Заказы</p>
+					<OrderHistory />
 				</Tab>
 			</Tabs>
 		</div>

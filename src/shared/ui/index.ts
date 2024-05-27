@@ -7,6 +7,8 @@ export { Modal } from "./modal";
 export { ModalPayment } from "./modalPayment";
 export { Notice } from "./notice";
 export { Payment } from "./payment";
+export { PolicyLink } from "./policyLink";
+export { Price } from "./price";
 export { PriceSummaryCard } from "./priceSummaryCard";
 export { ProductCard } from "./productCard";
 export { Review } from "./review";

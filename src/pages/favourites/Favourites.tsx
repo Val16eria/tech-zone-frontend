@@ -3,10 +3,10 @@ import { observer } from "mobx-react-lite";
 
 import FavouritesModel from "@features/favourites/model";
 import {
-	ErrorNotice, Loader,
+	ErrorNotice,
 	Notice,
-	ProductCard,
-	Section
+	Section,
+	ProductCard
 } from "@shared/ui";
 import { WithAuth } from "@shared/hoc";
 
@@ -14,11 +14,7 @@ import FavouritesIcon from "@assets/svg/favourite-icon.svg";
 import "./Favourites.scss";
 
 const Favourites: FC = WithAuth(observer(() => {
-	const { favourites, loading, error } = FavouritesModel;
-
-	if (loading) {
-		return <Loader />;
-	}
+	const { favourites, error } = FavouritesModel;
 
 	if (error) {
 		return <ErrorNotice />;
