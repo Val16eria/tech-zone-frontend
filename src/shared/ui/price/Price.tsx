@@ -16,6 +16,7 @@ const Price: FC<IPrice> = (
 		discount,
 		quantity
 	}) => {
+	console.log('==========>quantity', quantity);
 	return (
 		<div className="price flex-column">
 			<p className="price__discount">

@@ -2,6 +2,7 @@ export {
 	getAllCart,
 	addProductInCart,
 	deleteProductInCart,
+	deleteAllProductInCart,
 	updateProductCart
 } from "./resources.ts";
 export type {

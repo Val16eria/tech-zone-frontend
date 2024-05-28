@@ -14,8 +14,7 @@ interface ICartProduct {
 	cartProduct: ICart;
 }
 
-const
-	CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
+const CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
 	const navigate = useNavigate();
 	return (
 		<div className="cart-product flex-row">

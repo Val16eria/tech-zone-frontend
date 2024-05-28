@@ -4,6 +4,7 @@ export {
 	getAllCart,
 	addProductInCart,
 	deleteProductInCart,
+	deleteAllProductInCart,
 	updateProductCart
 } from "./cart";
 export type { ICart, ICartProduct } from "./cart";

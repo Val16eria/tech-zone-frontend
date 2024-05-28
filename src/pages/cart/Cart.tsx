@@ -12,7 +12,6 @@ import {
 	CheckboxGroup,
 	Image, useDisclosure
 } from "@nextui-org/react";
-import { toast, Toaster } from "sonner";
 
 import CartModel from "@features/cart/model";
 import { ModalDeleteProduct, CartProductItem } from "@features/cart/ui";
@@ -64,19 +63,8 @@ const Cart: FC = WithAuth(observer(() => {
 		navigate("/order");
 	};
 
-	const openModal = () => {
-		if (selected.length) {
-			onOpen();
-		} else {
-			toast.error("Выберите товары, которые хотите удалить");
-		}
-	};
-
 	const deleteProducts = async () => {
-		const selectedProducts = cart.filter(product => selected.includes(product.id.toString()));
-		for (const product of selectedProducts) {
-			await CartModel.deleteProduct(product.product.id);
-		}
+		await CartModel.deleteAllProduct();
 		await CartModel.getCart();
 	};
 
@@ -94,68 +82,65 @@ const Cart: FC = WithAuth(observer(() => {
 	}
 
 	return (
-		<>
-			<Section
-				title="Корзина"
-				isBreadcrumbs={true}
-				productsCount={cart.length}
-			>
-				{cart.length ? (
-					<div className="cart">
-						<div className="cart__content flex-column">
-							<div className="cart__content_products flex-row">
-								<Checkbox
-									className="p-0 m-0"
-									isSelected={selected.length === cart.length}
-									onChange={handleSelectAll}
-								>
-									Выбрать все
-								</Checkbox>
-								<Button
-									className="p-0"
-									color="primary"
-									variant="light"
-									disableAnimation={true}
-									aria-label="delete all"
-									startContent={
-										<Image
-											className="small-action-btn"
-											src={DeleteIcon}
-											alt="delete"
-										/>}
-									onClick={openModal}
-								>
-									Удалить все
-								</Button>
-								<ModalDeleteProduct
-									isOpen={isOpen}
-									onOpenChange={onOpenChange}
-									onAction={deleteProducts}
-								/>
-							</div>
-							<CheckboxGroup value={selected} onValueChange={setSelected}>
-								{cart.map((product) => (
-									<CartProductItem key={product.id} product={product} />
-								))}
-							</CheckboxGroup>
+		<Section
+			title="Корзина"
+			isBreadcrumbs={true}
+			productsCount={cart.length}
+		>
+			{cart.length ? (
+				<div className="cart">
+					<div className="cart__content flex-column">
+						<div className="cart__content_products flex-row">
+							<Checkbox
+								className="p-0 m-0"
+								isSelected={selected.length === cart.length}
+								onChange={handleSelectAll}
+							>
+								Выбрать все
+							</Checkbox>
+							<Button
+								className="p-0"
+								color="primary"
+								variant="light"
+								disableAnimation={true}
+								aria-label="delete all"
+								startContent={
+								<Image
+									className="small-action-btn"
+									src={DeleteIcon}
+									alt="delete"
+								/>}
+								onClick={onOpen}
+							>
+								Удалить все
+							</Button>
+							<ModalDeleteProduct
+								isOpen={isOpen}
+								onOpenChange={onOpenChange}
+								onAction={deleteProducts}
+							/>
 						</div>
-						<PriceSummaryCard
-							totalDiscount={totalDiscount}
-							totalPrice={totalPrice}
-							isDisable={!selected.length}
-							onSubmit={onSubmit}
-						/>
+						<CheckboxGroup value={selected} onValueChange={setSelected}>
+							{cart.map((product) => (
+								<CartProductItem key={product.id} product={product} />
+							))}
+						</CheckboxGroup>
 					</div>
-				) : (
-					<Notice
-						icon={CartIcon}
-						title="У вас пока нет товаров в корзине"
-						description="Добавьте товары в корзину"
+					<PriceSummaryCard
+						totalDiscount={totalDiscount}
+						totalPrice={totalPrice}
+						isDisable={!selected.length}
+						onSubmit={onSubmit}
 					/>
-				)}
-			</Section>
-			<Toaster />
-		</>
+				</div>
+			) : (
+				<Notice
+					icon={CartIcon}
+					title="У вас пока нет товаров в корзине"
+					description="Добавьте товары в корзину"
+				/>
+			)}
+		</Section>
 	);
 }));
 
