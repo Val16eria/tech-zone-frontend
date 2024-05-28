@@ -15,7 +15,8 @@ import {
 	Loader,
 	Section,
 	Stars,
-	Review
+	Review,
+	ErrorNotice
 } from "@shared/ui"
 import { discountedPrice } from "@shared/lib";
 
@@ -24,7 +25,7 @@ import "./Product.scss";
 const Product: FC = observer(() => {
 
 	const { id } = useParams();
-	const product = ProductModel.product;
+	const { product, loading, error } = ProductModel;
 
 	useEffect(() => {
 		const displayProduct = async () => {
@@ -36,8 +37,12 @@ const Product: FC = observer(() => {
 		displayProduct();
 	}, [id]);
 
-	if (ProductModel.loading || !product) {
+	if (loading || !product) {
 		return <Loader />
+	}
+
+	if (error) {
+		return <ErrorNotice />;
 	}
 
 	return (

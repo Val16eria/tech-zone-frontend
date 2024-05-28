@@ -50,7 +50,7 @@ class OrderModel {
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 
@@ -68,7 +68,7 @@ class OrderModel {
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 }

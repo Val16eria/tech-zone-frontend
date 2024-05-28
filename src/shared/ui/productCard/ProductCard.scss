@@ -4,6 +4,10 @@
 	height: auto;
 	padding: 21px 24.5px;
 
+	&:hover {
+		box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.03), 0 2px 30px 0 rgba(0, 0, 0, 0.08);
+	}
+
 	&__body {
 		justify-content: center;
 		align-items: center;
@@ -40,6 +44,10 @@
 		line-height: 26px;
 		cursor: pointer;
 		color: var(--dark-blue-text);
+
+		&:hover {
+			color: var(--accent-blue);
+		}
 	}
 
 	&__product_details {

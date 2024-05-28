@@ -65,10 +65,8 @@
 
 @media (max-width: 768px) {
 	.top-header {
-		&__search {
-			&_inp {
-				display: none;
-			}
+		& > header {
+			gap: 5px;
 		}
 
 		&__nav {

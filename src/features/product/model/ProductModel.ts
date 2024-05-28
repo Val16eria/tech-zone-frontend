@@ -60,9 +60,7 @@ class ProductModel {
 			this._loading = false;
 
 			runInAction(() => {
-				if (typeof error === "string") {
-					this._error = error;
-				}
+				this._error = (error as Error).message;
 			})
 		}
 	}
@@ -74,7 +72,7 @@ class ProductModel {
 			this._loading = true;
 
 			switch (this._productType) {
-				case "television" :
+				case "television":
 					product = await getTelevisionById(id) as ITelevisions;
 					break;
 				case "laptop":
@@ -104,9 +102,10 @@ class ProductModel {
 		} catch (error: unknown) {
 			runInAction(() => {
 				this._loading = false;
-				if (typeof error === "string") {
-					this._error = error;
-				}
+
+				runInAction(() => {
+					this._error = (error as Error).message;
+				})
 			});
 		}
 	}

@@ -54,6 +54,7 @@ class FavouritesModel {
 		try {
 			this._loading = true;
 			await addFavouriteProduct({ id_product });
+
 			runInAction(() => {
 				this._loading = false;
 			});

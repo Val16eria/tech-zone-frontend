@@ -49,6 +49,15 @@ export type {
 } from "./order";
 
 export {
+	getFilterByTelevision,
+	getFilterByLaptop,
+	getFilterByTablet,
+	getFilterBySmartphone,
+	getFilterBySmartwatch,
+	getFilterByAccessory,
+	getFilterByProduct,
+	getProductBySearch,
+	getSuggestions,
 	getProductTypeById,
 	getTelevisionById,
 	getLaptopById,
@@ -57,7 +66,12 @@ export {
 	getSmartWatchById,
 	getAccessoryById
 } from "./product";
-export type { IProductType, TProductType } from "./product";
+export type {
+	IFilterTelevision,
+	IProductType,
+	TProductType,
+	ISearch
+} from "./product";
 
 export {
 	getUser,

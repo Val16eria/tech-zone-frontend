@@ -15,6 +15,9 @@ import "./BottomHeader.scss";
 const BottomHeader: FC = () => {
 	const { pathname } = useLocation();
 
+	const parts = pathname.split('/');
+	const type = parts.length > 2 ? parts[2] : null;
+
 	return (
 		<Navbar
 			maxWidth="full"
@@ -25,10 +28,7 @@ const BottomHeader: FC = () => {
 			<NavbarContent>
 				{catalogItems.map((item) => (
 					<NavbarItem key={item.id}>
-						<Link
-							href={item.path}
-							className="bottom-header__link flex-row"
-						>
+						<Link className="bottom-header__link flex-row" href={`/${item.path}`}>
 							<Image
 								radius="none"
 								width={24}
@@ -36,7 +36,7 @@ const BottomHeader: FC = () => {
 								src={item.icon}
 								alt={item.title}
 							/>
-							<p className={`bottom-header__link_txt ${pathname === item.path && "isActive"}`}>
+							<p className={`bottom-header__link_txt ${type === item.type && "isActive"}`}>
 								{item.title}
 							</p>
 						</Link>
@@ -47,4 +47,4 @@ const BottomHeader: FC = () => {
 	);
 };
 
-export {BottomHeader};
+export { BottomHeader };

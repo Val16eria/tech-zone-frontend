@@ -38,6 +38,10 @@
 			max-width: 245px;
 			color: var(--dark-blue-text);
 			cursor: pointer;
+
+			&:hover {
+				color: var(--accent-blue);
+			}
 		}
 	}
 }
