@@ -42,7 +42,11 @@ const CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
 					/>
 				</div>
 				<div className="cart-product__content_item flex-row">
-					<QuantityButton quantity={cartProduct.quantity} id_product={cartProduct.product.id} />
+					<QuantityButton
+						quantity_product={cartProduct.product.quantity}
+						quantity={cartProduct.quantity}
+						id_product={cartProduct.product.id}
+					/>
 					<div className="cart-product__content_actions">
 						<DeleteButton id_product={cartProduct.product.id} />
 						<LikeButton id_product={cartProduct.product.id} />

@@ -18,7 +18,11 @@ interface IModalDeleteProduct {
 
 const ModalDeleteProduct: FC<IModalDeleteProduct> = ({ isOpen, onOpenChange, onAction }) => {
 	return (
-		<Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+		<Modal
+			isOpen={isOpen}
+			onOpenChange={onOpenChange}
+			placement="center"
+		>
 			<ModalContent>
 				{(onClose) => (
 					<>
@@ -26,8 +30,10 @@ const ModalDeleteProduct: FC<IModalDeleteProduct> = ({ isOpen, onOpenChange, onA
 							Удалить товары
 						</ModalHeader>
 						<ModalBody>
-							<p>Вы точно хотите удалить выбранные товары?</p>
-							<p>Отменить данное действие будет невозможно.</p>
+							<p className="modal-delete-product__txt">
+								Вы точно хотите удалить выбранные товары?
+								Отменить данное действие будет невозможно.
+							</p>
 						</ModalBody>
 						<ModalFooter>
 							<Button color="danger" variant="light" onPress={onClose}>
