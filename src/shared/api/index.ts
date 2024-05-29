@@ -77,7 +77,8 @@ export type {
 export {
 	getUser,
 	updateUser,
-	deleteUser
+	deleteUser,
+	deletePhotoUser
 } from "./profile";
 export type { IUser, IUpdateUserFields } from "./profile";
 
