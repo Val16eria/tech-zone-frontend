@@ -1,6 +1,5 @@
 import {
 	FC,
-	ChangeEvent,
 	useEffect,
 	useState
 } from "react";
@@ -10,19 +9,18 @@ import { observer } from "mobx-react-lite";
 import { toast, Toaster } from "sonner";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {
-	Avatar,
 	Button,
 	Card,
 	CardBody,
-	Image,
 	Input,
 	Link,
 	useDisclosure
 } from "@nextui-org/react";
 
+import { personalDataSchema, PersonalDataFormData } from "../../lib";
 import PersonalDataModel from "../../model";
 import { PersonalDataInput } from "../personalDataInput";
-import { personalDataSchema, PersonalDataFormData } from "../../lib";
+import { UserAvatar } from "../userAvatar";
 import {
 	ErrorNotice,
 	Loader,
@@ -30,8 +28,6 @@ import {
 } from "@shared/ui";
 import { logout } from "@shared/lib";
 
-import DefaultAvatarIcon from "@assets/svg/empty-user-avatar.png";
-import CameraIcon from "@assets/svg/camera-icon.svg";
 import "./PersonalData.scss";
 
 const PersonalData: FC = observer(() => {
@@ -39,7 +35,6 @@ const PersonalData: FC = observer(() => {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const { user, loading, error } = PersonalDataModel;
 
-	const [imageUrl, setImageUrl] = useState<string | null>(null);
 	const [file, setFile] = useState<File>();
 
 	const {
@@ -80,16 +75,6 @@ const PersonalData: FC = observer(() => {
 		navigate("/");
 	};
 
-	const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-		const file = event.target.files?.[0];
-
-		if (file) {
-			const url = URL.createObjectURL(file);
-			setImageUrl(url);
-			setFile(file);
-		}
-	}
-
 	if (loading) {
 		return <Loader />
 	}
@@ -105,24 +90,7 @@ const PersonalData: FC = observer(() => {
 					<form className="personal-data flex-column" onSubmit={handleSubmit(onSubmit)}>
 						<div className="personal-data__content flex-column">
 							<div className="personal-data__content_info flex-column">
-								<div className="personal-data__info_avatar-wrapper personal-data__info_avatar-size">
-									<Avatar
-										isBordered
-										className="personal-data__info_avatar personal-data__info_avatar-size"
-										src={imageUrl || user?.photo_url || DefaultAvatarIcon}
-										alt="avatar"
-									/>
-									<label className="personal-data__info_avatar-overlay" htmlFor="avatarUpload">
-										<Image src={CameraIcon} alt="avatar hover"/>
-									</label>
-									<input
-										id="avatarUpload"
-										className="personal-data__info_upload"
-										type="file"
-										accept="image/*"
-										onChange={handleFileInputChange}
-									/>
-								</div>
+								<UserAvatar user_photo={user?.photo_url} setFile={setFile} />
 								<div className="personal-data__info_inputs flex-row">
 									<PersonalDataInput
 										type="text"

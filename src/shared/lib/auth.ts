@@ -49,6 +49,7 @@ const isAuth = () => {
 
 const logout = () => {
 	localStorage.clear();
+	sessionStorage.clear();
 	Cookies.remove("access_token");
 	Cookies.remove("refresh_token");
 }

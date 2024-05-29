@@ -5,6 +5,7 @@ import { SpecificationItem } from "../specificationItem";
 import { ISpecification } from "../../../lib";
 import ProductModel from "@features/product/model";
 import { ILaptops } from "@shared/api";
+import { dateFormat } from "@shared/lib";
 
 const SpecificationLaptop: FC = observer(() => {
 	const product = ProductModel.product as ILaptops;
@@ -22,7 +23,7 @@ const SpecificationLaptop: FC = observer(() => {
 			},
 			{
 				label: "Дата выпуска",
-				value: product.date_release,
+				value: dateFormat(product.date_release),
 			}],
 		},
 		{

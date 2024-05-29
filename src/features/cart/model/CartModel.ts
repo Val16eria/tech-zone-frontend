@@ -9,7 +9,7 @@ import {
 	addProductInCart,
 	deleteProductInCart,
 	updateProductCart,
-	ICart
+	ICart, deleteAllProductInCart
 } from "@shared/api";
 
 class CartModel {
@@ -72,6 +72,23 @@ class CartModel {
 		try {
 			this._loading = true;
 			await deleteProductInCart(id);
+
+			runInAction(() => {
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			runInAction(() => {
+				this._error = (error as Error).message;
+			})
+		}
+	}
+
+	async deleteAllProduct() {
+		try {
+			this._loading = true;
+			await deleteAllProductInCart();
 
 			runInAction(() => {
 				this._loading = false;

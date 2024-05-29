@@ -21,6 +21,12 @@ const deleteProductInCart = async (id: number): Promise<string> => {
 	return response.data;
 };
 
+const deleteAllProductInCart = async (): Promise<string> => {
+	const response =
+		await api.delete<string, AxiosResponse<string>>("/cart");
+	return response.data;
+};
+
 const updateProductCart = async (dto: { quantity: number }, id: number): Promise<IUpdateCart> => {
 	const response =
 		await api.patch<IUpdateCart, AxiosResponse<IUpdateCart>>(`/cart/${id}`, {...dto});
@@ -31,5 +37,6 @@ export {
 	getAllCart,
 	addProductInCart,
 	deleteProductInCart,
+	deleteAllProductInCart,
 	updateProductCart
 };

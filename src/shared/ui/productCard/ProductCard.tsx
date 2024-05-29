@@ -56,15 +56,14 @@ const ProductCard: FC<IProductCard> = observer((
 			shadow="sm"
 		>
 			<CardBody className={`product-card__body ${!photos?.length && "product-card__body_default-img"}`}>
-				<div className="product-card__body_img">
-					{photos?.length ? (
-						<Image
-							src={photos[0].url }
-							radius="none"
-							alt={name}
-						/>
-					) : <DefaultImage />}
-				</div>
+				{photos?.length ? (
+					<Image
+						className="product-card__body_img"
+						src={photos[0].url }
+						radius="none"
+						alt={name}
+					/>
+				) : <DefaultImage />}
 			</CardBody>
 			<CardFooter className="product-card__content flex-column">
 				<div className="product-card__content_product flex-column">

@@ -1,6 +1,8 @@
 import { IBaseProduct } from "../catalog";
 
-type ICartProduct = Omit<IBaseProduct, "reviews_count" | "average_rating">;
+type ICartProduct = Omit<IBaseProduct, "reviews_count" | "average_rating"> & {
+	quantity: number;
+};
 
 interface ICart {
 	id: number;

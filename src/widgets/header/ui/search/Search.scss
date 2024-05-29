@@ -1,7 +1,42 @@
 .search {
-	border-color: var(--accent-blue);
+	position: relative;
+	width: 100%;
 
-	&__icon {
-		padding: 12px !important;
+	&__input {
+		border-color: var(--accent-blue);
+
+		& > div > div {
+			background-color: var(--background-white);
+		}
+
+		&_icon {
+			padding: 12px !important;
+		}
+	}
+
+	&__suggestions {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background: white;
+		max-height: 178px;
+		overflow-y: auto;
+		list-style: none;
+		margin-top: -10px;
+		padding-top: 26px;
+		box-shadow: 0 4px 12px 0 rgba(139, 139, 139, 0.15);
+		border-radius: 0 0 14px 14px;
+		z-index: -1;
+
+		&_item {
+			padding: 10px;
+			cursor: pointer;
+
+			&:hover {
+				color: var(--accent-blue);
+				background-color: rgba(0, 111, 238, 0.2);
+			}
+		}
 	}
 }

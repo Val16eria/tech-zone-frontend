@@ -36,8 +36,15 @@ const deleteUser = async (): Promise<IUser> => {
 	return response.data;
 };
 
+const deletePhotoUser = async (): Promise<string> => {
+	const response =
+		await api.delete<string, AxiosResponse<string>>("/users/photo");
+	return response.data;
+};
+
 export {
 	getUser,
 	updateUser,
-	deleteUser
+	deleteUser,
+	deletePhotoUser
 };

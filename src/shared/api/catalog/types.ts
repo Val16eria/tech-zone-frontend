@@ -57,7 +57,7 @@ interface ITechnicalProduct {
 	matrix_brightness: string;
 	matrix_contrast: string;
 	screen_type: string;
-	screen_diagonal: string;
+	screen_diagonal: number;
 	screen_resolution: string;
 	screen_format: string;
 	sound_technology: string;

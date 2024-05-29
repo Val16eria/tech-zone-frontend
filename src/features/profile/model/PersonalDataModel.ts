@@ -8,7 +8,7 @@ import {
 	getUser,
 	updateUser,
 	IUpdateUserFields,
-	IUser, deleteUser
+	IUser, deleteUser, deletePhotoUser
 } from "@shared/api";
 
 class PersonalDataModel {
@@ -40,13 +40,13 @@ class PersonalDataModel {
 			runInAction(() => {
 				this._user = response;
 				this._loading = false;
-			})
+			});
 		} catch (error: unknown) {
 			this._loading = false;
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 
@@ -58,14 +58,14 @@ class PersonalDataModel {
 			runInAction(() => {
 				this._user = response;
 				this._loading = false;
-			})
+			});
 
 		} catch (error: unknown) {
 			this._loading = false;
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 
@@ -77,13 +77,30 @@ class PersonalDataModel {
 			runInAction(() => {
 				this._user = null;
 				this._loading = false;
-			})
+			});
 		} catch (error: unknown) {
 			this._loading = false;
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
+		}
+	}
+
+	async deletePhoto() {
+		try {
+			this._loading = true;
+			await deletePhotoUser();
+
+			runInAction(() => {
+				this._loading = false;
+			});
+		} catch (error: unknown) {
+			this._loading = false;
+
+			runInAction(() => {
+				this._error = (error as Error).message;
+			});
 		}
 	}
 }

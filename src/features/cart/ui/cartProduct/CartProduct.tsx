@@ -14,8 +14,7 @@ interface ICartProduct {
 	cartProduct: ICart;
 }
 
-const
-	CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
+const CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
 	const navigate = useNavigate();
 	return (
 		<div className="cart-product flex-row">
@@ -43,7 +42,11 @@ const
 					/>
 				</div>
 				<div className="cart-product__content_item flex-row">
-					<QuantityButton quantity={cartProduct.quantity} id_product={cartProduct.product.id} />
+					<QuantityButton
+						quantity_product={cartProduct.product.quantity}
+						quantity={cartProduct.quantity}
+						id_product={cartProduct.product.id}
+					/>
 					<div className="cart-product__content_actions">
 						<DeleteButton id_product={cartProduct.product.id} />
 						<LikeButton id_product={cartProduct.product.id} />

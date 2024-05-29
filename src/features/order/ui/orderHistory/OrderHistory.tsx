@@ -44,7 +44,12 @@ const OrderHistory: FC = observer(() => {
 	return (
 		<div className="order-history flex-column">
 			{orderList.map((orderItem) => (
-				<Card className="order-history__card" shadow="sm" radius="lg">
+				<Card
+					key={orderItem.id}
+					className="order-history__card"
+					shadow="sm"
+					radius="lg"
+				>
 					<CardBody className="order-history__card_body">
 						<div className="order-history__body_description flex-column">
 							<div className="order-history__description_number flex-column">
@@ -60,14 +65,13 @@ const OrderHistory: FC = observer(() => {
 						</div>
 						<div className="flex-column">
 							{orderItem.order_items.map((product) => (
-								<>
+								<div key={product.id}>
 									<OrderProduct
-										key={product.id}
 										status={orderItem.status}
 										product={product}
 									/>
 									{product.product !== orderItem.order_items.at(-1)?.product && <Divider className="divider" />}
-								</>
+								</div>
 								)
 							)}
 						</div>

@@ -1,1 +1,1 @@
-export { default } from "./CatalogModel.ts";
+export { default } from "./CatalogModel";

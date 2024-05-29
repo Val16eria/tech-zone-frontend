@@ -1,5 +1,14 @@
 export {
+	getFilterByTelevision,
+	getFilterByLaptop,
+	getFilterByTablet,
+	getFilterBySmartphone,
+	getFilterBySmartwatch,
+	getFilterByAccessory,
+	getFilterByProduct,
 	getProductTypeById,
+	getProductBySearch,
+	getSuggestions,
 	getTelevisionById,
 	getLaptopById,
 	getTabletById,
@@ -7,4 +16,10 @@ export {
 	getSmartWatchById,
 	getAccessoryById
 } from "./resources.ts";
-export type { TProductType, IProductType } from "./types.ts";
+export type {
+	IFilterTelevision,
+	TProductType,
+	IProductType,
+	ISearch,
+	ISuggestions
+} from "./types.ts";

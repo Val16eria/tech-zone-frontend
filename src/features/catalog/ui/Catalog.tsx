@@ -1,45 +1,31 @@
 import { FC } from "react";
-import { observer } from "mobx-react-lite";
+import { useParams } from "react-router-dom";
 
-import CatalogModel from "../model";
-import { Filter } from "./filter";
-import { Sort } from "./sort";
-import { IBaseProduct } from "@shared/api";
+import { Filter, Sort } from "@features/catalog/ui";
+import { catalogItems } from "@widgets/header/lib";
 import {
-	Notice,
-	Loader,
-	Modal,
+	IBaseProduct,
+	IFilterTelevision,
+	TProductType
+} from "@shared/api";
+import {
 	ProductCard,
+	Modal,
+	Notice,
 	Section,
-	ErrorNotice
 } from "@shared/ui";
 
 import "./Catalog.scss";
 
 interface ICatalog {
 	title: string;
-	icon: string;
+	filters: IFilterTelevision | null;
 	products: IBaseProduct[];
 }
 
-const Catalog: FC<ICatalog> = observer((
-	{
-		title,
-		icon,
-		products
-	}) => {
-
-	const { loading, error } = CatalogModel;
-
-	if (loading) {
-		return (
-			<Loader />
-		)
-	}
-
-	if (error) {
-		return <ErrorNotice />;
-	}
+const Catalog: FC<ICatalog> = ({ title, filters, products}) => {
+	const { type } = useParams<{ type: TProductType }>();
+	const category = catalogItems.find((item) => item.type === type)!;
 
 	return (
 		<Section
@@ -50,35 +36,35 @@ const Catalog: FC<ICatalog> = observer((
 			{products.length ? (
 				<div className="catalog">
 					<div className="catalog__filter">
-						<Filter/>
+						<Filter filters={filters} />
 					</div>
-
 					<div className="catalog__content">
 						<div className="catalog__content_sort">
 							<div className="catalog__content_sort-position flex-row">
 								<div className="catalog__content_filter-modal">
 									<Modal buttonTxt="Фильтр">
-										<Filter/>
+										<Filter filters={filters} />
 									</Modal>
 								</div>
-								<Sort/>
+								<Sort />
 							</div>
 						</div>
-
 						<div className="catalog__content_products">
-							{products.map((product) => <ProductCard key={product.id} {...product} />)}
+							{products.map((product) => (
+								<ProductCard key={product.id} {...product} />
+							))}
 						</div>
 					</div>
 				</div>
 			) : (
 				<Notice
-					icon={icon}
+					icon={category?.icon}
 					title="Товаров еще нет"
 					description="Следите за обновлениями, чтобы не пропустить новые товары"
 				/>
 			)}
 		</Section>
 	);
-});
+};
 
 export { Catalog };

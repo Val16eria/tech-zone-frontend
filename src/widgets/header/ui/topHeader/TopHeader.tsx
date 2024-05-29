@@ -37,7 +37,7 @@ const TopHeader: FC = observer(() => {
 	useEffect(() => {
 		FavouritesModel.getFavourites();
 		CartModel.getCart();
-	}, [favourites.length, cart.length]);
+	}, []);
 
 	const closeMenu = () => {
 		setMenuOpen(false);
@@ -120,14 +120,8 @@ const TopHeader: FC = observer(() => {
 				className="md:hidden"
 			/>
 
-			<NavbarMenu className="z-50">
+			<NavbarMenu className="z-40">
 				<div className="top-header__menu flex-column">
-					<NavbarMenuItem>
-							<Search/>
-					</NavbarMenuItem>
-
-					<Divider className="divider" />
-
 					{navbarItems.map((item) => (
 						<NavbarMenuItem key={item.id}>
 							<Link
@@ -157,7 +151,7 @@ const TopHeader: FC = observer(() => {
 							<Link
 								className="top-header__menu-link flex-row"
 								color="foreground"
-								href={item.path}
+								href={`/${item.path}`}
 								onClick={closeMenu}
 							>
 								<Image
@@ -167,7 +161,7 @@ const TopHeader: FC = observer(() => {
 									src={item.icon}
 									alt={item.title}
 								/>
-								<p className={`top-header__menu-link_txt ${item.path === pathname && "isActive"}`}>
+								<p className={`top-header__menu-link_txt ${pathname === item.path && "isActive"}`}>
 									{item.title}
 								</p>
 							</Link>

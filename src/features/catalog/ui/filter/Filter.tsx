@@ -1,40 +1,56 @@
-import { FC, useState } from "react";
 import {
-	Accordion,
+	FC,
+	useState,
+	useCallback
+} from "react";
+import {
 	AccordionItem,
+	Accordion,
 	Button,
 	Checkbox,
 	CheckboxGroup,
 	Input,
-	Slider
+	Slider,
 } from "@nextui-org/react";
+
+import { IFilterTelevision } from "@shared/api";
 
 import "./Filter.scss";
 
-const Filter: FC = () => {
+interface IFilter {
+	filters: IFilterTelevision | null;
+}
+
+const Filter: FC<IFilter> = ({ filters }) => {
 	const [minPrice, setMinPrice] = useState<number>(10000);
 	const [maxPrice, setMaxPrice] = useState<number>(100000);
 
-	const handleMinPriceChange = (value: string) => {
+	const handleMinPriceChange = useCallback((value: string) => {
 		const min = value === "" ? 0 : parseInt(value);
 		if (!isNaN(min)) {
 			setMinPrice(min);
 		}
-	};
+	}, []);
 
-	const handleMaxPriceChange = (value: string) => {
+	const handleMaxPriceChange = useCallback((value: string) => {
 		const max = value === "" ? 0 : parseInt(value);
 		if (!isNaN(max)) {
 			setMaxPrice(max);
 		}
-	};
+	}, []);
 
 	return (
 		<div className="filter flex-column">
 			<Accordion
 				showDivider={false}
 				selectionMode="multiple"
-				defaultExpandedKeys={["price", "brand", "color", "screen_resolution", "screen_diagonal"]}
+				defaultExpandedKeys={[
+					"price",
+					"brand",
+					"color",
+					"screen_resolution",
+					"screen_diagonal",
+				]}
 			>
 				<AccordionItem title="Цена" key="price">
 					<div className="filter__price flex-column">
@@ -59,7 +75,6 @@ const Filter: FC = () => {
 									onChange={(event) => handleMaxPriceChange(event.target.value)}
 								/>
 							</div>
-
 							<Slider
 								aria-label="slider"
 								size="md"
@@ -67,7 +82,7 @@ const Filter: FC = () => {
 								maxValue={100000}
 								minValue={10000}
 								value={[minPrice, maxPrice]}
-								onChange={value => {
+								onChange={(value) => {
 									if (Array.isArray(value)) {
 										const [min, max] = value;
 										setMinPrice(min);
@@ -76,7 +91,6 @@ const Filter: FC = () => {
 								}}
 							/>
 						</div>
-
 						<CheckboxGroup>
 							<Checkbox value="Менее 15 000 ₽">Менее 15 000 ₽</Checkbox>
 							<Checkbox value="15 000 - 24 999 ₽">15 000 - 24 999 ₽</Checkbox>
@@ -119,21 +133,11 @@ const Filter: FC = () => {
 					</CheckboxGroup>
 				</AccordionItem>
 			</Accordion>
-
 			<div className="filter__actions flex-column">
-				<Button
-					variant="solid"
-					color="primary"
-					fullWidth={true}
-				>
+				<Button variant="solid" color="primary" fullWidth={true}>
 					Применить
 				</Button>
-
-				<Button
-					variant="light"
-					color="primary"
-					fullWidth={true}
-				>
+				<Button variant="light" color="primary" fullWidth={true}>
 					Сбросить фильтры
 				</Button>
 			</div>
@@ -142,4 +146,3 @@ const Filter: FC = () => {
 };
 
 export { Filter };
-

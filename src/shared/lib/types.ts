@@ -1,3 +1,5 @@
+import { TProductType } from "@shared/api";
+
 interface IError {
 	detail: [
 		{
@@ -20,16 +22,8 @@ type TTypeOfNavbarItems =
 	| "profile"
 	| "cart";
 
-type TTypeOfCatalogItems =
-	"televisions"
-	| "laptops"
-	| "tablets"
-	| "phones"
-	| "smart_watches"
-	| "accessories";
-
 interface ISectionTypes {
-	type: TTypeOfNavbarItems | TTypeOfCatalogItems;
+	type: TTypeOfNavbarItems | TProductType;
 }
 
 interface ISectionItems extends ISectionTypes {
@@ -43,6 +37,5 @@ export type {
 	IError,
 	TTypeOfNavbarItems,
 	IBaseItems,
-	TTypeOfCatalogItems,
 	ISectionItems
 };

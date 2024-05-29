@@ -4,6 +4,7 @@ export {
 	getAllCart,
 	addProductInCart,
 	deleteProductInCart,
+	deleteAllProductInCart,
 	updateProductCart
 } from "./cart";
 export type { ICart, ICartProduct } from "./cart";
@@ -49,6 +50,15 @@ export type {
 } from "./order";
 
 export {
+	getFilterByTelevision,
+	getFilterByLaptop,
+	getFilterByTablet,
+	getFilterBySmartphone,
+	getFilterBySmartwatch,
+	getFilterByAccessory,
+	getFilterByProduct,
+	getProductBySearch,
+	getSuggestions,
 	getProductTypeById,
 	getTelevisionById,
 	getLaptopById,
@@ -57,12 +67,18 @@ export {
 	getSmartWatchById,
 	getAccessoryById
 } from "./product";
-export type { IProductType, TProductType } from "./product";
+export type {
+	IFilterTelevision,
+	IProductType,
+	TProductType,
+	ISearch
+} from "./product";
 
 export {
 	getUser,
 	updateUser,
-	deleteUser
+	deleteUser,
+	deletePhotoUser
 } from "./profile";
 export type { IUser, IUpdateUserFields } from "./profile";
 

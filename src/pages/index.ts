@@ -1,12 +1,6 @@
 export { Auth, AuthCode } from "./auth"
 export { Cart } from "./cart";
-export {
-	Laptops,
-	Tablets,
-	Phones,
-	SmartWatches,
-	Accessories
-} from "./catalog";
+export { SearchCatalog, CategoryCatalog } from "./catalog";
 export { Favourites } from "./favourites";
 export { Main } from "./main";
 export { NotFound } from "./notFound";

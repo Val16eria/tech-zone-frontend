@@ -5,51 +5,40 @@ import {
 } from "mobx";
 
 import {
+	getAllAccessories,
 	getAllLaptops,
-	getAllTablets,
 	getAllPhones,
 	getAllSmartWatches,
-	getAllAccessories,
-	IBaseProduct
+	getAllTablets,
+	getAllTelevisions,
+	getFilterByLaptop, getFilterByProduct,
+	getFilterBySmartphone,
+	getFilterBySmartwatch,
+	getFilterByTablet,
+	getFilterByTelevision,
+	getProductBySearch,
+	IBaseProduct,
+	IFilterTelevision,
+	ISearch,
+	TProductType
 } from "@shared/api";
-import {getAllTelevisions} from "@shared/api/catalog";
 
 class CatalogModel {
 	private _loading: boolean = false;
-	private _televisions: IBaseProduct[] = [];
-	private _laptops: IBaseProduct[] = [];
-	private _tablets: IBaseProduct[] = [];
-	private _phones: IBaseProduct[] = [];
-	private _smartWatches: IBaseProduct[] = [];
-	private _accessories: IBaseProduct[] = [];
+	private _products: IBaseProduct[] = [];
+	private _filters: IFilterTelevision | null = null;
 	private _error: string | null = null;
 
 	get loading(): boolean {
 		return this._loading;
 	}
 
-	get televisions(): IBaseProduct[] {
-		return toJS(this._televisions);
+	get products(): IBaseProduct[] {
+		return toJS(this._products);
 	}
 
-	get laptops(): IBaseProduct[] {
-		return toJS(this._laptops);
-	}
-
-	get phones(): IBaseProduct[] {
-		return toJS(this._phones);
-	}
-
-	get tablets(): IBaseProduct[] {
-		return toJS(this._tablets);
-	}
-
-	get smartWatches(): IBaseProduct[] {
-		return toJS(this._smartWatches);
-	}
-
-	get accessories(): IBaseProduct[] {
-		return toJS(this._accessories);
+	get filters(): IFilterTelevision | null {
+		return toJS(this._filters);
 	}
 
 	get error(): string | null {
@@ -60,29 +49,54 @@ class CatalogModel {
 		makeAutoObservable(this);
 	}
 
-	async getTelevisions() {
+	async getProducts(type: TProductType) {
+		let products: IBaseProduct[];
+
 		try {
 			this._loading = true;
-			const response = await getAllTelevisions();
+
+			if (type === "television") {
+				const response = await getAllTelevisions();
+				products = response.items;
+			} else if (type === "laptop") {
+				const response = await getAllLaptops();
+				products = response.items;
+			} else if (type === "tablet") {
+				const response = await getAllTablets();
+				products = response.items;
+			} else if (type === "smartphone") {
+				const response = await getAllPhones();
+				products = response.items;
+			} else if (type === "smartwatch") {
+				const response = await getAllSmartWatches();
+				products = response.items;
+			} else if (type === "accessory") {
+				const response = await getAllAccessories();
+				products = response.items;
+			} else {
+				products = [];
+			}
+
 			runInAction(() => {
-				this._televisions = response.items;
+				this._products = products;
 				this._loading = false;
-			})
+			});
 		} catch (error: unknown) {
 			this._loading = false;
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 
-	async getLaptops() {
+	async getSuggestionProduct(dto: ISearch) {
 		try {
+
 			this._loading = true;
-			const response = await getAllLaptops();
+			const response = await getProductBySearch(dto);
 			runInAction(() => {
-				this._laptops = response.items;
+				this._products = response.items;
 				this._loading = false;
 			})
 		} catch (error: unknown) {
@@ -90,77 +104,41 @@ class CatalogModel {
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 
-	async getTablets() {
+	async getFilter(type?: TProductType) {
+		let filters: IFilterTelevision | null;
+
 		try {
 			this._loading = true;
-			const response = await getAllTablets();
-			runInAction(() => {
-				this._tablets = response.items;
-				this._loading = false;
-			})
-		} catch (error: unknown) {
-			this._loading = false;
 
+			if (type === "television") {
+				filters = await getFilterByTelevision(type);
+			} else if (type === "laptop") {
+				filters = await getFilterByLaptop(type);
+			} else if (type === "tablet") {
+				filters = await getFilterByTablet(type);
+			} else if (type === "smartphone") {
+				filters = await getFilterBySmartphone(type);
+			} else if (type === "smartwatch") {
+				filters = await getFilterBySmartwatch(type);
+			} else if (!type || type === "accessory") {
+				filters = await getFilterByProduct("product");
+			} else {
+				filters = null;
+			}
+
+			runInAction(() => {
+				this._filters = filters;
+				this._loading = false;
+			});
+		} catch (error: unknown) {
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
-		}
-	}
-
-	async getPhones() {
-		try {
-			this._loading = true;
-			const response = await getAllPhones();
-			runInAction(() => {
-				this._phones = response.items;
 				this._loading = false;
-			})
-		} catch (error: unknown) {
-			this._loading = false;
-
-			runInAction(() => {
-				this._error = (error as Error).message;
-			})
-		}
-	}
-
-	async getSmartWatches() {
-		try {
-			this._loading = true;
-			const response = await getAllSmartWatches();
-			runInAction(() => {
-				this._smartWatches = response.items;
-				this._loading = false;
-				this._error = null;
-			})
-		} catch (error: unknown) {
-			this._loading = false;
-
-			runInAction(() => {
-				this._error = (error as Error).message;
-			})
-		}
-	}
-
-	async getAccessories() {
-		try {
-			this._loading = true;
-			const response = await getAllAccessories();
-			runInAction(() => {
-				this._accessories = response.items;
-				this._loading = false;
-				this._error = null;
-			})
-		} catch (error: unknown) {
-			this._loading = false;
-
-			runInAction(() => {
-				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 }
