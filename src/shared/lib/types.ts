@@ -13,7 +13,7 @@ interface IError {
 interface IBaseItems {
 	id: number;
 	title: string;
-	path: string;
+	path?: string;
 }
 
 type TTypeOfNavbarItems =

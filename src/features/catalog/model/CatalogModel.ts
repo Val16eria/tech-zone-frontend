@@ -5,28 +5,31 @@ import {
 } from "mobx";
 
 import {
+	getFilterByModel,
 	getAllAccessories,
 	getAllLaptops,
 	getAllPhones,
 	getAllSmartWatches,
 	getAllTablets,
 	getAllTelevisions,
-	getFilterByLaptop, getFilterByProduct,
-	getFilterBySmartphone,
-	getFilterBySmartwatch,
-	getFilterByTablet,
-	getFilterByTelevision,
 	getProductBySearch,
 	IBaseProduct,
-	IFilterTelevision,
+	IFilter,
 	ISearch,
 	TProductType
 } from "@shared/api";
+import {
+	IBaseProductQuery,
+	ILaptopsQuery,
+	ISmartPhonesQuery, ISmartWatchesQuery,
+	ITabletsQuery,
+	ITelevisionsQuery
+} from "@shared/api/catalog";
 
 class CatalogModel {
 	private _loading: boolean = false;
 	private _products: IBaseProduct[] = [];
-	private _filters: IFilterTelevision | null = null;
+	private _filters: IFilter | null = null;
 	private _error: string | null = null;
 
 	get loading(): boolean {
@@ -37,7 +40,7 @@ class CatalogModel {
 		return toJS(this._products);
 	}
 
-	get filters(): IFilterTelevision | null {
+	get filters(): IFilter | null {
 		return toJS(this._filters);
 	}
 
@@ -49,29 +52,32 @@ class CatalogModel {
 		makeAutoObservable(this);
 	}
 
-	async getProducts(type: TProductType) {
+	async getProducts(
+		type: TProductType,
+		query: IBaseProductQuery | ITelevisionsQuery | ILaptopsQuery | ITabletsQuery | ISmartPhonesQuery | ISmartWatchesQuery
+	) {
 		let products: IBaseProduct[];
 
 		try {
 			this._loading = true;
 
 			if (type === "television") {
-				const response = await getAllTelevisions();
+				const response = await getAllTelevisions(query);
 				products = response.items;
 			} else if (type === "laptop") {
-				const response = await getAllLaptops();
+				const response = await getAllLaptops(query);
 				products = response.items;
 			} else if (type === "tablet") {
-				const response = await getAllTablets();
+				const response = await getAllTablets(query);
 				products = response.items;
 			} else if (type === "smartphone") {
-				const response = await getAllPhones();
+				const response = await getAllPhones(query);
 				products = response.items;
 			} else if (type === "smartwatch") {
-				const response = await getAllSmartWatches();
+				const response = await getAllSmartWatches(query);
 				products = response.items;
 			} else if (type === "accessory") {
-				const response = await getAllAccessories();
+				const response = await getAllAccessories(query);
 				products = response.items;
 			} else {
 				products = [];
@@ -109,23 +115,25 @@ class CatalogModel {
 	}
 
 	async getFilter(type?: TProductType) {
-		let filters: IFilterTelevision | null;
+		let filters: IFilter | null;
 
 		try {
 			this._loading = true;
 
 			if (type === "television") {
-				filters = await getFilterByTelevision(type);
+				filters = await getFilterByModel(type);
 			} else if (type === "laptop") {
-				filters = await getFilterByLaptop(type);
+				filters = await getFilterByModel(type);
 			} else if (type === "tablet") {
-				filters = await getFilterByTablet(type);
+				filters = await getFilterByModel(type);
 			} else if (type === "smartphone") {
-				filters = await getFilterBySmartphone(type);
+				filters = await getFilterByModel(type);
 			} else if (type === "smartwatch") {
-				filters = await getFilterBySmartwatch(type);
-			} else if (!type || type === "accessory") {
-				filters = await getFilterByProduct("product");
+				filters = await getFilterByModel(type);
+			} else if (type === "accessory") {
+				filters = await getFilterByModel("accessory");
+			} else if (!type) {
+				filters = await getFilterByModel("product");
 			} else {
 				filters = null;
 			}

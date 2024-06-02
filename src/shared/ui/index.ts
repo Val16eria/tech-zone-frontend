@@ -1,4 +1,5 @@
 export { ArrowButton } from "./arrowButon";
+export { Cookie } from "./cookie";
 export { DefaultImage } from "./defaultImage";
 export { ErrorNotice } from "./errorNotice";
 export { Loader } from "./loader";

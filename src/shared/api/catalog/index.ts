@@ -7,6 +7,12 @@ export {
 	getAllAccessories
 } from "./resources.ts";
 export type {
+	IBaseProductQuery,
+	ITelevisionsQuery,
+	ITabletsQuery,
+	ILaptopsQuery,
+	ISmartPhonesQuery,
+	ISmartWatchesQuery,
 	IBaseProductItems,
 	IReviews,
 	IPhotos,

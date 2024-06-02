@@ -1,29 +1,22 @@
-import {
-	FC,
-	useState,
-	ChangeEvent
-} from "react";
+import { FC, ChangeEvent } from "react";
 import { Select, SelectItem } from "@nextui-org/react";
+
+import { SortTypes } from "../../lib";
 
 import "./Sort.scss";
 
-const Sort: FC = () => {
-	const types = [
-		{ label: "По популярности", value: "popular"},
-		{ label: "С самой высокой оценкой", value: "high"},
-		{ label: "С самой низкой оценкой", value: "low"},
-		{ label: "Сначала дорогое", value: "expensive"},
-		{ label: "Сначала дешевое", value: "cheap"},
-	];
+interface ISort {
+	selectedSort: string;
+	setSelectedSort: (selectedValue: string) => void;
+}
 
-	const [value, setValue] = useState<string>(types[0].value);
-
+const Sort: FC<ISort> = ({ selectedSort, setSelectedSort }) => {
 	const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
 		const selectedValue = e.target.value;
 		if (!selectedValue) {
 			return;
 		}
-		setValue(selectedValue);
+		setSelectedSort(selectedValue);
 	};
 
 	return (
@@ -32,12 +25,12 @@ const Sort: FC = () => {
 			color="primary"
 			aria-label="sort"
 			variant="bordered"
-			selectedKeys={[value]}
+			selectedKeys={[selectedSort]}
 			onChange={handleSelectionChange}
 		>
-			{types.map((item) => (
-				<SelectItem key={item.value} value={item.value}>
-					{item.label}
+			{SortTypes.map((type) => (
+				<SelectItem key={type.value} value={type.value}>
+					{type.label}
 				</SelectItem>
 			))}
 		</Select>

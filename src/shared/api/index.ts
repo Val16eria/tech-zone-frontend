@@ -50,13 +50,7 @@ export type {
 } from "./order";
 
 export {
-	getFilterByTelevision,
-	getFilterByLaptop,
-	getFilterByTablet,
-	getFilterBySmartphone,
-	getFilterBySmartwatch,
-	getFilterByAccessory,
-	getFilterByProduct,
+	getFilterByModel,
 	getProductBySearch,
 	getSuggestions,
 	getProductTypeById,
@@ -68,7 +62,8 @@ export {
 	getAccessoryById
 } from "./product";
 export type {
-	IFilterTelevision,
+	IFilterVariantsPrice,
+	IFilter,
 	IProductType,
 	TProductType,
 	ISearch

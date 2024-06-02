@@ -36,7 +36,7 @@ const ReviewModal: FC<IReviewModal> = observer((
 		id_review,
 		id_product
 	}) => {
-	const { review, loading, error } = ReviewModel;
+	const { review } = ReviewModel;
 	const [text, setText] = useState("");
 	const [rating, setRating] = useState(0);
 

@@ -45,8 +45,9 @@ const Search: FC = () => {
   const handleSuggestionClick = (suggestion: string) => {
     setQuery(suggestion);
     setShowSuggestions(false);
-    if (CategoryType[suggestion as keyof typeof CategoryType]) {
-      navigate(`/products/${CategoryType[suggestion as keyof typeof CategoryType]}`);
+    const type = CategoryType[suggestion as keyof typeof CategoryType];
+    if (type) {
+      navigate(`/products/${type}`);
     } else {
       navigate(`/search/${suggestion}`);
     }

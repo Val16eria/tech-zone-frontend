@@ -28,6 +28,57 @@ interface IBaseProductItems {
 	items: IBaseProduct[];
 }
 
+interface IBaseProductQuery {
+	sort?: string;
+	color_main_in?: string;
+	price_gte?: string;
+	price_lte?: string;
+	model_in?: string;
+	material_in?: string;
+	size_page?: number;
+	number_page?: number;
+}
+
+interface ITelevisionsQuery extends IBaseProductQuery {
+	screen_diagonal_in?: string;
+	screen_resolution_in?: string;
+	matrix_frequency_in?: string;
+}
+
+interface ILaptopsQuery extends IBaseProductQuery {
+	memory_ram_in?: string;
+	screen_diagonal_in?: string;
+	processor_model_in?: string;
+	video_card_model_in?: string;
+	matrix_type_in?: string;
+	number_cores_in?: string;
+}
+
+interface ITabletsQuery extends IBaseProductQuery {
+	memory_in?: string;
+	memory_ram_in?: string;
+	date_release_in?: string;
+	accumulator_capacity_in?: string;
+	matrix_frequency_in?: string;
+	screen_diagonal_in?: string;
+	number_cores_in?: string;
+}
+
+interface ISmartPhonesQuery extends IBaseProductQuery {
+	memory_ram_in?: string
+	date_release_in?: string;
+	accumulator_capacity_in?: string;
+	matrix_frequency_in?: string;
+	screen_diagonal_in?: string;
+	number_cores_in?: string;
+}
+
+interface ISmartWatchesQuery extends IBaseProductQuery {
+	screen_diagonal_in?: string;
+	degree_protection_in?: string;
+	water_resistance_in?: string;
+}
+
 interface IProduct extends IBaseProduct {
 	color_main: string;
 	date_created: string;
@@ -167,6 +218,12 @@ interface IAccessories extends IProduct {
 }
 
 export type {
+	IBaseProductQuery,
+	ITelevisionsQuery,
+	ILaptopsQuery,
+	ITabletsQuery,
+	ISmartPhonesQuery,
+	ISmartWatchesQuery,
 	IReviews,
 	IPhotos,
 	IBaseProduct,

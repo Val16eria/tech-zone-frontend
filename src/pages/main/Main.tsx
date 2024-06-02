@@ -13,7 +13,7 @@ const Main: FC = () => {
       <div className="main__content flex-column">
         {/*новинки*/}
         {/*хиты продаж*/}
-        <Benefit/>
+        <Benefit />
       </div>
     </div>
   );

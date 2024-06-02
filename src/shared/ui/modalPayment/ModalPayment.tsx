@@ -39,7 +39,7 @@ const ModalPayment: FC<IModalLinkCard> = ({ isOpen, onOpenChange }) => {
 	});
 
 	const onSubmit = (data: ModalLinkCardFormData) => {
-		// add request
+		console.log('==========>data', data);
 	};
 
 	const formatCardNumber = (value: string) => {

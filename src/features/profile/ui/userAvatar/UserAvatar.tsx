@@ -6,7 +6,7 @@ import {
 	useState,
 	useRef
 } from "react";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 import { observer } from "mobx-react-lite";
 import {
 	Avatar,
@@ -45,12 +45,16 @@ const UserAvatar: FC<IUserAvatar> = observer(({ user_photo, setFile }) => {
 	}
 
 	const handleDeletePhoto = async () => {
-		toast.promise(PersonalDataModel.deletePhoto(), {
-			loading: "Загрузка...",
-			success: "Ваше фото успешно удалено",
-			error: "Произошла ошибка удаления фото. Поппробуйте еще раз"
-		});
-		await PersonalDataModel.getPersonalData();
+		if (user_photo) {
+			toast.promise(PersonalDataModel.deletePhoto(), {
+				loading: "Загрузка...",
+				success: "Ваше фото успешно удалено",
+				error: "Произошла ошибка удаления фото. Поппробуйте еще раз"
+			});
+			await PersonalDataModel.getPersonalData();
+		} else {
+			toast.error("У вас нет фото, которое можно удалить");
+		}
 	};
 
 	const handleOpenFileDialog = () => {
@@ -58,54 +62,51 @@ const UserAvatar: FC<IUserAvatar> = observer(({ user_photo, setFile }) => {
 	};
 
 	return (
-		<>
-			<Popover
-				isOpen={isOpen}
-				onOpenChange={(open) => setOpen(open)}
-				placement="right"
-			>
-				<PopoverTrigger>
-					<div className="user-avatar user-avatar__container">
-						<Avatar
-							isBordered
-							className="user-avatar__img user-avatar__container"
-							src={imageUrl || user_photo || DefaultAvatarIcon}
-							alt="avatar"
-						/>
-						<div className="user-avatar__img_overlay">
-							<Image src={CameraIcon} alt="avatar hover"/>
-						</div>
-						<input
-							id="avatarUpload"
-							className="user-avatar__img_upload"
-							type="file"
-							accept="image/*"
-							onChange={handleFileInputChange}
-							ref={fileInputRef}
-						/>
+		<Popover
+			isOpen={isOpen}
+			onOpenChange={(open) => setOpen(open)}
+			placement="bottom"
+		>
+			<PopoverTrigger>
+				<div className="user-avatar user-avatar__container">
+					<Avatar
+						isBordered
+						className="user-avatar__img user-avatar__container"
+						src={imageUrl || user_photo || DefaultAvatarIcon}
+						alt="avatar"
+					/>
+					<div className="user-avatar__img_overlay">
+						<Image src={CameraIcon} alt="avatar hover"/>
 					</div>
-				</PopoverTrigger>
-				<PopoverContent>
-					<Button
-						fullWidth
-						variant="light"
-						color="primary"
-						onClick={handleOpenFileDialog}
-					>
-						Изменить фото
-					</Button>
-					<Button
-						fullWidth
-						variant="light"
-						color="danger"
-						onClick={handleDeletePhoto}
-					>
-						Удалить фото
-					</Button>
-				</PopoverContent>
-			</Popover>
-			<Toaster />
-		</>
+					<input
+						id="avatarUpload"
+						className="user-avatar__img_upload"
+						type="file"
+						accept="image/*"
+						onChange={handleFileInputChange}
+						ref={fileInputRef}
+					/>
+				</div>
+			</PopoverTrigger>
+			<PopoverContent>
+				<Button
+					fullWidth
+					variant="light"
+					color="primary"
+					onClick={handleOpenFileDialog}
+				>
+					Изменить фото
+				</Button>
+				<Button
+					fullWidth
+					variant="light"
+					color="danger"
+					onClick={handleDeletePhoto}
+				>
+					Удалить фото
+				</Button>
+			</PopoverContent>
+		</Popover>
 	);
 });
 

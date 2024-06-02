@@ -5,6 +5,8 @@ export type {
 	ISectionItems
 } from "./types.ts";
 export {
+	setConsentCookie,
+	isConsentCookie,
 	isAuth,
 	setTypeAuth,
 	getTypeAuth,

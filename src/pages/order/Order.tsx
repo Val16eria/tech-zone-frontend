@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { observer } from "mobx-react-lite";
 import { Input, useDisclosure } from "@nextui-org/react";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 
 import OrderModel from "@features/order/model";
 import { PersonalDataFormData, personalDataSchema } from "@features/profile/lib";
@@ -72,77 +72,74 @@ const Order: FC = WithAuth(observer(() => {
 	}
 
 	return (
-		<>
-			<Section title="Оформление заказа" isBreadcrumbs={true}>
-				{orderItem?.selectedProducts ? (
-					<form className="order" onSubmit={handleSubmit(onSubmit)}>
-						<div className="order__steps flex-column">
-							<OrderStep stepNumber={1} title="Данные покупателя">
-								<div className="order__steps_list flex-column">
-									<PersonalDataInput
-										type="text"
-										variant="bordered"
-										label="Имя"
-										defaultValue={user?.first_name ?? ""}
-										isInvalid={!!errors.first_name?.message}
-										errorMessage={errors.first_name?.message ?? ""}
-										{...register("first_name")}
-									/>
-									<PersonalDataInput
-										type="text"
-										variant="bordered"
-										label="Фамилия"
-										defaultValue={user?.last_name ?? ""}
-										isInvalid={!!errors.last_name?.message}
-										errorMessage={errors.last_name?.message ?? ""}
-										{...register("last_name")}
-									/>
-									<PersonalDataInput
-										type="tel"
-										variant="bordered"
-										label="Телефон"
-										defaultValue={user?.phone_number ?? ""}
-										isInvalid={!!errors.phone_number?.message}
-										errorMessage={errors.phone_number?.message ?? ""}
-										{...register("phone_number")}
-									/>
-									<Input
-										isDisabled
-										type="email"
-										value={user?.email}
-										variant="bordered"
-										label="Email"
-									/>
-								</div>
-							</OrderStep>
-							<OrderStep stepNumber={2} title="Способы оплаты">
-								<Payment
-									isOpen={isOpen}
-									onOpen={onOpen}
-									onOpenChange={onOpenChange}
+		<Section title="Оформление заказа" isBreadcrumbs={true}>
+			{orderItem?.selectedProducts ? (
+				<form className="order" onSubmit={handleSubmit(onSubmit)}>
+					<div className="order__steps flex-column">
+						<OrderStep stepNumber={1} title="Данные покупателя">
+							<div className="order__steps_list flex-column">
+								<PersonalDataInput
+									type="text"
+									variant="bordered"
+									label="Имя"
+									defaultValue={user?.first_name ?? ""}
+									isInvalid={!!errors.first_name?.message}
+									errorMessage={errors.first_name?.message ?? ""}
+									{...register("first_name")}
 								/>
-							</OrderStep>
-						</div>
-						<div className="order__card">
-							<PriceSummaryCard
-								title="Ваш заказ"
-								products={orderItem?.selectedProducts}
-								totalDiscount={orderItem?.totalDiscount}
-								totalPrice={orderItem?.totalPrice}
-								isDisable={false}
+								<PersonalDataInput
+									type="text"
+									variant="bordered"
+									label="Фамилия"
+									defaultValue={user?.last_name ?? ""}
+									isInvalid={!!errors.last_name?.message}
+									errorMessage={errors.last_name?.message ?? ""}
+									{...register("last_name")}
+								/>
+								<PersonalDataInput
+									type="tel"
+									variant="bordered"
+									label="Телефон"
+									defaultValue={user?.phone_number ?? ""}
+									isInvalid={!!errors.phone_number?.message}
+									errorMessage={errors.phone_number?.message ?? ""}
+									{...register("phone_number")}
+								/>
+								<Input
+									isDisabled
+									type="email"
+									value={user?.email}
+									variant="bordered"
+									label="Email"
+								/>
+							</div>
+						</OrderStep>
+						<OrderStep stepNumber={2} title="Способы оплаты">
+							<Payment
+								isOpen={isOpen}
+								onOpen={onOpen}
+								onOpenChange={onOpenChange}
 							/>
-						</div>
-					</form>
-				) : (
-					<Notice
-						icon={OrderIcon}
-						title="У вас пока нет заказов"
-						description="Перейдите в корзину и оформите заказ"
-					/>
-				)}
-			</Section>
-			<Toaster />
-		</>
+						</OrderStep>
+					</div>
+					<div className="order__card">
+						<PriceSummaryCard
+							title="Ваш заказ"
+							products={orderItem?.selectedProducts}
+							totalDiscount={orderItem?.totalDiscount}
+							totalPrice={orderItem?.totalPrice}
+							isDisable={false}
+						/>
+					</div>
+				</form>
+			) : (
+				<Notice
+					icon={OrderIcon}
+					title="У вас пока нет заказов"
+					description="Перейдите в корзину и оформите заказ"
+				/>
+			)}
+		</Section>
 	);
 }));
 

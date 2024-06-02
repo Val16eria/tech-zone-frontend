@@ -21,7 +21,7 @@ const Price: FC<IPrice> = (
 			<p className="price__discount">
 				{`${discountedPrice(price * quantity, discount) || quantity * price} ₽`}
 			</p>
-			{discount && <p className="price__price">{`${quantity * price} ₽`}
+			{!!discount && <p className="price__price">{`${quantity * price} ₽`}
       </p>}
 		</div>
 	);

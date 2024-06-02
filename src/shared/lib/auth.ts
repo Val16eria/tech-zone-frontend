@@ -1,5 +1,13 @@
 import Cookies from "js-cookie";
 
+const setConsentCookie = () => {
+	localStorage.setItem("cookie", "true");
+};
+
+const isConsentCookie = () => {
+	return localStorage.getItem("cookie");
+};
+
 const setTypeAuth = (value: string) => {
 	localStorage.setItem("email", value);
 };
@@ -55,6 +63,8 @@ const logout = () => {
 }
 
 export {
+	setConsentCookie,
+	isConsentCookie,
 	isAuth,
 	setTypeAuth,
 	getTypeAuth,
