@@ -15,7 +15,7 @@ import "./BottomHeader.scss";
 const BottomHeader: FC = () => {
 	const { pathname } = useLocation();
 
-	const parts = pathname.split('/');
+	const parts = pathname.split("/");
 	const type = parts.length > 2 ? parts[2] : null;
 
 	return (
@@ -28,7 +28,7 @@ const BottomHeader: FC = () => {
 			<NavbarContent>
 				{catalogItems.map((item) => (
 					<NavbarItem key={item.id}>
-						<Link className="bottom-header__link flex-row" href={`/${item.path}`}>
+						<Link className="bottom-header__link flex-row" href={`${item.path}`}>
 							<Image
 								radius="none"
 								width={24}
