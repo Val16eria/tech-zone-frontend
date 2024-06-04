@@ -48,7 +48,6 @@
 		}
 
 		&_name {
-			width: min-content;
 			font-weight: 600;
 			font-size: 18px;
 			line-height: 27px;
@@ -82,6 +81,7 @@
 
 		&__user {
 			&_name {
+				width: min-content;
 				font-size: 14px;
 				line-height: 16px;
 			}
