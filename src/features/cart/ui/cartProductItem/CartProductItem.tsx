@@ -6,8 +6,6 @@ import CartModel from "../../model";
 import { CartProduct } from "../cartProduct";
 import { ICart } from "@shared/api";
 
-import "./CartProductItem.scss";
-
 interface IProductItem {
 	product: ICart;
 }
