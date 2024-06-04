@@ -186,7 +186,7 @@ const TopHeader: FC = observer(() => {
 							<Link
 								className="top-header__menu-link flex-row"
 								color="foreground"
-								href={`/${item.path}`}
+								href={item.path}
 								onClick={closeMenu}
 							>
 								<Image
