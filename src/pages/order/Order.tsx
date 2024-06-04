@@ -48,7 +48,12 @@ const Order: FC = WithAuth(observer(() => {
 
 	useEffect(() => {
 		if (url) {
-			window.open(url, "_blank");
+			const newWindow = window.open(url, "_blank", "noopener,noreferrer");
+			if (!newWindow || newWindow.closed || typeof newWindow.closed === "undefined") {
+				setTimeout(() => {
+					window.location.href = url;
+				}, 100);
+			}
 		}
 	}, [url]);
 

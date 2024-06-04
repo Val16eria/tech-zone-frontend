@@ -41,42 +41,42 @@ const catalogItems: ISectionItems[] = [
     icon: TelevisionIcon,
     type: "television",
     title: "Телевизоры",
-    path: "products/television"
+    path: "/products/television"
   },
   {
     id: 2,
     icon: LaptopIcon,
     type: "laptop",
     title: "Ноутбуки",
-    path: "products/laptop"
+    path: "/products/laptop"
   },
   {
     id: 3,
     icon: TabletIcon,
     type: "tablet",
     title: "Планшеты",
-    path: "products/tablet"
+    path: "/products/tablet"
   },
   {
     id: 4,
     icon: PhoneIcon,
     type: "smartphone",
     title: "Телефоны",
-    path: "products/smartphone"
+    path: "/products/smartphone"
   },
   {
     id: 5,
     icon: SmartWatchIcon,
     type: "smartwatch",
     title: "Смарт-часы",
-    path: "products/smartwatch"
+    path: "/products/smartwatch"
   },
   {
     id: 6,
     icon: AccessoriesIcon,
     type: "accessory",
     title: "Аксессуары",
-    path: "products/accessory"
+    path: "/products/accessory"
   },
 ];
 
