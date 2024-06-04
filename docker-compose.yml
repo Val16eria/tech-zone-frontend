@@ -4,6 +4,12 @@ services:
     container_name: nginxreactapp
     build:
       context: .
-      dockerfile: ../Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "127.0.0.1:8080:80"
+    networks:
+      - techzone
+
+networks:
+  techzone:
+    external: true
