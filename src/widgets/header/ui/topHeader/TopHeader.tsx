@@ -37,7 +37,7 @@ const TopHeader: FC = observer(() => {
 	useEffect(() => {
 		FavouritesModel.getFavourites();
 		CartModel.getCart();
-	}, []);
+	}, [pathname]);
 
 	const closeMenu = () => {
 		setMenuOpen(false);
@@ -52,7 +52,7 @@ const TopHeader: FC = observer(() => {
 			isBlurred={false}
 			onMenuOpenChange={setMenuOpen}
 		>
-			<NavbarBrand>
+			<NavbarBrand className="top-header__logo">
 				<Logo mode="light" />
 			</NavbarBrand>
 
@@ -120,7 +120,7 @@ const TopHeader: FC = observer(() => {
 				className="md:hidden"
 			/>
 
-			<NavbarMenu className="z-40">
+			<NavbarMenu className="mt-4 z-40">
 				<div className="top-header__menu flex-column">
 					{navbarItems.map((item) => (
 						<NavbarMenuItem key={item.id}>
@@ -130,13 +130,45 @@ const TopHeader: FC = observer(() => {
 								href={item.path}
 								onClick={closeMenu}
 							>
-								<Image
-									radius="none"
-									width={24}
-									height={24}
-									src={item.icon}
-									alt={item.title}
-								/>
+								{item.type === "favourites" && (
+									<Badge
+										content={favourites.length ? favourites.length : undefined}
+										color="primary"
+										size="md"
+									>
+										<Image
+											radius="none"
+											width={24}
+											height={24}
+											src={item.icon}
+											alt={item.title}
+										/>
+									</Badge>
+								)}
+								{item.type === "cart" && (
+									<Badge
+										content={cart.length ? cart.length : undefined }
+										color="primary"
+										size="md"
+									>
+										<Image
+											radius="none"
+											width={24}
+											height={24}
+											src={item.icon}
+											alt={item.title}
+										/>
+									</Badge>
+								)}
+								{item.type !== "cart" && item.type !== "favourites" && (
+									<Image
+										radius="none"
+										width={24}
+										height={24}
+										src={item.icon}
+										alt={item.title}
+									/>
+								)}
 								<p className={`top-header__menu-link_txt ${item.path === pathname && "isActive"} `}>
 									{item.title}
 								</p>

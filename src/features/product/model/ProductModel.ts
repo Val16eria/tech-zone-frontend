@@ -17,7 +17,7 @@ import {
 	getTabletById,
 	getPhoneById,
 	getSmartWatchById,
-	getAccessoryById,
+	getAccessoryById
 } from "@shared/api";
 import { TProductType } from "@shared/api/product";
 

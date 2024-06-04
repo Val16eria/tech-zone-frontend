@@ -14,4 +14,6 @@ const wordFormat = (
 	return `${word}${ending3}`;
 };
 
-export { wordFormat };
+const booleanToString = (value: boolean) => value ? "Есть" : "Нет";
+
+export { wordFormat, booleanToString };

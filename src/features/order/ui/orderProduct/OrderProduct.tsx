@@ -17,11 +17,19 @@ interface IOrderCard {
 const OrderProduct: FC<IOrderCard> = ({ status, product }) => {
 	const navigate = useNavigate();
 
+	const redirectToProduct = () => {
+		!product.product.is_deleted && navigate(`/product/${product.product.id}`);
+	};
+
 	return (
 		<div className="order-product">
-			<div className="order-product__img">
+			<div
+				className={`order-product__img ${!product.product.is_deleted && "order-product__info_active"}`}
+				onClick={redirectToProduct}
+			>
 				{product.product.photos ? (
 					<Image
+						className="order-product__img"
 						src={product.product.photos[0].url}
 						radius="none"
 						alt="order product"
@@ -31,8 +39,9 @@ const OrderProduct: FC<IOrderCard> = ({ status, product }) => {
 			<div className="order-product__description">
 				<div className="order-product__description_info flex-row">
 					<p
-						className="order-product__info_title line-2 order-product__info_txt"
-						onClick={() => navigate(`/product/${product.product.id}`)}
+						className={`order-product__info_title ${!product.product.is_deleted && "order-product__info_active"} 
+						line-2 order-product__info_txt`}
+						onClick={redirectToProduct}
 					>
 						{product.product.name}
 					</p>
@@ -47,9 +56,13 @@ const OrderProduct: FC<IOrderCard> = ({ status, product }) => {
 						quantity={product.quantity}
 					/>
 					<div className="order-product__actions_btns flex-row">
-						{status !== "got" && <LikeButton id_product={product.product.id} />}
+						{product.product.is_deleted || status !== "got" && <LikeButton id_product={product.product.id} />}
 						{status !== "got" ?
-							<CartButton id_product={product.product.id} /> :
+							<CartButton
+								id_product={product.product.id}
+								is_active={product.product.is_active}
+								is_deleted={product.product.is_deleted}
+							/> :
 							<ReviewButton id_review={product.product.id_review} id_product={product.product.id} />
 						}
 					</div>

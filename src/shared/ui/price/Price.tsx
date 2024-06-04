@@ -19,9 +19,9 @@ const Price: FC<IPrice> = (
 	return (
 		<div className="price flex-column">
 			<p className="price__discount">
-				{`${discountedPrice(price * quantity, discount) || quantity * price} ₽`}
+				{`${discountedPrice(price * quantity, discount)?.toLocaleString() || (quantity * price).toLocaleString()} ₽`}
 			</p>
-			{discount && <p className="price__price">{`${quantity * price} ₽`}
+			{!!discount && <p className="price__price">{`${(quantity * price).toLocaleString()} ₽`}
       </p>}
 		</div>
 	);

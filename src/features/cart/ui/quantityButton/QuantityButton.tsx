@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { observer } from "mobx-react-lite";
 import { Button, Image } from "@nextui-org/react";
-import { toast, Toaster } from "sonner";
+import { toast } from "sonner";
 
 import CartModel from "@features/cart/model";
 
@@ -46,31 +46,28 @@ const QuantityButton: FC<IQuantityButton> = observer((
 	};
 
 	return (
-		<>
-			<div className="quantity-button flex-row">
-				<Button
-					isIconOnly
-					isDisabled={count <= 1}
-					className="small-action-btn"
-					radius="sm"
-					onClick={subtractCount}
-				>
-					<Image src={count <= 1 ? DisableMinusIcon : MinusIcon} alt="minus"/>
-				</Button>
-				<p className="quantity-button__count">{count}</p>
-				<Button
-					isIconOnly
-					isDisabled={count >= quantity_product}
-					className="small-action-btn"
-					radius="sm"
-					onClick={addCount}
-				>
-					<Image src={PlusIcon} alt="plus"/>
-				</Button>
-			</div>
-			<Toaster/>
-		</>
+		<div className="quantity-button flex-row">
+			<Button
+				isIconOnly
+				isDisabled={count <= 1}
+				className="small-action-btn"
+				radius="sm"
+				onClick={subtractCount}
+			>
+				<Image src={count <= 1 ? DisableMinusIcon : MinusIcon} alt="minus"/>
+			</Button>
+			<p className="quantity-button__count">{count}</p>
+			<Button
+				isIconOnly
+				isDisabled={count >= quantity_product}
+				className="small-action-btn"
+				radius="sm"
+				onClick={addCount}
+			>
+				<Image src={PlusIcon} alt="plus"/>
+			</Button>
+		</div>
 	);
 });
 
-export {QuantityButton};
+export { QuantityButton };

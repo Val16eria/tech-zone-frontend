@@ -16,11 +16,16 @@ interface ICartProduct {
 
 const CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
 	const navigate = useNavigate();
+	const redirectToProduct = () => {
+		navigate(`/product/${cartProduct.product.id}`);
+	};
+
 	return (
 		<div className="cart-product flex-row">
-			<div className="cart-product__img">
+			<div className="cart-product__img" onClick={redirectToProduct}>
 				{cartProduct.product.photos ? (
 					<Image
+						className="cart-product__img"
 						src={cartProduct.product.photos[0].url}
 						radius="none"
 						alt="product photo"
@@ -31,8 +36,7 @@ const CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
 				<div className="cart-product__content_item flex-row">
 					<p
 						className="cart-product__item_title line-2"
-						onClick={() => navigate(`/product/${cartProduct.product.id}`)
-					}>
+						onClick={redirectToProduct}>
 						{cartProduct.product.name}
 					</p>
 					<Price
@@ -42,11 +46,15 @@ const CartProduct: FC<ICartProduct> = ({ cartProduct }) => {
 					/>
 				</div>
 				<div className="cart-product__content_item flex-row">
-					<QuantityButton
-						quantity_product={cartProduct.product.quantity}
-						quantity={cartProduct.quantity}
-						id_product={cartProduct.product.id}
-					/>
+					{
+						cartProduct.product.is_active ?
+							<QuantityButton
+								quantity_product={cartProduct.product.quantity}
+								quantity={cartProduct.quantity}
+								id_product={cartProduct.product.id}
+							/> :
+							<p className="cart-product__content_inactive">Товара нет в наличии</p>
+					}
 					<div className="cart-product__content_actions">
 						<DeleteButton id_product={cartProduct.product.id} />
 						<LikeButton id_product={cartProduct.product.id} />

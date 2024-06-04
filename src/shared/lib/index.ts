@@ -5,12 +5,14 @@ export type {
 	ISectionItems
 } from "./types.ts";
 export {
+	setConsentCookie,
+	isConsentCookie,
 	isAuth,
 	setTypeAuth,
 	getTypeAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,
-	clearTyeAuth,
+	clearTypeAuth,
 	clearStatusAuthCode,
 	setTokensCookie,
 	getRefreshTokenCookie,
@@ -24,4 +26,4 @@ export {
 	clearOrder
 } from "./order.ts";
 export { discountedPrice } from "./product.ts";
-export { wordFormat } from "./wordFormat.ts";
+export { wordFormat, booleanToString } from "./wordFormat.ts";

@@ -43,7 +43,7 @@ const PriceSummaryCard: FC<IPriceSummaryCard> = (
 				{products && (
 					<div className="price-summary-card__body_products flex-row">
 						{products?.map((product) => (
-							<div className="price-summary-card__body_img">
+							<div key={product.id} className="price-summary-card__body_img">
 								{product.product.photos ? (
 									<Image
 										src={product.product.photos[0].url}
@@ -58,11 +58,11 @@ const PriceSummaryCard: FC<IPriceSummaryCard> = (
 				)}
 				<div className="price-summary-card__body_txt flex-row">
 					<p className="price-summary-card__body_discount">Скидка</p>
-					<p className="price-summary-card__body_discount">{totalDiscount.toFixed(0)} ₽</p>
+					<p className="price-summary-card__body_discount">{totalDiscount.toLocaleString()} ₽</p>
 				</div>
 				<div className="price-summary-card__body_txt flex-row">
 					<p className="price-summary-card__body_price">Итого</p>
-					<p className="price-summary-card__body_price">{totalPrice.toFixed(0)} ₽</p>
+					<p className="price-summary-card__body_price">{totalPrice.toLocaleString()} ₽</p>
 				</div>
 			</CardBody>
 			<CardFooter>

@@ -25,7 +25,7 @@ const Policy: FC = () => {
 						<li className="policy__points_point policy__points_point-txt">
 							Настоящая политика Оператора в отношении обработки персональных данных (далее — Политика)
 							применяется ко всей информации, которую Оператор может получить о посетителях
-							веб-сайта <Link color="primary" size="md" href="/">https://techzone.ru.</Link>
+							веб-сайта <Link color="primary" size="md" href="/">https://wis-techzone.ru</Link>.
 						</li>
 					</ol>
 				</li>
@@ -43,7 +43,7 @@ const Policy: FC = () => {
 						<li className="policy__points_point policy__points_point-txt">
 							Веб-сайт — совокупность графических и информационных материалов, а также программ для ЭВМ и баз данных,
 							обеспечивающих их доступность в сети интернет
-							по сетевому <Link color="primary" size="md" href="/">https://techzone.ru.</Link>
+							по сетевому <Link color="primary" size="md" href="/">https://wis-techzone.ru</Link>.
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Информационная система персональных данных — совокупность содержащихся в базах данных персональных данных
@@ -70,7 +70,7 @@ const Policy: FC = () => {
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Персональные данные— любая информация, относящаяся прямо или косвенно к определенному или определяемому
-							Пользователю веб-сайта <Link color="primary" size="md" href="/">https://techzone.ru.</Link>
+							Пользователю веб-сайта <Link color="primary" size="md" href="/">https://wis-techzone.ru</Link>.
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Персональные данные, разрешенные субъектом персональных данных для распространения, — персональные данные,
@@ -81,7 +81,7 @@ const Policy: FC = () => {
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Пользователь — любой посетитель
-							веб-сайта <Link color="primary" size="md" href="/">https://techzone.ru.</Link>
+							веб-сайта <Link color="primary" size="md" href="/">https://wis-techzone.ru</Link>.
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Предоставление персональных данных — действия, направленные на раскрытие персональных данных
@@ -376,8 +376,8 @@ const Policy: FC = () => {
 						<li className="policy__points_point policy__points_point-txt">
 							В случае выявления неточностей в персональных данных, Пользователь может актуализировать их
 							самостоятельно, путем направления Оператору уведомление на адрес электронной почты
-							Оператора <Link color="primary" size="md">privacy@techzone.ru</Link> с пометкой
-							«Актуализация персональных данных».
+							Оператора <Link color="primary" size="md" href="mailto:office@wis.software">office@wis.software</Link> с
+							пометкой «Актуализация персональных данных».
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Срок обработки персональных данных определяется достижением целей, для которых были собраны
@@ -385,8 +385,8 @@ const Policy: FC = () => {
 							<br/>
 							Пользователь может в любой момент отозвать свое согласие на обработку персональных данных,
 							направив Оператору уведомление посредством электронной почты на электронный адрес
-							Оператора <Link color="primary" size="md">privacy@techzone.ru</Link> с пометкой «Отзыв согласия на
-							обработку персональных данных».
+							Оператора <Link color="primary" size="md" href="mailto:office@wis.software">office@wis.software</Link> с
+							пометкой «Отзыв согласия на обработку персональных данных».
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Вся информация, которая собирается сторонними сервисами, в том числе платежными системами,
@@ -490,7 +490,7 @@ const Policy: FC = () => {
 						<li className="policy__points_point policy__points_point-txt">
 							Пользователь может получить любые разъяснения по интересующим вопросам, касающимся обработки его
 							персональных данных, обратившись к Оператору с помощью электронной
-							почты <Link color="primary" size="md">privacy@techzone.ru.</Link>
+							почты <Link color="primary" size="md">mailto:office@wis.software</Link>.
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							В данном документе будут отражены любые изменения политики обработки персональных данных Оператором.
@@ -498,7 +498,7 @@ const Policy: FC = () => {
 						</li>
 						<li className="policy__points_point policy__points_point-txt">
 							Актуальная версия Политики в свободном доступе расположена в сети Интернет
-							по адресу <Link color="primary" size="md" href="/policy">https://techzone.ru/privacy/.</Link>
+							по адресу <Link color="primary" size="md" href="/policy">https://wis-techzone.ru/policy</Link>.
 						</li>
 					</ol>
 				</li>

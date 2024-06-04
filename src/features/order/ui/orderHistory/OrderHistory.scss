@@ -54,6 +54,11 @@
 		background: #E8FAF0;
 	}
 
+	&__status-not_paid {
+		color: #a11212;
+		background: #fae8e8;
+	}
+
 	&__number {
 		&_title {
 			flex-shrink: 0;

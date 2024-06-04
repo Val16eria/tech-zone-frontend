@@ -47,15 +47,15 @@ const SpecificationAccessory: FC = observer(() => {
 		{
 			title: "Размеры",
 			points: [{
-				label: "Высота, в сантиметрах",
+				label: "Высота, в миллиметрах",
 				value: product.height,
 			},
 				{
-					label: "Длина, в сантиметрах",
+					label: "Длина, в миллиметрах",
 					value: product.width,
 				},
 				{
-					label: "Толщина, в сантиметрах",
+					label: "Толщина, в миллиметрах",
 					value: product.thickness,
 				}],
 		}

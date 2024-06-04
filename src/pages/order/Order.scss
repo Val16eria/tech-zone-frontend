@@ -5,10 +5,11 @@
 	justify-content: space-between;
 
 	&__steps {
-		width: 400px;
+		width: 568px;
 		gap: 40px;
 
 		&_list {
+			width: 400px;
 			gap: 12px;
 		}
 	}
@@ -31,6 +32,10 @@
 
 		&__steps {
 			width: 100%;
+
+			&_list {
+				width: 100%;
+			}
 		}
 	}
 }

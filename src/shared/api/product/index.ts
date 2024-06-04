@@ -1,11 +1,7 @@
 export {
-	getFilterByTelevision,
-	getFilterByLaptop,
-	getFilterByTablet,
-	getFilterBySmartphone,
-	getFilterBySmartwatch,
-	getFilterByAccessory,
-	getFilterByProduct,
+	getBanners,
+	getAllProducts,
+	getFilterByModel,
 	getProductTypeById,
 	getProductBySearch,
 	getSuggestions,
@@ -17,7 +13,9 @@ export {
 	getAccessoryById
 } from "./resources.ts";
 export type {
-	IFilterTelevision,
+	IBanner,
+	IFilterVariantsPrice,
+	IFilter,
 	TProductType,
 	IProductType,
 	ISearch,

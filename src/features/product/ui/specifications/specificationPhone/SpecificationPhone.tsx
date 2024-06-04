@@ -5,7 +5,7 @@ import { SpecificationItem } from "../specificationItem";
 import { ISpecification } from "../../../lib";
 import ProductModel from "@features/product/model";
 import { IPhones } from "@shared/api";
-import { dateFormat } from "@shared/lib";
+import { booleanToString, dateFormat } from "@shared/lib";
 
 const SpecificationPhone: FC = observer(() => {
 	const product = ProductModel.product as IPhones;
@@ -65,7 +65,7 @@ const SpecificationPhone: FC = observer(() => {
 			title: "Питание",
 			points: [{
 				label: "Быстрая зарядка (Fast-charge)",
-				value: product.fast_charge,
+				value: booleanToString(product.fast_charge),
 			},
 			{
 				label: "Тип батареи",
@@ -102,15 +102,15 @@ const SpecificationPhone: FC = observer(() => {
 		{
 			title: "Размеры",
 			points: [{
-				label: "Высота, в сантиметрах",
+				label: "Высота, в миллиметрах",
 				value: product.width,
 			},
 			{
-				label: "Длина, в сантиметрах",
+				label: "Длина, в миллиметрах",
 				value: product.height,
 			},
 			{
-				label: "Толщина, в сантиметрах",
+				label: "Толщина, в миллиметрах",
 				value: product.thickness,
 			}],
 		},
@@ -145,7 +145,7 @@ const SpecificationPhone: FC = observer(() => {
 			title: "Связь",
 			points: [{
 				label: "Поддержка Lte",
-				value: product.support_lte,
+				value: booleanToString(product.support_lte),
 			},
 			{
 				label: "Стандарт коммуникации",
@@ -165,7 +165,7 @@ const SpecificationPhone: FC = observer(() => {
 			},
 			{
 				label: "Разъем для наушников",
-				value: product.headphone_output,
+				value: booleanToString(product.headphone_output),
 			}],
 		},
 		{
@@ -188,7 +188,7 @@ const SpecificationPhone: FC = observer(() => {
 			},
 			{
 				label: "Стабилизация видео",
-				value: product.optical_stabilization,
+				value: booleanToString(product.optical_stabilization),
 			}],
 		}
 	];

@@ -3,8 +3,10 @@
 	align-items: center;
 	gap: 12px;
 
-
 	&__checkbox {
+		margin: 0 !important;
+		max-width: 250px !important;
+		width: 100%;
 		gap: 8px;
 		align-items: center;
 		border: 2px solid var(--stroke-grey);
@@ -31,5 +33,13 @@
 		font-size: 16px;
 		line-height: 150%;
 		color: var(--dark-blue-text);
+	}
+}
+
+@media (max-width: 640px) {
+	.payment {
+		&__checkbox {
+			padding: 18px 24px !important;
+		}
 	}
 }

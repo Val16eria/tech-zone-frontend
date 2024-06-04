@@ -4,18 +4,20 @@ import {
 	Routes,
 	useLocation
 } from "react-router-dom";
+import { toast } from "sonner";
 
 import { Main } from "@pages/main";
 import { Policy } from "@pages/policy";
 import { NotFound } from "@pages/notFound";
 import { Auth, AuthCode } from "@pages/auth";
-import { isStatusAuthCode } from "@shared/lib";
+import { isConsentCookie, isStatusAuthCode } from "@shared/lib";
 import { Favourites } from "@pages/favourites";
 import { Cart } from "@pages/cart";
 import { Order } from "@pages/order";
 import { Product } from "@pages/product";
 import { Profile } from "@pages/profile";
 import { CategoryCatalog, SearchCatalog } from "@pages/catalog";
+import { Cookie } from "@shared/ui";
 
 const Router: FC = () => {
 	const { pathname } = useLocation();
@@ -23,6 +25,15 @@ const Router: FC = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [pathname]);
+
+	useEffect(() => {
+		if(!isConsentCookie()) {
+			toast(<Cookie />, {
+				closeButton: true,
+				duration: Infinity
+			});
+		}
+	}, []);
 
 	return (
 		<Routes>

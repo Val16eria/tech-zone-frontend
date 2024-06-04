@@ -15,6 +15,7 @@ class OrderModel {
 	private _loading: boolean = false;
 	private _orderList: IOrder[] = [];
 	private _orderItem: IOrder | null = null;
+	private _url: string | null = null;
 	private _error: string | null = null;
 
 	get loading(): boolean {
@@ -29,6 +30,10 @@ class OrderModel {
 		return toJS(this._orderItem);
 	}
 
+	get url(): string | null {
+		return toJS(this._url);
+	}
+
 	get error(): string | null {
 		return this._error;
 	}
@@ -40,9 +45,10 @@ class OrderModel {
 	async create(dto: ICreateOrder) {
 		try {
 			this._loading = true;
-			await createOrder(dto);
+			const response = await createOrder(dto);
 
 			runInAction(() => {
+				this._url = response.url;
 				this._loading = false;
 			});
 		} catch (error: unknown) {

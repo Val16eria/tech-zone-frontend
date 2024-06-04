@@ -38,9 +38,12 @@
 		}
 
 		&_title {
-			cursor: pointer;
 			height: fit-content;
 			width: 245px;
+		}
+
+		&_active {
+			cursor: pointer;
 
 			&:hover {
 				color: var(--accent-blue);

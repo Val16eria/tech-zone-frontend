@@ -31,7 +31,7 @@ const ModalDeleteProduct: FC<IModalDeleteProduct> = ({ isOpen, onOpenChange, onA
 						</ModalHeader>
 						<ModalBody>
 							<p className="modal-delete-product__txt">
-								Вы точно хотите удалить выбранные товары?
+								Вы точно хотите удалить все товары?
 								Отменить данное действие будет невозможно.
 							</p>
 						</ModalBody>

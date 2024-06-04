@@ -5,12 +5,23 @@ import "./ArrowButton.scss";
 
 interface IArrowButton extends HTMLAttributes<HTMLDivElement>{
 	direction: "left" | "right";
-	action: () => void
+	action: () => void;
+	disabled?: boolean;
 }
 
-const ArrowButton: FC<IArrowButton> = ({ direction, action, className }) => {
+const ArrowButton: FC<IArrowButton> = (
+	{
+		direction,
+		action,
+		disabled,
+		className
+	}) => {
 	return (
-		<button className={`arrow-button ${className}`} onClick={action}>
+		<button
+			className={`arrow-button ${className}`}
+			disabled={disabled}
+			onClick={action}
+		>
 			<img
 				className={`arrow-button__${direction}_img`}
 				src={Arrow}

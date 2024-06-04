@@ -8,7 +8,8 @@ import { WithAuth } from "@shared/hoc";
 import "./Profile.scss";
 
 const Profile: FC = WithAuth(() => {
-	const [selected, setSelected] = useState("personal");
+	const [selected, setSelected] =
+		useState(localStorage.getItem("position" || "personal"));
 
 	return (
 		<div className="profile flex-col">
@@ -18,7 +19,10 @@ const Profile: FC = WithAuth(() => {
 				color="default"
 				variant="underlined"
 				selectedKey={selected}
-				onSelectionChange={(select) => setSelected(select.toString())}
+				onSelectionChange={(select) => {
+					setSelected(select.toString());
+					localStorage.setItem("position", select.toString());
+				}}
 			>
 				<Tab
 					className={`profile__tabs_tab ${selected !== "personal" && "profile__tabs_tab-inactive"}`}

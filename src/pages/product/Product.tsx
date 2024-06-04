@@ -4,6 +4,7 @@ import { observer } from "mobx-react-lite";
 import { Card, CardBody } from "@nextui-org/react";
 
 import ProductModel from "@features/product/model";
+import CatalogModel from "@features/catalog/model";
 import {
 	DescriptionTabs,
 	Parameter,
@@ -16,7 +17,7 @@ import {
 	Section,
 	Stars,
 	Review,
-	ErrorNotice
+	ErrorNotice, ProductCard
 } from "@shared/ui"
 import { discountedPrice } from "@shared/lib";
 
@@ -26,12 +27,14 @@ const Product: FC = observer(() => {
 
 	const { id } = useParams();
 	const { product, loading, error } = ProductModel;
+	const { hot_products } = CatalogModel;
 
 	useEffect(() => {
 		const displayProduct = async () => {
 			const productId = Number(id);
 			await ProductModel.getProductType(productId);
 			await ProductModel.getProduct(productId);
+			await CatalogModel.getHotProducts(4);
 		}
 
 		displayProduct();
@@ -63,26 +66,39 @@ const Product: FC = observer(() => {
 					<Card className="product__card" shadow="sm">
 						<CardBody className="product__card_body flex-column">
 							<div className="product__body_item flex-column">
-								<Parameter/>
-								<Parameter/>
+								{product.color_variations &&
+									(<Parameter
+										title="Цвет"
+										variants={product.color_variations}
+										current_variant={product.color_main}
+									/>)}
+								{"memory" in product && product.memory_variations &&
+									(<Parameter
+										title="Встроенная память"
+										variants={product.memory_variations}
+										current_variant={product.memory}
+									/>)}
 							</div>
 							<div className="product__body_item flex-column">
 								<div className="product__body_price flex-row">
 									<div className="flex-column">
-										{!!product.discount && (<p className="product__price_txt">{`${product.price} ₽`}</p>)}
+										{!!product.discount && (<p className="product__price_txt">
+											{`${product.price.toLocaleString()} ₽`}
+										</p>)}
 										<p className="product__discount_txt">
-											{`${discountedPrice(product.price, product.discount) || product.price} ₽`}
+											{`${discountedPrice(product.price, product.discount)?.toLocaleString() || 
+											product.price.toLocaleString()} ₽`}
 										</p>
 									</div>
 									{!!product.discount && (
 										<p className="product__discount-persent">
-											Скидка: <span className="product__discount-persent_txt">{product.discount} %</span>
+											Скидка <span className="product__discount-persent_txt">-{product.discount} %</span>
 										</p>
 									)}
 								</div>
 								<div className="product__btns flex-row">
 									<LikeButton id_product={product.id} />
-									<CartButton id_product={product.id} />
+									<CartButton id_product={product.id}  is_active={product.is_active} />
 								</div>
 							</div>
 						</CardBody>
@@ -93,6 +109,13 @@ const Product: FC = observer(() => {
 				</p>
 				<DescriptionTabs />
 			</div>
+			{hot_products.length !== 0 && (
+				<Section title="Вам может понравиться" isBreadcrumbs={false}>
+					<div className="product__list">
+						{hot_products.map((product) => <ProductCard key={product.id} {...product} />)}
+					</div>
+				</Section>
+			)}
 		</Section>
 	);
 });

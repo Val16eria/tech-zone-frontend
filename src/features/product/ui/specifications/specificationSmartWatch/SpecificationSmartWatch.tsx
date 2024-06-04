@@ -5,7 +5,7 @@ import { SpecificationItem } from "../specificationItem";
 import { ISpecification } from "../../../lib";
 import ProductModel from "@features/product/model";
 import { ISmartWatches } from "@shared/api";
-import { dateFormat } from "@shared/lib";
+import { booleanToString, dateFormat } from "@shared/lib";
 
 const SpecificationSmartWatch: FC = observer(() => {
 	const product = ProductModel.product as ISmartWatches;
@@ -70,7 +70,7 @@ const SpecificationSmartWatch: FC = observer(() => {
 			},
 			{
 				label: "Выход для наушников",
-				value: product.headphone_output,
+				value: booleanToString(product.headphone_output),
 			},
 			{
 				label: "Защита от влаги",
@@ -81,7 +81,7 @@ const SpecificationSmartWatch: FC = observer(() => {
 			title: "Питание",
 			points: [{
 				label: "Быстрая зарядка (Fast-charge)",
-				value: product.fast_charge,
+				value: booleanToString(product.fast_charge),
 			},
 			{
 				label: "Тип батареи",
@@ -126,15 +126,15 @@ const SpecificationSmartWatch: FC = observer(() => {
 		{
 			title: "Размеры",
 			points: [{
-				label: "Высота, в сантиметрах",
+				label: "Высота, в миллиметрах",
 				value: product.height,
 			},
 			{
-				label: "Длина, в сантиметрах",
+				label: "Длина, в миллиметрах",
 				value: product.width,
 			},
 			{
-				label: "Толщина, в сантиметрах",
+				label: "Толщина, в миллиметрах",
 				value: product.thickness,
 			}],
 		},

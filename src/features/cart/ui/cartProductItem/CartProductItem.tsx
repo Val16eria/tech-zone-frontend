@@ -19,6 +19,7 @@ const CartProductItem: FC<IProductItem> = observer(({ product }) => {
 		<div>
 			<Checkbox
 				className="cart__checkbox p-0 m-0 flex max-w-none items-center"
+				isReadOnly={!product.product.is_active}
 				value={product.id.toString()}
 			>
 				<CartProduct cartProduct={product} />

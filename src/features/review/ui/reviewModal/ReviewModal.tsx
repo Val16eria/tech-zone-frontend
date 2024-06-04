@@ -36,15 +36,25 @@ const ReviewModal: FC<IReviewModal> = observer((
 		id_review,
 		id_product
 	}) => {
-	const { review, loading, error } = ReviewModel;
+	const review = ReviewModel.getReview(id_product);
 	const [text, setText] = useState("");
 	const [rating, setRating] = useState(0);
 
 	useEffect(() => {
 		if (id_review) {
-			ReviewModel.getReview(id_review);
+			ReviewModel.fetchReview(id_product, id_review);
 		}
-	}, [id_review]);
+	}, [id_review, id_product]);
+
+	useEffect(() => {
+		if (review?.text) {
+			setText(review.text);
+		}
+
+		if (review?.rating) {
+			setRating(review.rating);
+		}
+	}, [review?.rating, review?.text]);
 
 	const emptyStar = (
 		<Image src={EmptyStarIcon} width={24} height={24} alt="empty star" />
@@ -61,15 +71,16 @@ const ReviewModal: FC<IReviewModal> = observer((
 	const onSubmit = async () => {
 		if (id_review && review) {
 			if (text !== review.text && rating !== review.rating) {
-				await ReviewModel.updateReview({ text, rating }, id_review);
+				await ReviewModel.updateReview({ text, rating }, id_product, id_review);
 			} else if (text !== review.text) {
-				await ReviewModel.updateReview({ text }, id_review);
+				await ReviewModel.updateReview({ text }, id_product, id_review);
 			} else if (rating !== review.rating) {
-				await ReviewModel.updateReview({ rating }, id_review);
+				await ReviewModel.updateReview({ rating }, id_product, id_review);
 			}
 		} else {
 			await ReviewModel.createReview({ text, rating }, id_product);
 		}
+		onOpenChange();
 	};
 
 	return (

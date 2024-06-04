@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import {
-	Image,
 	Divider,
+	Image,
 	Pagination
 } from "@nextui-org/react";
 
@@ -22,20 +22,16 @@ const Feedback: FC<IReview> = ({ reviews }) => {
 	const reviewsPerPage = 3;
 	const numberOfPage = Math.ceil(reviews.length / reviewsPerPage);
 
-	const emptyStar = (
-		<Image src={EmptyStarIcon} width={17} height={17} alt="empty star" />
-	);
-
-	const fullStar = (
-		<Image src={FullStarIcon} width={17} height={17} alt="full star" />
-	);
-
 	const displayStars = (rating: number) => {
-		const stars = Array(5).fill(emptyStar);
-		for (let i = 0; i < rating; i++) {
-			stars[i] = fullStar;
-		}
-		return stars;
+		return Array(5).fill(null).map((_, index) => (
+			<Image
+				key={index}
+				src={index < rating ? FullStarIcon : EmptyStarIcon}
+				width={17}
+				height={17}
+				alt={index < rating ? "full star" : "empty star"}
+			/>
+		));
 	};
 
 	const indexOfLastReview = currentPage * reviewsPerPage;

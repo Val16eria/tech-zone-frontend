@@ -5,7 +5,7 @@ import { SpecificationItem } from "../specificationItem";
 import { ISpecification } from "../../../lib";
 import ProductModel from "@features/product/model";
 import { ITelevisions } from "@shared/api";
-import { dateFormat } from "@shared/lib";
+import { booleanToString, dateFormat } from "@shared/lib";
 
 const SpecificationTelevision: FC = observer(() => {
 	const product = ProductModel.product as ITelevisions;
@@ -58,7 +58,7 @@ const SpecificationTelevision: FC = observer(() => {
 			},
 			{
 				label: "HDMI порты",
-				value: product.hdmi_ports,
+				value: booleanToString(product.hdmi_ports),
 			},
 			{
 				label: "Цифровые тюнеры",
@@ -70,11 +70,11 @@ const SpecificationTelevision: FC = observer(() => {
 			},
 			{
 				label: "Управление со смартфона",
-				value: product.smartphone_control,
+				value: booleanToString(product.smartphone_control),
 			},
 			{
 				label: "Управление через BlueTooth",
-				value: product.smartphone_control,
+				value: booleanToString(product.smartphone_control),
 			},
 			{
 				label: "Приложение для управления",
@@ -82,7 +82,7 @@ const SpecificationTelevision: FC = observer(() => {
 			},
 			{
 				label: "WiFi",
-				value: product.wifi_availability,
+				value: booleanToString(product.wifi_availability),
 			},
 			{
 				label: "Стандарт WiFi",
@@ -92,15 +92,15 @@ const SpecificationTelevision: FC = observer(() => {
 		{
 			title: "Размеры",
 			points: [{
-				label: "Высота, в сантиметрах",
+				label: "Высота, в миллиметрах",
 				value: product.height,
 			},
 			{
-				label: "Длина, в сантиметрах",
+				label: "Длина, в миллиметрах",
 				value: product.width,
 			},
 			{
-				label: "Толщина, в сантиметрах",
+				label: "Толщина, в миллиметрах",
 				value: product.thickness,
 			}],
 		},
@@ -128,7 +128,7 @@ const SpecificationTelevision: FC = observer(() => {
 			},
 			{
 				label: "Поддержка HDR",
-				value: product.hdr_support,
+				value: booleanToString(product.hdr_support),
 			},
 			{
 				label: "Угол обзора",
@@ -147,7 +147,7 @@ const SpecificationTelevision: FC = observer(() => {
 			},
 			{
 				label: "Разьем для наушников",
-				value: product.headphone_output,
+				value: booleanToString(product.headphone_output),
 			},
 			{
 				label: "Голосовой помощник",
@@ -155,11 +155,11 @@ const SpecificationTelevision: FC = observer(() => {
 			},
 			{
 				label: "Сабвуфер",
-				value: product.subwoofer,
+				value: booleanToString(product.subwoofer),
 			},
 			{
 				label: "Объемное звучание",
-				value: product.sound_surround,
+				value: booleanToString(product.sound_surround),
 			}],
 		},
 		{

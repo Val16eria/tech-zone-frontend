@@ -1,10 +1,10 @@
 export { ArrowButton } from "./arrowButon";
+export { Cookie } from "./cookie";
 export { DefaultImage } from "./defaultImage";
 export { ErrorNotice } from "./errorNotice";
 export { Loader } from "./loader";
 export { Logo } from "./logo";
 export { Modal } from "./modal";
-export { ModalPayment } from "./modalPayment";
 export { Notice } from "./notice";
 export { Payment } from "./payment";
 export { PolicyLink } from "./policyLink";

@@ -21,28 +21,38 @@ const SpecificationItem: FC<ISpecificationItem> = observer(({ specification }) =
 			<div className="specification-item__list">
 				<div className="specification-item__column flex-column">
 					{firstColumnPoints.map((point, index) => (
-						<div key={index} className="specification-item__column_list flex-row">
-							<p className="specification-item__list_txt specification-item__list_label">
-								{`${point.label}`}
-							</p>
-							<span className="specification-item__list_dot"/>
-							<p className="specification-item__list_txt specification-item__list_value flex-grow">
-								{`${point.value}`}
-							</p>
-						</div>
+						<>
+						{point.value && (
+							<div key={index} className="specification-item__column_list flex-row">
+								<p className="specification-item__list_txt specification-item__list_label">
+									{`${point.label}`}
+								</p>
+								<span className="specification-item__list_dot"/>
+								<p className="specification-item__list_txt specification-item__list_value flex-grow">
+									{`${point.value}`}
+								</p>
+							</div>
+						)}
+						</>
 					))}
 				</div>
 				<div className="specification-item__column flex-column">
 					{secondColumnPoints.map((point, index) => (
-						<div key={index} className="specification-item__column_list flex-row">
-							<p className="specification-item__list_txt specification-item__list_label">
-								{`${point.label}`}
-							</p>
-							<span className="specification-item__list_dot" />
-							<p className="specification-item__list_txt specification-item__list_value flex-grow">
-								{`${point.value}`}
-							</p>
-						</div>
+						<>
+						{
+							point.value && (
+								<div key={index} className="specification-item__column_list flex-row">
+									<p className="specification-item__list_txt specification-item__list_label">
+										{`${point.label}`}
+									</p>
+									<span className="specification-item__list_dot"/>
+									<p className="specification-item__list_txt specification-item__list_value flex-grow">
+										{`${point.value}`}
+									</p>
+								</div>
+							)
+						}
+						</>
 					))}
 				</div>
 			</div>
@@ -50,4 +60,4 @@ const SpecificationItem: FC<ISpecificationItem> = observer(({ specification }) =
 	);
 });
 
-export { SpecificationItem };
+export {SpecificationItem};

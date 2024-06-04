@@ -9,6 +9,12 @@
 
 	&__content {
 		gap: 60px;
+
+		&_list {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 20px;
+		}
 	}
 };
 
@@ -19,6 +25,10 @@
 
 		&__content {
 			gap: 40px;
+
+			&_list {
+				grid-template-columns: repeat(3, 1fr);
+			}
 		}
 	}
 }
@@ -34,6 +44,17 @@
 
 		&__content {
 			gap: 20px;
+		}
+	}
+}
+
+
+@media (max-width: 648px) {
+	.main {
+		&__content {
+			&_list {
+				grid-template-columns: repeat(2, 1fr);
+			}
 		}
 	}
 }

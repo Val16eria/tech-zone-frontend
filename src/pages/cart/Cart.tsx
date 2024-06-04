@@ -69,10 +69,12 @@ const Cart: FC = WithAuth(observer(() => {
 	};
 
 	const handleSelectAll = () => {
-		if (selected.length === cart.length) {
+		if (selected.length === cart.filter((product) => product.product.is_active).length) {
 			setSelected([]);
 		} else {
-			const orderItems = cart.map(product => product.id.toString());
+			const orderItems = cart
+				.filter(product => product.product.is_active)
+				.map(product => product.id.toString());
 			setSelected(orderItems);
 		}
 	};

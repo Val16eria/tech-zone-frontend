@@ -5,7 +5,7 @@ import { SpecificationItem } from "../specificationItem";
 import { ISpecification } from "../../../lib";
 import ProductModel from "@features/product/model";
 import { ILaptops } from "@shared/api";
-import { dateFormat } from "@shared/lib";
+import { booleanToString, dateFormat } from "@shared/lib";
 
 const SpecificationLaptop: FC = observer(() => {
 	const product = ProductModel.product as ILaptops;
@@ -80,15 +80,15 @@ const SpecificationLaptop: FC = observer(() => {
 		{
 			title: "Размеры",
 			points: [{
-				label: "Высота, в сантиметрах",
+				label: "Высота, в миллиметрах",
 				value: product.height,
 			},
 			{
-				label: "Длина, в сантиметрах",
+				label: "Длина, в миллиметрах",
 				value: product.width,
 			},
 			{
-				label: "Толщина, в сантиметрах",
+				label: "Толщина, в миллиметрах",
 				value: product.thickness,
 			}],
 		},
@@ -115,7 +115,7 @@ const SpecificationLaptop: FC = observer(() => {
 			},
 			{
 				label: "Микрофон",
-				value: product.microphone,
+				value: booleanToString(product.microphone),
 			},
 			{
 				label: "Голосовой ассистент",
@@ -123,11 +123,11 @@ const SpecificationLaptop: FC = observer(() => {
 			},
 			{
 				label: "HDMI порты",
-				value: product.hdmi_ports,
+				value: booleanToString(product.hdmi_ports),
 			},
 			{
 				label: "WiFi",
-				value: product.wifi_availability,
+				value: booleanToString(product.wifi_availability),
 			},
 			{
 				label: "Стандарт WiFi",
@@ -135,7 +135,7 @@ const SpecificationLaptop: FC = observer(() => {
 			},
 			{
 				label: "Отпечаток пальца",
-				value: product.fingerprint_scanner,
+				value: booleanToString(product.fingerprint_scanner),
 			},
 			{
 				label: "Тачпад",
@@ -143,7 +143,7 @@ const SpecificationLaptop: FC = observer(() => {
 			},
 			{
 				label: "Разьем для наушников",
-				value: product.headphone_output,
+				value: booleanToString(product.headphone_output),
 			},
 			{
 				label: "Технология звука",
@@ -178,7 +178,7 @@ const SpecificationLaptop: FC = observer(() => {
 			},
 			{
 				label: "Поддержка HDR",
-				value: product.hdr_support,
+				value: booleanToString(product.hdr_support),
 			}],
 		},
 		{

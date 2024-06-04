@@ -2,14 +2,15 @@ import { AxiosResponse } from "axios";
 
 import { api } from "../apiAxios.ts";
 import {
-	IOrderInfo,
+	IOrder,
+	IOrderItems,
 	ICreateOrder,
-	IOrder, IOrderItems
+	IOrderPayment
 } from "./types.ts";
 
-const createOrder = async (dto: ICreateOrder): Promise<IOrderInfo> => {
+const createOrder = async (dto: ICreateOrder): Promise<IOrderPayment> => {
 	const response =
-		await api.post<IOrderInfo, AxiosResponse<IOrderInfo>>("/orders", { ...dto });
+		await api.post<IOrderPayment, AxiosResponse<IOrderPayment>>("/orders", { ...dto });
 	return response.data;
 };
 

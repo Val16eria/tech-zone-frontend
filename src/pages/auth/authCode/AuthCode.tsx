@@ -1,6 +1,7 @@
 import {
 	FC,
 	KeyboardEvent,
+	useEffect,
 	useRef,
 	useState
 } from "react";
@@ -13,8 +14,10 @@ import { codeRegex, numberRegex } from "@features/auth/lib";
 import AuthModel from "@features/auth/model";
 import {
 	clearStatusAuthCode,
-	clearTyeAuth,
-	getTypeAuth
+	clearTypeAuth,
+	getTypeAuth,
+	setStatusAuthCode,
+	setTypeAuth
 } from "@shared/lib";
 import { Loader } from "@shared/ui";
 
@@ -23,7 +26,27 @@ import "./AuthCode.scss";
 const AuthCode: FC = observer(() => {
 	const navigate = useNavigate();
 	const [error, setError] = useState("");
+	const [counter, setCounter] = useState(() => {
+		const savedCounter = localStorage.getItem("counter");
+		return savedCounter ? parseInt(savedCounter, 10) : 0;
+	});
 	const inputRef = useRef<HTMLInputElement>(null);
+	const email = getTypeAuth();
+
+	useEffect(() => {
+		if (counter > 0) {
+			const timerId = setTimeout(() => {
+				setCounter(prevCounter => {
+					const newCounter = prevCounter - 1;
+					localStorage.setItem("counter", newCounter.toString());
+					return newCounter;
+				});
+			}, 1000);
+			return () => clearTimeout(timerId);
+		} else {
+			localStorage.removeItem("counter");
+		}
+	}, [counter]);
 
 	if (AuthModel.loading) {
 		return <Loader />;
@@ -36,7 +59,6 @@ const AuthCode: FC = observer(() => {
 		if (inputValue && inputValue.length === maxLength) {
 			if (codeRegex.test(inputValue)) {
 				setError("");
-				const email = getTypeAuth();
 
 				if (email) {
 					AuthModel.authentication(email, Number(inputValue))
@@ -45,7 +67,8 @@ const AuthCode: FC = observer(() => {
 								setError(AuthModel.error);
 							} else {
 								clearStatusAuthCode();
-								clearTyeAuth();
+								localStorage.removeItem("counter");
+								clearTypeAuth();
 								navigate("/");
 							}
 						});
@@ -56,7 +79,25 @@ const AuthCode: FC = observer(() => {
 		} else {
 			setError("");
 		}
-	}
+	};
+
+	const resubmit = () => {
+		if (email) {
+			AuthModel.sendAuthenticationCode(email)
+				.then(() => {
+					if (AuthModel.error) {
+						setError(AuthModel.error);
+					} else {
+						setStatusAuthCode();
+						setTypeAuth(email);
+						const newCounter = 120;
+						setCounter(newCounter);
+						localStorage.setItem("counter", newCounter.toString());
+					}
+				})
+				.catch((error) => setError(error));
+		}
+	};
 
 	const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
 		const key = event.key;
@@ -82,12 +123,13 @@ const AuthCode: FC = observer(() => {
 			handleKeyDown={handleKeyDown}
 		>
 			<Button
-				color="primary"
+				color={counter ? "default" : "primary"}
 				variant="light"
 				size="md"
-				isDisabled={true}
+				isDisabled={!!counter}
+				onClick={resubmit}
 			>
-				Отправить повторно
+				Отправить повторно {!!counter && `через ${counter} сек`}
 			</Button>
 		</AuthContainer>
 	);

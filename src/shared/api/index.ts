@@ -18,6 +18,9 @@ export {
 	getAllAccessories,
 } from "./catalog";
 export type {
+	IColorVariants,
+	IMemoryVariants,
+	IBaseProductMeta,
 	IReviews,
 	IPhotos,
 	IBaseProduct,
@@ -44,19 +47,15 @@ export {
 export type {
 	IOrderProduct,
 	TOrderStatus,
-	IOrderInfo,
+	IOrderPayment,
 	IOrder,
 	ICreateOrder
 } from "./order";
 
 export {
-	getFilterByTelevision,
-	getFilterByLaptop,
-	getFilterByTablet,
-	getFilterBySmartphone,
-	getFilterBySmartwatch,
-	getFilterByAccessory,
-	getFilterByProduct,
+	getBanners,
+	getAllProducts,
+	getFilterByModel,
 	getProductBySearch,
 	getSuggestions,
 	getProductTypeById,
@@ -68,7 +67,9 @@ export {
 	getAccessoryById
 } from "./product";
 export type {
-	IFilterTelevision,
+	IBanner,
+	IFilterVariantsPrice,
+	IFilter,
 	IProductType,
 	TProductType,
 	ISearch

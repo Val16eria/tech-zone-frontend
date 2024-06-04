@@ -12,6 +12,7 @@
 
 		&_header {
 			gap: 10px;
+			align-items: baseline;
 		}
 	}
 
@@ -26,7 +27,16 @@
 	}
 
 	&__header_count {
+		flex-shrink: 0;
 		font-size: 20px;
 		color: rgba(49, 58, 92, 0.5);
+	}
+}
+
+@media (max-width: 648px) {
+	.section {
+		&__header_title {
+			font-size: 20px;
+		}
 	}
 }

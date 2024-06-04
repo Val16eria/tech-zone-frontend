@@ -5,7 +5,7 @@ import { SpecificationItem } from "../specificationItem";
 import { ISpecification } from "../../../lib";
 import ProductModel from "@features/product/model";
 import { ITablets } from "@shared/api";
-import { dateFormat } from "@shared/lib";
+import { booleanToString, dateFormat } from "@shared/lib";
 
 const SpecificationTablet: FC = observer(() => {
 	const product = ProductModel.product as ITablets;
@@ -65,7 +65,7 @@ const SpecificationTablet: FC = observer(() => {
 			title: "Питание",
 			points: [{
 				label: "Быстрая зарядка (Fast-charge)",
-				value: product.fast_charge,
+				value: booleanToString(product.fast_charge),
 			},
 			{
 				label: "Тип батареи",
@@ -96,7 +96,7 @@ const SpecificationTablet: FC = observer(() => {
 			},
 			{
 				label: "Стабилизация видео",
-				value: product.optical_stabilization,
+				value: booleanToString(product.optical_stabilization),
 			}],
 		},
 		{
@@ -130,7 +130,7 @@ const SpecificationTablet: FC = observer(() => {
 			title: "Связь",
 			points: [{
 				label: "Поддержка Lte",
-				value: product.support_lte,
+				value: booleanToString(product.support_lte),
 			},
 			{
 				label: "Формат сим-карты",
@@ -167,15 +167,15 @@ const SpecificationTablet: FC = observer(() => {
 		{
 			title: "Размеры",
 			points: [{
-				label: "Высота, в сантиметрах",
+				label: "Высота, в миллиметрах",
 				value: product.height,
 			},
 			{
-				label: "Длина, в сантиметрах",
+				label: "Длина, в миллиметрах",
 				value: product.width,
 			},
 			{
-				label: "Толщина, в сантиметрах",
+				label: "Толщина, в миллиметрах",
 				value: product.thickness,
 			}],
 		}

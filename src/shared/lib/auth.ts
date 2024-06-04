@@ -1,5 +1,13 @@
 import Cookies from "js-cookie";
 
+const setConsentCookie = () => {
+	localStorage.setItem("cookie", "true");
+};
+
+const isConsentCookie = () => {
+	return localStorage.getItem("cookie");
+};
+
 const setTypeAuth = (value: string) => {
 	localStorage.setItem("email", value);
 };
@@ -8,7 +16,7 @@ const getTypeAuth = () => {
 	return localStorage.getItem("email");
 };
 
-const clearTyeAuth = () => {
+const clearTypeAuth = () => {
 	localStorage.removeItem("email");
 }
 
@@ -27,11 +35,13 @@ const clearStatusAuthCode = () => {
 
 const setTokensCookie = (token_access: string, token_refresh: string) => {
 	Cookies.set("access_token", token_access, {
-		expires: JSON.parse(atob(token_access.split(".")[1])).exp, path: "/"
+		expires: JSON.parse(atob(token_access.split(".")[1])).exp, path: "/",
+		secure: true
 	});
 
 	Cookies.set("refresh_token", token_refresh, {
-		expires: JSON.parse(atob(token_refresh.split(".")[1])).exp, path: "/"
+		expires: JSON.parse(atob(token_refresh.split(".")[1])).exp, path: "/",
+		secure: true
 	});
 };
 
@@ -55,12 +65,14 @@ const logout = () => {
 }
 
 export {
+	setConsentCookie,
+	isConsentCookie,
 	isAuth,
 	setTypeAuth,
 	getTypeAuth,
 	setStatusAuthCode,
 	isStatusAuthCode,
-	clearTyeAuth,
+	clearTypeAuth,
 	clearStatusAuthCode,
 	setTokensCookie,
 	getAccessTokenCookie,

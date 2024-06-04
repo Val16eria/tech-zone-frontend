@@ -11,6 +11,7 @@
 
 	&__item {
 		&_info {
+			gap: 5px;
 			justify-content: space-between;
 			align-items: center;
 		}
@@ -47,6 +48,7 @@
 		}
 
 		&_name {
+			width: min-content;
 			font-weight: 600;
 			font-size: 18px;
 			line-height: 27px;
@@ -63,7 +65,33 @@
 		}
 
 		&_stars {
+			flex-shrink: 0;
 			gap: 8px;
+		}
+	}
+}
+
+@media (max-width: 468px) {
+	.feedback {
+		&__rating {
+			&_date {
+				font-size: 12px;
+				line-height: 14px;
+			}
+		}
+
+		&__user {
+			&_name {
+				font-size: 14px;
+				line-height: 16px;
+			}
+		}
+
+		&__rating {
+			&_date {
+				font-size: 12px;
+				line-height: 14px;
+			}
 		}
 	}
 }

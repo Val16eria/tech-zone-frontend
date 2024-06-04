@@ -2,10 +2,11 @@ import { AxiosResponse } from "axios";
 
 import { api } from "../apiAxios.ts";
 import {
-	IFilterTelevision,
 	IProductType,
 	ISearch,
-	ISuggestions
+	ISuggestions,
+	TProductType,
+	IFilter, IBanner
 } from "./types.ts";
 import {
 	IBaseProductItems,
@@ -16,6 +17,20 @@ import {
 	ITablets,
 	ITelevisions
 } from "../catalog";
+
+const getAllProducts = async (dto: { size_page: number, sort?: string }): Promise<IBaseProductItems> => {
+	const response =
+		await api.get<IBaseProductItems, AxiosResponse<IBaseProductItems>>("/products", {
+			params: { ...dto },
+		});
+	return response.data;
+};
+
+const getBanners = async (): Promise<IBanner[]> => {
+	const response =
+		await api.get<IBanner[], AxiosResponse<IBanner[]>>("/products/banners");
+	return response.data;
+};
 
 const getProductTypeById = async (id: number): Promise<IProductType> => {
 	const response =
@@ -39,59 +54,11 @@ const getSuggestions = async (query: string): Promise<ISuggestions> => {
 	return response.data;
 };
 
-const getFilterByTelevision = async (model: "television"): Promise<IFilterTelevision> => {
+const getFilterByModel = async (model: Omit<TProductType, "accessory"> | "product"): Promise<IFilter> => {
 	const response =
-		await api.get<IFilterTelevision, AxiosResponse<IFilterTelevision>>("/products/filters", {
+		await api.get<IFilter, AxiosResponse<IFilter>>("/products/filters", {
 		params: { model },
 	});
-	return response.data;
-};
-
-const getFilterByLaptop = async (model: "laptop"): Promise<any> => {
-	const response =
-		await api.get<any, AxiosResponse<any>>("/products/filters", {
-			params: { model },
-		});
-	return response.data;
-};
-
-const getFilterByTablet = async (model: "tablet"): Promise<any> => {
-	const response =
-		await api.get<any, AxiosResponse<any>>("/products/filters", {
-			params: { model },
-		});
-	return response.data;
-};
-
-const getFilterBySmartphone = async (model: "smartphone"): Promise<any> => {
-	const response =
-		await api.get<any, AxiosResponse<any>>("/products/filters", {
-			params: { model },
-		});
-	return response.data;
-};
-
-const getFilterBySmartwatch = async (model: "smartwatch"): Promise<any> => {
-	const response =
-		await api.get<any, AxiosResponse<any>>("/products/filters", {
-			params: { model },
-		});
-	return response.data;
-};
-
-const getFilterByAccessory = async (model: "accessory"): Promise<any> => {
-	const response =
-		await api.get<any, AxiosResponse<any>>("/products/filters", {
-			params: { model },
-		});
-	return response.data;
-};
-
-const getFilterByProduct = async (model: "product"): Promise<any> => {
-	const response =
-		await api.get<any, AxiosResponse<any>>("/products/filters", {
-			params: { model },
-		});
 	return response.data;
 };
 
@@ -132,6 +99,8 @@ const getAccessoryById = async (id: number): Promise<IAccessories> => {
 }
 
 export {
+	getBanners,
+	getAllProducts,
 	getProductTypeById,
 	getProductBySearch,
 	getSuggestions,
@@ -141,11 +110,5 @@ export {
 	getPhoneById,
 	getSmartWatchById,
 	getAccessoryById,
-	getFilterByTelevision,
-	getFilterByTablet,
-	getFilterBySmartphone,
-	getFilterByAccessory,
-	getFilterByLaptop,
-	getFilterBySmartwatch,
-	getFilterByProduct
+	getFilterByModel
 };

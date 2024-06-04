@@ -2,28 +2,30 @@ import { ICartProduct } from "@shared/api";
 
 interface ICreateOrder {
 	ids_order_items: number[];
-	payment_method: "cash" | "card";
+	cost: number;
+	payment_method: string;
 }
 
-type TOrderStatus = "assembly" | "ready" | "got";
+type TOrderStatus = "assembly" | "ready" | "got" | "not_paid";
 
-interface IOrderInfo {
-	id: number;
-	payment_method: string;
-	date_created: string;
-	status: TOrderStatus;
-	is_paid: boolean;
+interface IOrderPayment {
+	url: string | null;
 }
 
 interface IOrderProduct {
 	id: number;
-	product: ICartProduct & {
+	product: Omit<ICartProduct, "quantity"> & {
 		id_review: number | null;
+		is_deleted: boolean;
 	};
 	quantity: number;
 }
 
-interface IOrder extends Omit<IOrderInfo, "is_paid"> {
+interface IOrder {
+	id: number;
+	payment_method: string;
+	date_created: string;
+	status: TOrderStatus;
 	order_items: IOrderProduct[];
 }
 
@@ -36,6 +38,6 @@ export type {
 	TOrderStatus,
 	ICreateOrder,
 	IOrderItems,
-	IOrderInfo,
+	IOrderPayment,
 	IOrder
 };

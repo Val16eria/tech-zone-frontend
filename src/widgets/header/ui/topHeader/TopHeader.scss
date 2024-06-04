@@ -65,6 +65,12 @@
 
 @media (max-width: 768px) {
 	.top-header {
+		z-index: 50 !important;
+
+		&__logo {
+			display: none !important;
+		}
+
 		& > header {
 			gap: 5px;
 		}

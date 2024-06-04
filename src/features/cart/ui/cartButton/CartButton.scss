@@ -1,6 +1,11 @@
 .cart-button {
 	width: 100%;
 
+	&__inactive {
+		background-color: rgba(28, 28, 28, 0.24) !important;
+		color: black !important;
+	}
+
 	&__active {
 		background-color: var(--primary-50) !important;
 		color: var(--accent-blue) !important;

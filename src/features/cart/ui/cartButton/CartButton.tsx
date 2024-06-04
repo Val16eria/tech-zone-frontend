@@ -10,9 +10,16 @@ import "./CartButton.scss";
 
 interface ICartButton {
 	id_product: number;
+	is_active: boolean;
+	is_deleted?: boolean;
 }
 
-const CartButton: FC<ICartButton> = observer(({ id_product }) => {
+const CartButton: FC<ICartButton> = observer((
+	{
+		id_product,
+		is_active ,
+		is_deleted
+	}) => {
 	const navigate = useNavigate();
 	const isInCart = CartModel.cart.some(item => item.product.id === id_product);
 
@@ -32,13 +39,14 @@ const CartButton: FC<ICartButton> = observer(({ id_product }) => {
 	return (
 		<div className="cart-button">
 			<Button
-				className={`${isInCart ? "cart-button__active" : undefined}`}
+				className={`${!is_active || is_deleted ? "cart-button__inactive" : isInCart ? "cart-button__active" : undefined}`}
 				color="primary"
 				size="md"
 				fullWidth={true}
 				onClick={handleCart}
+				isDisabled={!is_active}
 			>
-				{isInCart ? "В корзине" : "В корзину"}
+				{is_deleted ? "Продажи прекращены" : !is_active ? "Нет в наличии" : isInCart ? "В корзине" : "В корзину"}
 			</Button>
 		</div>
 	);

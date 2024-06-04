@@ -1,28 +1,17 @@
-import {
-	toJS,
-	runInAction,
-	makeAutoObservable
-} from "mobx";
-
-import {
-	IBaseReview,
-	IReview,
-	createReviewById,
-	getReviewById,
-	updateReviewById
-} from "@shared/api";
+import { toJS, runInAction, makeAutoObservable } from "mobx";
+import { IBaseReview, IReview, createReviewById, getReviewById, updateReviewById } from "@shared/api";
 
 class ReviewModel {
 	private _loading: boolean = false;
-	private _review: IReview | null = null;
+	private _reviews: Map<number, IReview | null> = new Map();
 	private _error: string | null = null;
 
 	get loading(): boolean {
 		return this._loading;
 	}
 
-	get review(): IReview | null {
-		return toJS(this._review);
+	getReview(productId: number): IReview | null {
+		return toJS(this._reviews.get(productId) || null);
 	}
 
 	get error(): string | null {
@@ -33,13 +22,13 @@ class ReviewModel {
 		makeAutoObservable(this);
 	}
 
-	async getReview(id: number) {
+	async fetchReview(productId: number, reviewId: number | null) {
 		try {
 			this._loading = true;
-			const response = await getReviewById(id);
+			const response = reviewId ? await getReviewById(reviewId) : null;
 
 			runInAction(() => {
-				this._review = response;
+				this._reviews.set(productId, response);
 				this._loading = false;
 			});
 		} catch (error: unknown) {
@@ -47,17 +36,17 @@ class ReviewModel {
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 
-	async updateReview(dto: Partial<IBaseReview>, id: number) {
+	async updateReview(dto: Partial<IBaseReview>, productId: number, reviewId: number) {
 		try {
 			this._loading = true;
-			const response = await updateReviewById(dto, id);
+			const response = await updateReviewById(dto, reviewId);
 
 			runInAction(() => {
-				this._review = response;
+				this._reviews.set(productId, response);
 				this._loading = false;
 			});
 		} catch (error: unknown) {
@@ -65,17 +54,17 @@ class ReviewModel {
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 
-	async createReview(dto: IBaseReview, id: number) {
+	async createReview(dto: IBaseReview, productId: number) {
 		try {
 			this._loading = true;
-			const response = await createReviewById(dto, id);
+			const response = await createReviewById(dto, productId);
 
 			runInAction(() => {
-				this._review = response;
+				this._reviews.set(productId, response);
 				this._loading = false;
 			});
 		} catch (error: unknown) {
@@ -83,7 +72,7 @@ class ReviewModel {
 
 			runInAction(() => {
 				this._error = (error as Error).message;
-			})
+			});
 		}
 	}
 }

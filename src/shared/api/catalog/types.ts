@@ -15,6 +15,7 @@ interface IReviews {
 interface IBaseProduct {
 	id: number;
 	name: string;
+	is_active: boolean;
 	price: number;
 	discount: number;
 	photos: IPhotos[] | null
@@ -24,8 +25,79 @@ interface IBaseProduct {
 	is_in_cart: boolean;
 }
 
+interface IBaseProductMeta {
+	objectsCount: number;
+	pageNumber: number;
+	pageSize: number;
+	objectsTotal: number;
+	pagesTotal: number;
+}
+
 interface IBaseProductItems {
 	items: IBaseProduct[];
+	meta: IBaseProductMeta;
+}
+
+interface IBaseProductQuery {
+	sort?: string;
+	color_main_in?: string;
+	price_gte?: string;
+	price_lte?: string;
+	model_in?: string;
+	material_in?: string;
+	size_page?: number;
+	number_page?: number;
+}
+
+interface ITelevisionsQuery extends IBaseProductQuery {
+	screen_diagonal_in?: string;
+	screen_resolution_in?: string;
+	matrix_frequency_in?: string;
+}
+
+interface ILaptopsQuery extends IBaseProductQuery {
+	memory_ram_in?: string;
+	screen_diagonal_in?: string;
+	processor_model_in?: string;
+	video_card_model_in?: string;
+	matrix_type_in?: string;
+	number_cores_in?: string;
+}
+
+interface ITabletsQuery extends IBaseProductQuery {
+	memory_in?: string;
+	memory_ram_in?: string;
+	date_release_in?: string;
+	accumulator_capacity_in?: string;
+	matrix_frequency_in?: string;
+	screen_diagonal_in?: string;
+	number_cores_in?: string;
+}
+
+interface ISmartPhonesQuery extends IBaseProductQuery {
+	memory_ram_in?: string
+	date_release_in?: string;
+	accumulator_capacity_in?: string;
+	matrix_frequency_in?: string;
+	screen_diagonal_in?: string;
+	number_cores_in?: string;
+}
+
+interface ISmartWatchesQuery extends IBaseProductQuery {
+	screen_diagonal_in?: string;
+	degree_protection_in?: string;
+	water_resistance_in?: string;
+}
+
+interface IColorVariants {
+	color_main: string,
+	color_hex: string,
+	id_product: number
+}
+
+interface IMemoryVariants {
+	memory: number,
+	id_product: number
 }
 
 interface IProduct extends IBaseProduct {
@@ -44,6 +116,8 @@ interface IProduct extends IBaseProduct {
 	id_provider: number;
 	is_active: boolean;
 	quantity: number;
+	color_variations: IColorVariants[],
+	memory_variations: IMemoryVariants[]
 }
 
 interface ITechnicalProduct {
@@ -167,6 +241,15 @@ interface IAccessories extends IProduct {
 }
 
 export type {
+	IColorVariants,
+	IMemoryVariants,
+	IBaseProductMeta,
+	IBaseProductQuery,
+	ITelevisionsQuery,
+	ILaptopsQuery,
+	ITabletsQuery,
+	ISmartPhonesQuery,
+	ISmartWatchesQuery,
 	IReviews,
 	IPhotos,
 	IBaseProduct,

@@ -23,13 +23,13 @@ const footerItems: IFooterItems[] = [
 			},
 			{
 				id: 2,
-				title: "8 (800) 500-26-12",
-				path: "tel:88005002612",
+				title: "8 (904) 340-55-56",
+				path: "tel:89043405556",
 			},
 			{
 				id: 3,
-				title: "Techzone@wis-techzone.ru",
-				path: "mailto:Techzone@wis-techzone.ru"
+				title: "office@wis.software",
+				path: "mailto:office@wis.software"
 			},
 		],
 	}

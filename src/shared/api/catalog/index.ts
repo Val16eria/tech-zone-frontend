@@ -7,6 +7,15 @@ export {
 	getAllAccessories
 } from "./resources.ts";
 export type {
+	IColorVariants,
+	IMemoryVariants,
+	IBaseProductMeta,
+	IBaseProductQuery,
+	ITelevisionsQuery,
+	ITabletsQuery,
+	ILaptopsQuery,
+	ISmartPhonesQuery,
+	ISmartWatchesQuery,
 	IBaseProductItems,
 	IReviews,
 	IPhotos,

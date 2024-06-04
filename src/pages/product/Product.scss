@@ -32,6 +32,12 @@
 		color: var(--dark-blue-text);
 	}
 
+	&__list {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 20px;
+	}
+
 	&__card {
 		width: 400px;
 		padding: 28px 32px;
@@ -75,6 +81,10 @@
 	}
 
 	&__discount-persent {
+		display: flex;
+		flex-shrink: 0;
+		gap: 12px;
+		align-items: center;
 		font-weight: 500;
 		font-size: 16px;
 		line-height: 26px;
@@ -94,6 +104,30 @@
 	}
 }
 
+@media (max-width: 1024px) {
+	.product {
+		&__list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+}
+
+@media (max-width: 820px) {
+	.product {
+		&__discount {
+			&_txt {
+				font-size: 20px;
+				line-height: 24px;
+			}
+		}
+
+		&__discount-persent {
+			font-size: 14px;
+			line-height: 24px;
+		}
+	}
+}
+
 @media (max-width: 768px) {
 	.product {
 		&__content {
@@ -106,8 +140,12 @@
 	}
 }
 
-@media (max-width: 640px) {
+@media (max-width: 648px) {
 	.product {
+		&__list {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
 		&__id {
 			&_txt {
 				font-size: 12px;
@@ -127,13 +165,6 @@
 			&_txt {
 				font-size: 14px;
 				line-height: 16px;
-			}
-		}
-
-		&__discount {
-			&_txt {
-				font-size: 20px;
-				line-height: 24px;
 			}
 		}
 	}

@@ -11,11 +11,11 @@ const getReviewById = async (id: number): Promise<IReview> => {
 
 const updateReviewById = async (dto: Partial<IBaseReview>, id: number): Promise<IReview> => {
 	const response =
-		await api.patch<IReview, AxiosResponse<IReview>>(`/review/${id}`, { ...dto });
+		await api.patch<IReview, AxiosResponse<IReview>>(`/reviews/${id}`, { ...dto });
 	return response.data;
 };
 
-const createReviewById = async (dto: IBaseReview, id: number) => {
+const createReviewById = async (dto: IBaseReview, id: number): Promise<IReview> => {
 	const response =
 		await api.post<IReview, AxiosResponse<IReview>>(`/reviews/${id}`, { ...dto });
 	return response.data;

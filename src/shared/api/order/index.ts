@@ -3,7 +3,7 @@ export type {
 	TOrderStatus,
 	ICreateOrder,
 	IOrderItems,
-	IOrderInfo,
+	IOrderPayment,
 	IOrder
 } from "./types.ts";
 export {
