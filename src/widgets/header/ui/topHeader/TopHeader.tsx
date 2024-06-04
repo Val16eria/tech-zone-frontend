@@ -23,6 +23,7 @@ import { Search } from "../search";
 import { catalogItems, navbarItems } from "../../lib";
 import FavouritesModel from "@features/favourites/model";
 import CartModel from "@features/cart/model";
+import { isAuth } from "@shared/lib";
 import { Logo } from "@shared/ui";
 
 import "./TopHeader.scss";
@@ -35,8 +36,10 @@ const TopHeader: FC = observer(() => {
 	const { cart } = CartModel;
 
 	useEffect(() => {
-		FavouritesModel.getFavourites();
-		CartModel.getCart();
+		if (isAuth()) {
+			FavouritesModel.getFavourites();
+			CartModel.getCart();
+		}
 	}, [pathname]);
 
 	const closeMenu = () => {
@@ -69,7 +72,7 @@ const TopHeader: FC = observer(() => {
 							<Link className="top-header__link flex-column" href={item.path}>
 								{item.type === "favourites" && (
 									<Badge
-										content={favourites.length ? favourites.length : undefined}
+										content={(isAuth() && favourites.length) ? favourites.length : undefined}
 										color="primary"
 										size="md"
 									>
@@ -84,7 +87,7 @@ const TopHeader: FC = observer(() => {
 								)}
 								{item.type === "cart" && (
 									<Badge
-										content={cart.length ? cart.length : undefined }
+										content={(isAuth() && cart.length) ? cart.length : undefined }
 										color="primary"
 										size="md"
 									>
@@ -132,7 +135,7 @@ const TopHeader: FC = observer(() => {
 							>
 								{item.type === "favourites" && (
 									<Badge
-										content={favourites.length ? favourites.length : undefined}
+										content={(isAuth() && favourites.length) ? favourites.length : undefined}
 										color="primary"
 										size="md"
 									>
@@ -147,7 +150,7 @@ const TopHeader: FC = observer(() => {
 								)}
 								{item.type === "cart" && (
 									<Badge
-										content={cart.length ? cart.length : undefined }
+										content={(isAuth() && cart.length) ? cart.length : undefined }
 										color="primary"
 										size="md"
 									>
